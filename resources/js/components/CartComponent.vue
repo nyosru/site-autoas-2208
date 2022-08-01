@@ -1,31 +1,29 @@
 <template>
   <div class="container xcheckout-cart-form">
     <form action="" method="post" @submit.prevent="sendOrder">
-
       <div v-if="cartAr.length == 0 && !showOk">
-        
         <br />
         <br />
         <br />
         <br />
 
         <h2 class="alert alert-success text-center">
-          Выберите нужные товары и&nbsp;закажите,<br/>доставим в&nbsp;лучшем виде в&nbsp;кратчайшие
-          сроки
+          Выберите нужные товары и&nbsp;закажите,
+          <br />
+          доставим в&nbsp;лучшем виде в&nbsp;кратчайшие сроки
         </h2>
-
       </div>
 
       <div class="row" v-else>
         <div class="col-md-8 col-sm-12">
-
           <!-- cartAr: {{ cartAr }} -->
           <!-- <br /> -->
           <!-- <br /> -->
           <!-- cartArGoods:              {{cartArGoods}} -->
 
           <h2 class="alert alert-success text-center" v-if="showOk">
-            Заказ отправлен, в&nbsp;ближайшее рабочее время позвоним уточнить и&nbsp;подтвердить детали заказа
+            Заказ отправлен, в&nbsp;ближайшее рабочее время позвоним уточнить
+            и&nbsp;подтвердить детали заказа
           </h2>
 
           <template v-else>
@@ -123,6 +121,7 @@
                 </template>
               </tbody>
             </table>
+
             <br />
             <br />
             <p style="color: gray;">
@@ -356,7 +355,11 @@ const sendOrder = async (good_id) => {
   console.log(77700)
 
   // добавляем серхио тест
-  sendTo.value.push(5152088168)
+  // sendTo.value.push(5152088168)
+  // first_name: Авто-АС
+  sendTo.value.push(1022228978)
+  // Денис Авто-СА
+  sendTo.value.push(663501687)
 
   podZakaz.value = false
 
