@@ -15,7 +15,7 @@ const load = () => {
   // window.scrollTo(0,0)
   
   axios
-    .get('/api/banner/' )
+    .get('/api/banner' )
     .then((response) => {
 
       // console.log("get_datar", response.data);

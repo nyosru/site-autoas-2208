@@ -53,6 +53,7 @@ const cartMinus = (good, kolvo = 1) => {
     let findIndex = cartAr.value.findIndex((o) => o.a_id === good.a_id)
 
     if (findIndex === -1) {
+
         // cartAr.value.findIndex((o) => {
         //     if (o.a_id === good.a_id) {
         //         console.log(o)
@@ -62,6 +63,7 @@ const cartMinus = (good, kolvo = 1) => {
         good.kolvo = kolvo
         cartAr.value.push(good)
         console.log(11, cartAr.value)
+
     } else {
         console.log(22, findIndex)
         cartAr.value[findIndex]['kolvo'] = cartAr.value[findIndex]['kolvo'] > 1 ? cartAr.value[findIndex]['kolvo'] - kolvo : 0
