@@ -19,13 +19,13 @@ jobs:
           # port: ${{ secrets.PORT }}
           script: cd www && cd ${{ secrets.FOLDER }} && git config --global user.email "1@php-cat.com" && git config --global user.name "Sergey" && git fetch --all && git reset --hard origin/main
           
-      - name: laravel migrate
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
+      # - name: laravel migrate
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SERVER_IP }}
+      #     username: ${{ secrets.SERVER_USERNAME }}
+      #     password: ${{ secrets.SERVER_PASSWORD }}
+      #     script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
 
       - name: setup composer pacs on server
         uses: appleboy/ssh-action@master
@@ -34,3 +34,11 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php ./composer.phar i 
+
+      - name: setup npm
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run prod

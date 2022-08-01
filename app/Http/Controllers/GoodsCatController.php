@@ -66,18 +66,22 @@ class GoodsCatController extends Controller
             ->addSelect('m2.a_id')
             ->where('m.a_parentid', $id_cat)
             // ->whereIn('id', [1, 2, 3])
-            ->union($a)
+            // ->union($a)
             // ->get()
             ;
+
+            $a = $a->union($a1);
+
         $a2 = DB::table('mod_020_cats as m')
             ->join('mod_020_cats as m2', 'm2.a_parentid', '=', 'm.a_id')
             ->join('mod_020_cats as m3', 'm3.a_parentid', '=', 'm2.a_id')
             ->addSelect('m3.a_id')
             ->where('m.a_parentid', $id_cat)
             // ->whereIn('id', [1, 2, 3])
-            ->union($a1)
+            // ->union($a1)
             // ->get()
             ;
+            $a = $a->union($a2);
         $a3 = DB::table('mod_020_cats as m')
             ->join('mod_020_cats as m2', 'm2.a_parentid', '=', 'm.a_id')
             ->join('mod_020_cats as m3', 'm3.a_parentid', '=', 'm2.a_id')
@@ -85,9 +89,10 @@ class GoodsCatController extends Controller
             ->addSelect('m4.a_id')
             ->where('m.a_parentid', $id_cat)
             // ->whereIn('id', [1, 2, 3])
-            ->union($a2)
+            // ->union($a2)
             // ->get()
             ;
+            $a = $a->union($a3);
         $a4 = DB::table('mod_020_cats as m')
             ->join('mod_020_cats as m2', 'm2.a_parentid', '=', 'm.a_id')
             ->join('mod_020_cats as m3', 'm3.a_parentid', '=', 'm2.a_id')
@@ -96,12 +101,16 @@ class GoodsCatController extends Controller
             ->addSelect('m5.a_id')
             ->where('m.a_parentid', $id_cat)
             // ->whereIn('id', [1, 2, 3])
-            ->union($a3)
-            ->get();
+            // ->union($a3)
+            // ->get()
+            ;
+            $a = $a->union($a4);
+            $aaa = $a->get();
         // dd($a1);
         $r = [];
         $r[] = $id_cat;
-        foreach( $a4 as $k ){
+        // foreach( $a4 as $k ){
+        foreach( $aaa as $k ){
             // dd($k);
             $r[] = $k->a_id;
         }
