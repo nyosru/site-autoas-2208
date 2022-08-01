@@ -13,7 +13,9 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return new CatalogCollection(Catalog::remember(60)->with('icon')->where('status', 'show')->orderBy('sort')->get());
+        return new CatalogCollection(Catalog::
+        // remember(60)->
+        with('icon')->where('status', 'show')->orderBy('sort')->get());
     }
 
     /**

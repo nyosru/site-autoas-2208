@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoodsCatController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BannerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,4 @@ Route::apiResource('catalog', CatalogController::class );
 Route::apiResource('goodscat', GoodsCatController::class );
 Route::apiResource('good', GoodController::class );
 Route::apiResource('page', PageController::class );
+Route::apiResource('banner', BannerController::class );
