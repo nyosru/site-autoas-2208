@@ -11,6 +11,9 @@
     <index-line-adver-goods-component v-if="!loading" :items="items2" />
     <index-line-adver-goods-component v-if="!loading" :items="items3" />
     <index-line-adver-goods-component v-if="!loading" :items="items4" />
+    <br clear="all" />
+    <br clear="all" />
+    <br clear="all" />
   </div>
 </template>
 

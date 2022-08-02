@@ -19,6 +19,6 @@ const props = defineProps({
 
 <style scoped>
 img {
-  width: 150px;
+  width: 220px;
 }
 </style>

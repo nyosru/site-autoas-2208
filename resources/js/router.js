@@ -27,7 +27,7 @@ const routes = [
         name: 'index',
         components: {
             // BreadcrumbsComponent
-            adver: UpBannerComponent,
+            // adver: UpBannerComponent,
             adverList: IndexLineAdver,
             // starter: StarterComponent,
             // page: null,

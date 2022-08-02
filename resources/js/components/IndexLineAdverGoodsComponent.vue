@@ -79,15 +79,15 @@ const modules = [
 </script>
 
 <style scoped>
-.carusel-item {
+/* .carusel-item {
   background-position: center center;
   background-size: contain;
-  height: 100px;
+  xheight: 100px;
   background-repeat: no-repeat;
-}
+} */
 .swiper {
   width: 100%;
-  height: 30vh;
+  xheight: 30vh;
   margin-top: 5vh;
   /* margin-bottom: 2vh; */
 }
