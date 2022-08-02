@@ -52,7 +52,7 @@ const showMenu = ref(false)
 const catNow = ref('')
 
 // const loadData = (module, db_connection = 'out') => {
-const loadData = () => {
+const loadData = async () => {
   // // console.log('modules items getItemsAll', 1);
 
   // if (loading_module_now.value != module) {
@@ -97,7 +97,7 @@ const loadData = () => {
     console.log('cat', 'cash 77')
   } else {
     localStorage.cats_date = now_d
-    axios
+    await axios
       .get('/api/catalog')
       .then((response) => {
         // console.log("get_datar", response.data);

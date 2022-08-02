@@ -28,12 +28,12 @@ function whatThisPage(page_id) {
   return ww
 }
 
-const pageLoad = (page_id) => {
+const pageLoad = async (page_id) => {
   pageData.value = {}
   pageLoading.value = true
   pageError.value = false
 
-  axios
+  await axios
     .get('/api/page/' + page_id)
     .then((response) => {
       // console.log("get_datar", response.data);

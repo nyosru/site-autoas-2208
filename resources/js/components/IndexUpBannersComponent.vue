@@ -11,6 +11,7 @@
     <swiper
       :spaceBetween="30"
       :centeredSlides="true"
+      :loop="true"
       :autoplay="{
         delay: 2500,
         disableOnInteraction: false,
@@ -32,6 +33,7 @@
           "
         >
           &nbsp;
+          <!-- <a href="/111" >123123</a> -->
         </div>
       </swiper-slide>
       <!-- <swiper-slide>Slide 2</swiper-slide> -->

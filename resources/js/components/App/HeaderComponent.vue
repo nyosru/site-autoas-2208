@@ -41,7 +41,8 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-8 col-xs-7 logo text-center">
-          <a href="/" title="Авто-АС">
+          <!-- <a href="/" title="Авто-АС"> -->
+          <router-link title="Авто-АС" :to="{ name: 'index' }">
             <!-- <img src="/sites/kl2009asavto/download/logo_new.svg" alt="Авто-АС" style="max-width:100%; max-height: 200px; margin: 0 auto;" > -->
             <!-- <img src="/sites/kl2009asavto/download/img/logo7.jpg" alt="Авто-АС" style="max-width:100%; max-height: 100px; margin: 0 auto;" > -->
             <img
@@ -49,7 +50,8 @@
               alt="Авто-АС"
               style="max-width: 100%; max-height: 100px; margin: 0 auto;"
             />
-          </a>
+            <!-- </a> -->
+          </router-link>
         </div>
         <div
           class="col-md-6 hidden-sm col-xs-5 hidden-xs nextlogo text-center"

@@ -15,6 +15,13 @@ class AdverResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-        return [ 'id' => $this->id ];
+        return [ 
+            'id' => $this->id ,
+            'a_id' => $this->a_id ,
+            'head' => $this->head ,
+            'a_price' => $this->a_price ,
+            'a_categoryid' => $this->a_categoryid ,
+            'a_arrayimage' => $this->a_arrayimage ,
+        ];
     }
 }

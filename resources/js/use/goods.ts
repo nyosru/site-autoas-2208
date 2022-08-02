@@ -67,14 +67,14 @@ const loadGoods = (cat_id, page = 0) => {
 
 
 
-const loadGood = ( good_id ) => {
+const loadGood = async ( good_id ) => {
 
   goodData.value = []
   goodLoading.value = true
 
   // window.scrollTo(0,0)
   
-  axios
+  await axios
     .get('/api/good/' + good_id )
     .then((response) => {
 

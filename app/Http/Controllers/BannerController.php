@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Banner;
 use App\Http\Resources\BannerCollection;
+
+use App\Models\Good;
 use App\Http\Resources\AdverCollection;
 
 class BannerController extends Controller
@@ -26,16 +28,20 @@ class BannerController extends Controller
             where('status', 'show')->get());
     }
 
-
     public function adverIndex()
     {
         // $res = Banner::where('status','show')->get();
         // return response()->json(['data' => $res]);
-        return new AdverCollection(Banner::
+        return new AdverCollection(Good::
             // remember(60)->
             // select('id','img','link','sort')->
-            orderBy('sort','DESC')->
-            where('status', 'show')->get());
+            // orderBy('id','DESC')->
+            inRandomOrder()->
+            where('status', 'show')->
+            where('a_arrayimage','!=','')->
+            where('a_price','!=','')->
+            limit(120)->
+            get());
     }
 
     // /**
