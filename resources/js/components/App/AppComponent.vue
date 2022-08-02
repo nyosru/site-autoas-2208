@@ -19,6 +19,7 @@
 
     <router-view name="BreadcrumbsComponent" />
     <router-view name="adver" />
+    <router-view name="adverList" />
     <router-view name="starter" />
     <router-view name="page" />
     <router-view name="cart" />

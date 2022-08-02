@@ -41,7 +41,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-8 col-xs-7 logo text-center">
-          <a href="/show/" title="Авто-АС">
+          <a href="/" title="Авто-АС">
             <!-- <img src="/sites/kl2009asavto/download/logo_new.svg" alt="Авто-АС" style="max-width:100%; max-height: 200px; margin: 0 auto;" > -->
             <!-- <img src="/sites/kl2009asavto/download/img/logo7.jpg" alt="Авто-АС" style="max-width:100%; max-height: 100px; margin: 0 auto;" > -->
             <img

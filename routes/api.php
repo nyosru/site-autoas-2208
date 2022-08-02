@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoodsCatController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\BannerController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,3 +28,4 @@ Route::apiResource('goodscat', GoodsCatController::class );
 Route::apiResource('good', GoodController::class );
 Route::apiResource('page', PageController::class );
 Route::apiResource('banner', BannerController::class );
+Route::get('adverIndex', [ BannerController::class , 'adverIndex' ] );

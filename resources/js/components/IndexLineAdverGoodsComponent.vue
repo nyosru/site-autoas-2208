@@ -7,7 +7,10 @@
     <!-- <br /> -->
     <!-- <br /> -->
     <!-- Slider main container -->
-
+items: {{ items }}
+<br/>
+<br/>
+<br/>
     <swiper
       :spaceBetween="30"
       :centeredSlides="true"
@@ -22,12 +25,12 @@
       :modules="modules"
       class="mySwiper"
     >
-      <swiper-slide v-for="i in items" :key="i.id">
+      <swiper-slide v-for="i in items" :key="i">
         <div
           class="carusel-item"
           :style="
             'background-image:url(\'/storage/module_items_image/' +
-            i.img +
+            ( i.img ?? '' ) +
             '\');'
           "
         >
@@ -41,6 +44,9 @@
 </template>
 
 <script setup>
+
+
+
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
@@ -59,14 +65,22 @@ import {
   // Navigation
 } from 'swiper'
 
-import banner from './../use/banner.ts'
-import { onMounted } from 'vue'
 
-const { load: loadBanner, loading, items } = banner()
 
-onMounted(() => {
-  loadBanner()
+const props = defineProps({
+  items: Object
 })
+
+// import banner from './../use/banner.ts'
+// import { onMounted } from 'vue'
+// const { load: loadBanner, loading, items } = banner()
+// onMounted(() => {
+//   loadBanner()
+// })
+
+
+
+
 
 // export default {
 //   components: {

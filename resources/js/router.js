@@ -12,6 +12,8 @@ import PageComponent from './components/page/PageComponent.vue'
 import CartComponent from './components/CartComponent.vue'
 import GoodComponent from './components/GoodComponent.vue'
 
+import IndexLineAdver from './components/IndexLineAdverComponent.vue'
+
 const routes = [
 
     // {
@@ -26,7 +28,8 @@ const routes = [
         components: {
             // BreadcrumbsComponent
             adver: UpBannerComponent,
-            starter: StarterComponent,
+            adverList: IndexLineAdver,
+            // starter: StarterComponent,
             // page: null,
             // cart: null,
             // vitrin: null,

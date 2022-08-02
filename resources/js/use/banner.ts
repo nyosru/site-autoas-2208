@@ -7,7 +7,7 @@ import axios from 'axios'
 const items = ref({})
 const loading = ref(true)
 
-const load = () => {
+const load = ( typeRequest = 'banner' ) => {
 
   items.value = {}
   loading.value = true
@@ -15,7 +15,7 @@ const load = () => {
   // window.scrollTo(0,0)
   
   axios
-    .get('/api/banner' )
+    .get( typeRequest == 'adverItems' ? '/api/adverIndex' : '/api/banner' )
     .then((response) => {
 
       // console.log("get_datar", response.data);
