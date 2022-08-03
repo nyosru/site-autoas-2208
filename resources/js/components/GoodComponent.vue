@@ -4,7 +4,8 @@
 
     <div class="row">
       <div class="col-12 text-center p-20" v-if="goodLoading">
-        .. загрузка ..
+        .. загрузка ..<br/>
+        <img src="/storage/site/img/loader.gif" />
       </div>
 
       <div class="col-12 col-xs-12 text-center" v-else>

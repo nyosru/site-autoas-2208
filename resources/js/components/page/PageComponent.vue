@@ -8,8 +8,10 @@
 
     <transition>
       <div class="row" v-if="pageLoading">
-        <div class="col-12">
+        <div class="col-12 text-center">
           .. загружаю данные ..
+          <br/>
+        <img src="/storage/site/img/loader.gif" alt="" style="width:120px;" />
         </div>
       </div>
       <div class="row" v-else-if="pageError">
@@ -54,6 +56,7 @@
 </template>
 
 <script setup>
+
 import { ref, watchEffect } from 'vue'
 import page from './../../use/page.ts'
 
