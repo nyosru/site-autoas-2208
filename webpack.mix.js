@@ -45,3 +45,17 @@ mix
     // .postCss('resources/css/_pagination.scss', 'public/css/app.css', [])
     // .postCss('resources/scss/bootstrap.css', 'public/css/app.css', [])
     .postCss('resources/css/app.css', 'public/css', [])
+
+// .postCss('storage/app/public/css/bootstrap.css', 'public/css/app.css', [])
+.postCss('storage/app/public/css/font-awesome.css', 'public/css/app.css', [])
+    // .postCss('storage/app/public/css/ionicons.min.css', 'public/css/app.css', [])
+    // .postCss('storage/app/public/css/style.css', 'public/css/app.css', [])
+
+
+// <link rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}">
+// <link rel="stylesheet" href="{{ asset('storage/css/font-awesome.css') }}">
+// <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}">
+// {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick.css') }}"> --}}
+// {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick-theme.css') }}"> --}}
+// {{-- <link rel="stylesheet" href="{{ asset('storage/css/owl.carousel.min.css') }}"> --}}
+// <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}">

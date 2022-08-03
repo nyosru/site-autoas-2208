@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5">
+  <div class="item0" >
     <div class="product-item-img">
       <!-- <a href="/show/i/9415/podkryilok_plastikovyiy_peredniy_levyiy/"> -->
       <router-link :to="{ name: 'good', params: { good_id: i.a_id } }">
@@ -106,5 +106,9 @@ const goodAdd = () => {
 <style scoped>
 h3 {
   font-size: 1.2em;
+}
+.item0{
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 </style>

@@ -111,7 +111,8 @@ const routes = [
         name: 'NotFound',
         components: {
             adver: UpBannerComponent,
-            starter: StarterComponent,
+            // starter: StarterComponent,
+            adverList: IndexLineAdver,
         },
     },
 ]

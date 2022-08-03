@@ -20,6 +20,7 @@
             }
         </style> --}}
 
+
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
         {{-- <link href="{{ asset('site/scss/style.css') }}" rel="stylesheet" /> --}}
@@ -28,12 +29,12 @@
         {{-- <link href="{{ asset('storage/site/css/ionicons.min.css') }}" rel="stylesheet" /> --}}
         {{-- <link href="{{ asset('storage/site/css/font-awesome.css') }}" rel="stylesheet" /> --}}
 
-        <link rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('storage/css/font-awesome.css') }}">
+        {{-- <xlink rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}"> --}}
+        {{-- <xlink rel="stylesheet" href="{{ asset('storage/css/font-awesome.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('storage/css/slick.css') }}">
-        <link rel="stylesheet" href="{{ asset('storage/css/slick-theme.css') }}">
-        <link rel="stylesheet" href="{{ asset('storage/css/owl.carousel.min.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick.css') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick-theme.css') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('storage/css/owl.carousel.min.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}">
 <!-- Add the slick-theme.css if you want default styling -->
 {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/> --}}

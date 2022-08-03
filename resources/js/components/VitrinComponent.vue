@@ -32,7 +32,7 @@
       <vitrin-menu-component-vue></vitrin-menu-component-vue>
 
       <div class="col-4 text-center" v-if="goodsLoading">
-        <h2>.. loading ..</h2>
+        <h2>.. загрузка предложений ..</h2>
       </div>
       <template v-else>
         <!-- goodsData: {{ goodsData }} -->
@@ -57,6 +57,7 @@
             goodsData.meta.links.length > 3
           "
         >
+        <br clear="all" />
           <vitrin-pagination-component
             v-if="!goodsLoading"
             :inf="goodsData.meta"
