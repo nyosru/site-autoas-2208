@@ -8,6 +8,7 @@ import BreadcrumbsComponent from './components/BreadcrumbsComponent.vue'
 import UpBannerComponent from './components/IndexUpBannersComponent.vue'
 import StarterComponent from './components/StarterComponent.vue'
 import VitrinComponent from './components/VitrinComponent.vue'
+import SearchComponent from './components/SearchComponent.vue'
 import PageComponent from './components/page/PageComponent.vue'
 import CartComponent from './components/CartComponent.vue'
 import GoodComponent from './components/GoodComponent.vue'
@@ -63,6 +64,19 @@ const routes = [
             vitrin: GoodComponent,
         },
     },
+
+
+
+    // search товаров
+    {
+        path: '/search/:search/:page?',
+        name: 'search',
+        components: {
+            BreadcrumbsComponent,
+            vitrin: SearchComponent,
+        },
+    },
+
 
 
     // каталог товаров

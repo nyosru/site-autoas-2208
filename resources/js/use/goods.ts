@@ -39,7 +39,7 @@ const loadGoods = (cat_id, page = 0) => {
   }
 
   // window.scrollTo(0,0)
-  
+
   axios
     .get('/api/goodscat/' + cat_id + page0.value)
     .then((response) => {
@@ -53,7 +53,7 @@ const loadGoods = (cat_id, page = 0) => {
       goodsLoading.value = false
       // return response.data;
       // items_loading.value = dfalse
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
     })
     .catch((error) => {
       console.log(error)
@@ -61,23 +61,54 @@ const loadGoods = (cat_id, page = 0) => {
     })
 }
 
+const searchString = ref('')
+const searchStringNow = ref('')
 
+const loadSearchGoods = (search, page = 0) => {
+  goodsData.value = []
+  goodsLoading.value = true
 
+  if (page > 0) {
+    page0.value = '?page=' + page
+    page01.value = page
+  } else {
+    page0.value = ''
+    page01.value = 0
+  }
 
+  // window.scrollTo(0,0)
 
+  axios
+    .post('/api/good' + page0.value, { search })
+    .then((response) => {
+      searchStringNow.value = search
+      // console.log("get_datar", response.data);
+      // items_loading_module.value = items_now_loading.value;
 
+      // data_filtered.value =
+      goodsData.value = response.data
+      // localStorage.cats = JSON.stringify(response.data.data)
+      // cfg.value = response.data.cfg;
+      goodsLoading.value = false
+      // return response.data;
+      // items_loading.value = dfalse
+      window.scrollTo(0, 0)
+    })
+    .catch((error) => {
+      console.log(error)
+      // this.errored = true;
+    })
+}
 
-const loadGood = async ( good_id ) => {
-
+const loadGood = async (good_id) => {
   goodData.value = []
   goodLoading.value = true
 
   // window.scrollTo(0,0)
-  
-  await axios
-    .get('/api/good/' + good_id )
-    .then((response) => {
 
+  await axios
+    .get('/api/good/' + good_id)
+    .then((response) => {
       // console.log("get_datar", response.data);
       // items_loading_module.value = items_now_loading.value;
 
@@ -91,7 +122,7 @@ const loadGood = async ( good_id ) => {
       // return response.data;
       // items_loading.value = dfalse
 
-      window.scrollTo(0,0)
+      window.scrollTo(0, 0)
     })
     .catch((error) => {
       console.log(error)
@@ -109,5 +140,8 @@ export default function goods() {
     goodLoading,
     goodData,
 
+    searchString,
+    searchStringNow,
+    loadSearchGoods,
   }
 }

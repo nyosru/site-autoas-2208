@@ -5,10 +5,12 @@
         <div class="col-md-5 col-sm-5 col-xs-12">
           <div class="left-nav">
             <div class="location dropdown">
+              <a href="/" >
               <span class="icon">
                 <i class="ion-ios-location" aria-hidden="true"></i>
               </span>
               <span>Тюмень</span>
+              </a>
             </div>
             <div class="language dropdown">
               <span class="icon">
@@ -54,22 +56,10 @@
           </router-link>
         </div>
         <div
-          class="col-md-6 hidden-sm col-xs-5 hidden-xs nextlogo text-center"
+          class="col-md-6 hidden-sm col-xs-5 hidden-xs xnextlogo text-center"
           xstyle="border: 1px solid gray;"
         >
-          <br />
-          <center>
-            <form action="/index.php" class="search-form" method="GET">
-              <input
-                type="text"
-                name="search"
-                class="text-center form-control"
-                placeholder="поиск по названию или артикулу детали"
-              />
-              <input type="hidden" name="level" value="show" />
-              <button type="submit" class="search-icon"></button>
-            </form>
-          </center>
+          <header-search-component />
         </div>
         <div class="col-md-3 col-sm-4 col-xs-5 nextlogo">
           <cart-informer />
@@ -120,6 +110,7 @@
 
 <script setup>
 import HeaderMenuComponent from './HeaderMenuComponent.vue'
+import HeaderSearchComponent from './HeaderSearchComponent.vue'
 import CartInformer from './../Informer/CartComponent.vue'
 </script>
 

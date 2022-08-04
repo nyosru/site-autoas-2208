@@ -150,7 +150,7 @@
                     <span class="text">
                       Итого:
                       <span class="xcart-number" id="summa_all_show">
-                        {{ sumall }} ₽
+                        {{ NumberFormat(sumall) }} <sup>{{ addPodZakaz ? ' + под заказ' : '' }}</sup>
                       </span>
                     </span>
                   </li>
@@ -317,6 +317,7 @@ const s1 = ref(false)
 // }
 
 const sumall = ref(0)
+const addPodZakaz = ref(false)
 
 // считаем сумму корзины
 const stopWatch7 = watchEffect(() => {
@@ -329,6 +330,13 @@ const stopWatch7 = watchEffect(() => {
     .map((item) => (item.a_price > 0 ? item.kolvo * item.a_price : 0))
     .reduce((prev, curr) => prev + curr, 0)
   // console.log(sumall);
+
+if( cartAr.value.find(el => el.a_price == '') ){
+  addPodZakaz.value = true
+}else{
+  addPodZakaz.value = false
+}
+
 })
 
 const form_name = ref('')
@@ -351,6 +359,10 @@ const showOk = ref(false)
 //   showOk.value = false
 // })
 
+const NumberFormat = (num) => {
+  return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(num);
+  // return num + ' 777 ';
+}
 const sendOrder = async (good_id) => {
   console.log(77700)
 

@@ -25,10 +25,21 @@ class GoodController extends Controller
     //  * @param  \Illuminate\Http\Request  $request
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    public function store(Request $request)
+    {
+        $s = explode(' ', $request->search);
+        return new GoodCollection(Good::with('analog')->
+            where(function ($query) use ($s) {
+                foreach ($s as $v) {
+                    // $query->where('a', '=', 1)
+                    //       ->orWhere('b', '=', 1);
+                    $query->Where('head', 'LIKE', '%' . $v . '%');
+                }                
+                $query->orWhere('catnumber_search', $v);
+            })->where('status', 'show')->
+            // orderBy('a_price')->
+            limit(150)->get());
+    }
 
     /**
      * Display the specified resource.
@@ -38,7 +49,7 @@ class GoodController extends Controller
      */
     public function show($id)
     {
-        return new GoodCollection(Good::with('analog')->where('a_id',$id)->where('status', 'show')->get());
+        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
     }
 
     // /**

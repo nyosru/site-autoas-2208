@@ -167,7 +167,14 @@ const stopWatch = watchEffect(() => {
     })
     // console.log(stepCrumb.value)
     window.scrollTo(0,0)
-  }else if (route.name == 'cart') {
+  }else if (route.name == 'search') {
+    stepCrumb.value.push({
+      type: 'search',
+      head: 'Поиск',
+      a_id: 'x',
+    })
+
+}else if (route.name == 'cart') {
 
   nowPage.value = whatThisPage(route.params.id)
 
