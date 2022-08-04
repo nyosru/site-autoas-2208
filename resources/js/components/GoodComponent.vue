@@ -2,6 +2,8 @@
   <div>
     <!-- good_id: {{$route.params.good_id }} -->
 
+<!-- <open-graph-component /> -->
+
     <div class="row">
       <div class="col-12 text-center p-20" v-if="goodLoading">
         .. загрузка ..<br/>
@@ -169,6 +171,7 @@ import goods from './../use/goods.ts'
 import cart from './../use/cart.js'
 
 // import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
+// import OpenGraph from './phpcat/OpenGraphComponent.vue'
 
 import {
   ref,

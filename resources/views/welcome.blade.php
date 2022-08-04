@@ -46,6 +46,14 @@
 
     <link rel="icon" type="image/png" href="/storage/site/img/logo47.png" />
 
+    <meta property="og:title" content="Авто-АС запчасти">
+    <meta property="og:site_name" content="avto-as.ru">
+    <meta property="og:url" content="https://avto-as.ru">
+    <meta property="og:description" content="Запчасти для автомобилей">
+    <meta property="og:image" content="https://22.avto-as.ru/storage/site/img/logo2112.png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
 </head>
 
 <body>
