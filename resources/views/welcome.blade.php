@@ -37,7 +37,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick-theme.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('storage/css/owl.carousel.min.css') }}"> --}}
 
-    <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}" /> --}}
 
     <!-- Add the slick-theme.css if you want default styling -->
     {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/> --}}
