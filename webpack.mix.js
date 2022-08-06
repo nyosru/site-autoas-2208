@@ -41,6 +41,7 @@ mix
     //     //
     // ])
     // .copy('resources/site', 'public/site')
+    .copy('resources/apiAllAutoparts', 'public/apiAllAutoparts')
     // .sass('resources/css/_pagination.scss', 'public/css/app.css', [])
     // .postCss('resources/css/_pagination.scss', 'public/css/app.css', [])
     // .postCss('resources/scss/bootstrap.css', 'public/css/app.css', [])

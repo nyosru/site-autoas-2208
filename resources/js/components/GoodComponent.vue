@@ -2,11 +2,12 @@
   <div>
     <!-- good_id: {{$route.params.good_id }} -->
 
-<!-- <open-graph-component /> -->
+    <!-- <open-graph-component /> -->
 
     <div class="row">
       <div class="col-12 text-center p-20" v-if="goodLoading">
-        .. загрузка ..<br/>
+        .. загрузка ..
+        <br />
         <img src="/storage/site/img/loader.gif" />
       </div>
 
@@ -105,7 +106,7 @@
 
                 <div class="button-ver2 text-center">
                   <button class="btn btn-success" @click="goodAdd">
-                      Добавить в корзину
+                    Добавить в корзину
                   </button>
                 </div>
               </template>
@@ -125,29 +126,45 @@
               <br />
             </div>
           </div>
-          <br/>
-          <br/>
-          <br/>
-          <div class="row" id="an">
-            <div class="col-xs-12">
-              <ul class="nav nav-tabs mt-10">
-                <li
-                  role="presentation"
-                  class="active"
-                  v-if="goodData.analog && goodData.analog.length > 0"
-                >
-                  <a href="#" class="active" onclick="return false;">
-                    Аналоги других производителей
-                  </a>
-                </li>
-              </ul>
 
-              <div
-                v-if="goodData.analog && goodData.analog.length > 0"
-                class="product-list grid_full grid_sidebar grid-uniform container-fluid"
-                style="margin-top: 30px;"
-              >
-                <good-analogi :analogi="goodData.analog" />
+          <good-down-info-component :good="goodData" />
+
+          <div v-if="1 == 2">
+            <br />
+            <br />
+            <br />
+
+            <div class="row" id="an">
+              <div class="col-xs-12">
+                <ul class="nav nav-tabs mt-10">
+                  <li
+                    role="presentation"
+                    class="active"
+                    xv-if="goodData.analog && goodData.analog.length > 0"
+                  >
+                    <a href="#" class="active" onclick="return false;">
+                      Аналоги других производителей
+                    </a>
+                  </li>
+
+                  <li
+                    role="presentation"
+                    xclass="active"
+                    xv-if="goodData.analog && Data.analog.length > 0"
+                  >
+                    <a href="#" class="active" onclick="return false;">
+                      Аналоги других производителей
+                    </a>
+                  </li>
+                </ul>
+
+                <div
+                  v-if="goodData.analog && goodData.analog.length > 0"
+                  class="product-list grid_full grid_sidebar grid-uniform container-fluid"
+                  style="margin-top: 30px;"
+                >
+                  <good-analogi :analogi="goodData.analog" />
+                </div>
               </div>
             </div>
           </div>
@@ -181,10 +198,11 @@ import {
 import { useRoute } from 'vue-router'
 
 import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
-import GoodAnalogi from './GoodAnalogiComponent.vue'
+// import GoodAnalogi from './GoodDownTabAnalogi0Component.vue'
+// import GoodSellAuptoparts from './GoodSellAuptopartsComponent.vue'
+import GoodDownInfoComponent from './GoodDownInfoComponent.vue'
 
 const route = useRoute()
-
 const goodQuantity = ref(1)
 
 // onMounted(() => {
@@ -232,7 +250,6 @@ const goodAdd = () => {
     console.log(route.params.good_id, goodQuantity.value)
   }
 }
-
 </script>
 
 <style scoped></style>

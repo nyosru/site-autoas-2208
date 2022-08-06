@@ -1,4 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/apiAllAutoparts/api.php": "/apiAllAutoparts/api.php",
+    "/apiAllAutoparts/css/style.css": "/apiAllAutoparts/css/style.css",
+    "/apiAllAutoparts/html/error.html": "/apiAllAutoparts/html/error.html",
+    "/apiAllAutoparts/html/footer.html": "/apiAllAutoparts/html/footer.html",
+    "/apiAllAutoparts/html/form.html": "/apiAllAutoparts/html/form.html",
+    "/apiAllAutoparts/html/header.html": "/apiAllAutoparts/html/header.html",
+    "/apiAllAutoparts/html/result.html": "/apiAllAutoparts/html/result.html",
+    "/apiAllAutoparts/html/result_basket.html": "/apiAllAutoparts/html/result_basket.html",
+    "/apiAllAutoparts/index.php": "/apiAllAutoparts/index.php",
+    "/apiAllAutoparts/index_f.php": "/apiAllAutoparts/index_f.php",
+    "/apiAllAutoparts/lib/soap_transport.php": "/apiAllAutoparts/lib/soap_transport.php"
 }

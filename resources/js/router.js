@@ -135,6 +135,20 @@ const router = new createRouter({
     // history: createWebHashHistory('/vue/'),
     history: createWebHistory(),
     routes: routes,
+    // scrollBehavior(to, from, savedPosition) {
+    //     // always scroll to top
+    //     return { top: 0 }
+    //   },
+    scrollBehavior(to, from, savedPosition) {
+        if (to.hash) {
+            return {
+                el: to.hash,
+                behavior: 'smooth',
+            }
+        } else {
+            return { top: 0, behavior: 'smooth', }
+        }
+    }
 })
 
 // скрываем меню при любом переходе по ссылке
