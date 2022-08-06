@@ -4519,7 +4519,6 @@ div.brand {
 .sub-form-li {
     padding: 45px 30px 60px 30px;
     text-align: center;
-    /* background: url("../img/menubg.jpg") no-repeat center; */
     background: url("/storage/site/img/menubg.jpg") no-repeat center;
     background-size: cover;
 }
