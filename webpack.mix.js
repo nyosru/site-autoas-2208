@@ -49,7 +49,7 @@ mix
     // .postCss('storage/app/public/css/bootstrap.css', 'public/css/app.css', [])
     .postCss('storage/app/public/css/font-awesome.css', 'public/css/app.css', [])
     // .postCss('storage/app/public/css/ionicons.min.css', 'public/css/app.css', [])
-    .postCss('storage/app/public/css/style.css', 'public/css/app.css', [])
+    // .postCss('storage/app/public/css/style.css', 'public/css/app.css', [])
     // .css('storage/app/public/css/style.css', 'public/css/app.css', [])
 
 // <link rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}">
