@@ -51,8 +51,6 @@
                 <!-- cartAr, -->
                 <!-- cartArGoods, -->
                 <template v-for="(v, id_good) in cartAr" :key="id_good">
-                  
-                  
                   <tr v-if="v.kolvo >= 0" class="cartItem">
                     <td>
                       <a
@@ -67,10 +65,23 @@
                       <!-- {{ v.a_id }} -->
                     </td>
                     <td @click="s1 = !s1">
-                      ++ {{ v.OfferName ?? '' }}
-                      ++ {{ v.a_id ?? '' }}
-                      <Br/>
-                      {{ v.head ?? '' }}
+                      <!-- ++ {{ v.OfferName ?? '' }} -->
+                      <!-- ++ {{ v.a_id ?? '' }} -->
+                      <!-- <Br/> -->
+                      <span v-if="v.a_categoryid && v.a_categoryid.length">
+                        <router-link
+                          :to="{
+                            name: 'good',
+                            params: { good_id: v.a_categoryid },
+                          }"
+                        >
+                          {{ v.head ?? '' }}
+                        </router-link>
+                      </span>
+                      <span v-else>
+                        <!-- <small>заказ с удалённого склада</small><br /> -->
+                        {{ v.head ?? '' }}
+                      </span>
                       <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['head'] ?? '' ) : '' }} -->
                       <div class="text-muted text-red-hover">
                         {{ v.manufacturer ?? '' }}
@@ -123,8 +134,6 @@
                       }}
                     </td>
                   </tr>
-
-
                 </template>
               </tbody>
             </table>
@@ -157,7 +166,8 @@
                     <span class="text">
                       Итого:
                       <span class="xcart-number" id="summa_all_show">
-                        {{ NumberFormat(sumall) }} <sup>{{ addPodZakaz ? ' + под заказ' : '' }}</sup>
+                        {{ NumberFormat(sumall) }}
+                        <sup>{{ addPodZakaz ? ' + под заказ' : '' }}</sup>
                       </span>
                     </span>
                   </li>
@@ -338,12 +348,11 @@ const stopWatch7 = watchEffect(() => {
     .reduce((prev, curr) => prev + curr, 0)
   // console.log(sumall);
 
-if( cartAr.value.find(el => el.a_price == '') ){
-  addPodZakaz.value = true
-}else{
-  addPodZakaz.value = false
-}
-
+  if (cartAr.value.find((el) => el.a_price == '')) {
+    addPodZakaz.value = true
+  } else {
+    addPodZakaz.value = false
+  }
 })
 
 const form_name = ref('')
@@ -367,7 +376,10 @@ const showOk = ref(false)
 // })
 
 const NumberFormat = (num) => {
-  return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(num);
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+  }).format(num)
   // return num + ' 777 ';
 }
 const sendOrder = async (good_id) => {

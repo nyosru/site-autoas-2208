@@ -24,7 +24,8 @@
     <td>{{ a.PeriodMax }}</td>
     <td>{{ a.Price }}</td>
     <td>
-      <div class="nobr">
+      <template v-if="goodInCart(a.OfferName) === true"></template>
+      <div v-else class="nobr">
         <button class="minus" @click="kolvo = kolvo > 2 ? kolvo - 1 : 1">
           -
         </button>

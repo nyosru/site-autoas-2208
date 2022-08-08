@@ -14,7 +14,7 @@
     <header-component></header-component>
   </header>
 
-  <div class="content">
+  <div class="content1">
     <!-- <router-view name="blockHeader" /> -->
 
     <router-view name="BreadcrumbsComponent" />
