@@ -1,20 +1,37 @@
 <template>
   <div>
-    good_articul: {{ good_articul }}
-    <br />
-    <br />
+    <div v-if="loading">.. загрузка предложений ..</div>
+    <div v-else style="max-height: 400px; overflow: auto;">
+      <!-- good_articul: {{ good_articul }} -->
+      <!-- <br /> -->
+      <!-- <br /> -->
+      <!-- items: {{ items }} -->
+      <!-- <br /> -->
+      <!-- <br /> -->
 
-    <!-- <div
-    v-for="a in analogi"
-    :key="a.id"
-    class="col-xs-12 col-sm-6 col-md-4 col-xl-3 col-lg-2 xproduct-list-item"
-    style="margin-bottom: 3vh; margin-top: 3vh;"  >
-    <vitrin-goods-list-item :i="a" />
-  </div> -->
+      <table>
+        <thead>
+          <tr>
+            <th>название</th>
+            <th>на складе</th>
+            <th>дней на доставку</th>
+            <th>цена</th>
+            <th>кол-во</th>
+            <th>заказать</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-for="(a, ind ) in items" :key="a.AnalogueCode">
+            <good-down-tab-sell-auptoparts-item-component :a="a" :ind="ind % 2" />
+          </template>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script setup>
+import GoodDownTabSellAuptopartsItemComponent from './GoodDownTabSellAuptopartsItemComponent.vue'
 // import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 
 import { onMounted } from '@vue/runtime-core'
@@ -33,4 +50,20 @@ onMounted(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+thead > tr {
+  position: sticky;
+  top: 0;
+  border-bottom: 2px solid rgb(100,100,100);
+  margin-bottom: 3px;
+}
+thead th {
+  padding-left: 10px;
+  text-align: left;
+  background-color: rgb(210,210,210);
+  xbox-shadow: 10px 10px gray;
+}
+tbody tr.n2 td{
+  background-color: rgb(230,230,230);
+}
+</style>

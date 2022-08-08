@@ -14,7 +14,7 @@
     <header-component></header-component>
   </header>
 
-  <content>
+  <div class="content">
     <!-- <router-view name="blockHeader" /> -->
 
     <router-view name="BreadcrumbsComponent" />
@@ -26,7 +26,7 @@
     <router-view name="vitrin" />
 
     <!-- <router-view name="blockFooter" /> -->
-  </content>
+  </div>
 
   <footer>
     <footer-component></footer-component>
@@ -46,7 +46,6 @@ const { cartCashRead } = cart()
 onMounted(() => {
   cartCashRead()
 })
-
 </script>
 
 <style scoped>

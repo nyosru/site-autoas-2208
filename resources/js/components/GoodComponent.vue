@@ -129,7 +129,7 @@
 
           <good-down-info-component :good="goodData" />
 
-          <div v-if="1 == 2">
+          <!-- <div v-if="1 == 2">
             <br />
             <br />
             <br />
@@ -167,7 +167,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

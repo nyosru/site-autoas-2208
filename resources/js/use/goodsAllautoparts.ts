@@ -5,6 +5,10 @@ import axios from 'axios'
 const items = ref({})
 const loading = ref(true)
 
+const sortByField = (field) => {
+  return (a, b) => (a[field] > b[field] ? 1 : -1)
+}
+
 const load = async (searchString = '') => {
   console.log('9879879 load')
 
@@ -39,17 +43,30 @@ const load = async (searchString = '') => {
   await axios
     // .get('/api/adverIndex')
     // .post('https://22.avto-as.ru/apiAllAutoparts/api.php', {
-    .post('/apiAllAutoparts/api.php', {
-      search: searchString,
-      // ss: 222,
-    })
+    // .post('/apiAllAutoparts/api.php', {
+    //   search: searchString,
+    //   // ss: 222,
+    // })
+    .get('/apiAllAutoparts/api.php?search=' + searchString)
     .then((response) => {
+      //   console.log('response', response)
+      //   console.log('response', response.data.data)
+      //   console.log('response', response.data)
+
       // console.log("get_datar", response.data);
       // items_loading_module.value = items_now_loading.value;
       // data_filtered.value =
 
-      items.value = response.data.data
-      localStorage.adver = JSON.stringify(response.data.data)
+      items.value  = response.data
+      items.value.sort(sortByField('Price'))
+      
+      let lastElem2 = items.value.pop();
+      console.log(lastElem2);
+
+      items.value.unshift(lastElem2)
+      
+
+      //   localStorage.adver = JSON.stringify(response.data.data)
       // localStorage.cats = JSON.stringify(response.data.data)
       // cfg.value = response.data.cfg;
 
@@ -60,7 +77,7 @@ const load = async (searchString = '') => {
       // window.scrollTo(0,0)
     })
     .catch((error) => {
-      console.log(error)
+      console.log('error', error)
       loading.value = false
       // this.errored = true;
     })

@@ -51,6 +51,8 @@
                 <!-- cartAr, -->
                 <!-- cartArGoods, -->
                 <template v-for="(v, id_good) in cartAr" :key="id_good">
+                  
+                  
                   <tr v-if="v.kolvo >= 0" class="cartItem">
                     <td>
                       <a
@@ -65,6 +67,9 @@
                       <!-- {{ v.a_id }} -->
                     </td>
                     <td @click="s1 = !s1">
+                      ++ {{ v.OfferName ?? '' }}
+                      ++ {{ v.a_id ?? '' }}
+                      <Br/>
                       {{ v.head ?? '' }}
                       <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['head'] ?? '' ) : '' }} -->
                       <div class="text-muted text-red-hover">
@@ -118,6 +123,8 @@
                       }}
                     </td>
                   </tr>
+
+
                 </template>
               </tbody>
             </table>

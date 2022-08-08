@@ -9,10 +9,39 @@ import {
 
 // товары в корзине a_id = quantity
 const cartAr = ref([])
-    // инфа по товарам в корзине
-    // const cartArGoods = ref({})
+
+// инфа по товарам в корзине
+// const cartArGoods = ref({})
+
+const setStandartGood = (good) => {
+    if (good.OfferName && good.OfferName.length) {
+        good.a_id = good.OfferName
+    }
+    if (good.ProductName && good.ProductName.length) {
+        good.head = good.ProductName
+    }
+    if (good.ManufacturerName && good.ManufacturerName.length) {
+        good.manufacturer = good.ManufacturerName
+    }
+    if (good.Price && (good.Price > 0 || good.Price.length)) {
+        good.a_price = good.Price
+    }
+    return good
+}
+
+// const howNowId = (good) => {
+//     if (good.a_id && good.a_id.length) {
+//         return good.a_id
+//     } else if (good.OfferName && good.OfferName.length) {
+//         return good.OfferName
+//     }
+// }
 
 const cartAdd = (good, kolvo = 1) => {
+    // let nom = (good.a_id && good.a_id.length) ? good.a_id : good.Reference
+    // let nom = howNowId(good)
+
+    good = setStandartGood(good)
 
     let findIndex = cartAr.value.findIndex((o) => o.a_id === good.a_id)
 
@@ -24,6 +53,9 @@ const cartAdd = (good, kolvo = 1) => {
         // })
 
         good.kolvo = kolvo
+
+        // good = setStandartGood(good)
+
         cartAr.value.push(good)
         console.log(11, cartAr.value)
     } else {
@@ -48,12 +80,9 @@ const cartMinus = (good, kolvo = 1) => {
     // let a = cartAr.value[good.a_id] - kolvo
     // cartAr.value[good.a_id] = a >= 0 ? a : 0
 
-
-
     let findIndex = cartAr.value.findIndex((o) => o.a_id === good.a_id)
 
     if (findIndex === -1) {
-
         // cartAr.value.findIndex((o) => {
         //     if (o.a_id === good.a_id) {
         //         console.log(o)
@@ -63,22 +92,21 @@ const cartMinus = (good, kolvo = 1) => {
         good.kolvo = kolvo
         cartAr.value.push(good)
         console.log(11, cartAr.value)
-
     } else {
         console.log(22, findIndex)
-        cartAr.value[findIndex]['kolvo'] = cartAr.value[findIndex]['kolvo'] > 1 ? cartAr.value[findIndex]['kolvo'] - kolvo : 0
+        cartAr.value[findIndex]['kolvo'] =
+            cartAr.value[findIndex]['kolvo'] > 1 ?
+            cartAr.value[findIndex]['kolvo'] - kolvo :
+            0
     }
-
-
 
     cartCashSave()
 }
 
 const cartRemove = (id) => {
-
-    if (!confirm('Удалить товар из заказа ?')) {
-        return false
-    }
+    // if (!confirm('Удалить товар из заказа ?')) {
+    //     return false
+    // }
 
     // cartAr.value[good_id]  = -1
     // var myArray = ['one', 'two', 'three'];
@@ -121,6 +149,8 @@ const cartCashRead = () => {
 const goodInCart = (id_str) => {
     // return cartAr.value[id_str] && cartAr.value[id_str] > 0
     let findIndex = cartAr.value.findIndex((o) => o.a_id === id_str)
+        // let findIndex2 = cartAr.value.findIndex((o) => o.Reference === id_str)
+        // return findIndex === -1 ? (findIndex2 === -1 ? false : true) : true
     return findIndex === -1 ? false : true
 }
 
@@ -248,6 +278,8 @@ export default function cart() {
         cartCashRead,
 
         cartRemove,
+
+        setStandartGood,
 
         // loadGoods,
         // goodsLoading,

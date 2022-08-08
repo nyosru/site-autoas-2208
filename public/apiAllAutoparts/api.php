@@ -1,7 +1,20 @@
 <?php
 
+// echo '<pre>',print_r($_SERVER),'</pre>';
+// echo '<pre>',print_r($_REQUEST),'</pre>';
+// echo '<pre>',print_r($_POST),'</pre>';
+// echo '<pre>',print_r($_GET),'</pre>';
+
 if (empty($_REQUEST['search']))
    die();
+
+   // die($_SERVER['SERVER_NAME']);
+
+if( $_SERVER['SERVER_NAME'] == 'localhost' ){
+   
+   die( file_get_contents('http://22.avto-as.ru/apiAllAutoparts/api.php?search='.$_REQUEST['search'] ?? 'x' ) );
+
+}
 
 require('./index_f.php');
 

@@ -27,7 +27,7 @@
           <!-- <li role="presentation"><a href="#">Messages</a></li> -->
         </ul>
 
-        {{ good }}
+        <!-- {{ good }} -->
 
         <good-analogi-component
           v-if="tab1.mini == 'analogi0'"
@@ -52,7 +52,6 @@
         <br />
 
         <br clear="all" />
-
       </div>
     </template>
   </div>
@@ -130,8 +129,8 @@
       <br />
       <br />
       currentTab: {{ currentTab }}
-      <Br />
-      <Br />
+      <br />
+      <br />
 
       <good-down-tab-analogi-component
         v-if="currentTab == 'GoodDownTabAnalogiComponent'"
