@@ -1,11 +1,11 @@
 <template>
-  <tr :class="{ n2: ind == true }">
+  <tr :class="{ n2: ind % 2 }">
     <td class="text-left">
 
       <!-- a.OfferName: {{ a.OfferName ?? 'x' }}      <br/> -->
       <!-- ++      <br/> -->
 
-      <span xx@click="show = !show">
+      <span xxclick="show = !show">
         <!-- {{ ind }} /  -->
         <!-- {{ a.AnalogueCode }} /  -->
         {{ a.ProductName }}

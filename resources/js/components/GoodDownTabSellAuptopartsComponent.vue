@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <template v-for="(a, ind ) in items" :key="a.AnalogueCode">
-            <good-down-tab-sell-auptoparts-item-component :a="a" :ind="ind % 2" />
+            <good-down-tab-sell-auptoparts-item-component :a="a" :ind="ind" />
           </template>
         </tbody>
       </table>

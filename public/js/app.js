@@ -23497,7 +23497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["GoodDownTabSellAuptopartsItemComponent"], {
       key: a.AnalogueCode,
       a: a,
-      ind: ind % 2
+      ind: ind
     }, null, 8
     /* PROPS */
     , ["a", "ind"]);
@@ -23530,7 +23530,7 @@ var _hoisted_1 = {
   "class": "text-left"
 };
 var _hoisted_2 = {
-  "xx@click": "show = !show"
+  xxclick: "show = !show"
 };
 var _hoisted_3 = {
   key: 1,
@@ -23544,7 +23544,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      n2: $props.ind == true
+      n2: $props.ind % 2
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" a.OfferName: {{ a.OfferName ?? 'x' }}      <br/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" ++      <br/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ ind }} /  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ a.AnalogueCode }} /  "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.a.ProductName), 1
   /* TEXT */
