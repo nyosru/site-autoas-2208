@@ -20825,7 +20825,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'GoodDownTabSellAuptopartsItemComponent',
   props: {
     a: Object,
-    ind: Boolean
+    ind: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;

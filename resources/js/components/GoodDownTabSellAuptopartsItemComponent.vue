@@ -100,7 +100,7 @@ const goodAdd = (good, kolvo = 1) => {
 
 const props = defineProps({
   a: Object,
-  ind: Boolean,
+  ind: String,
 })
 
 const kolvo = ref(1)
