@@ -2,23 +2,22 @@
   <tr :class="{ n2: ind }">
     <td class="text-left">
 
-      a.OfferName: {{ a.OfferName ?? 'x' }}
-      <br/>
-      ++
-      <br/>
+      <!-- a.OfferName: {{ a.OfferName ?? 'x' }}      <br/> -->
+      <!-- ++      <br/> -->
 
-      <span @click="show = !show">
+      <span xx@click="show = !show">
         <!-- {{ ind }} /  -->
         <!-- {{ a.AnalogueCode }} /  -->
         {{ a.ProductName }}
         <!-- <div class="text-gray" >{{ a.ManufacturerName }}</div> -->
       </span>
 
-      <div v-if="show">
+      <!-- <div v-if="show">
         <br />
         <br />
         a: {{ a }}
-      </div>
+      </div> -->
+      
     </td>
     <td>{{ a.Quantity }}</td>
     <td>{{ a.PeriodMax }}</td>
