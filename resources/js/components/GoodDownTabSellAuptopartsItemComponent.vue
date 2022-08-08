@@ -1,5 +1,5 @@
 <template>
-  <tr :class="{ n2: ind }">
+  <tr :class="{ n2: ind == true }">
     <td class="text-left">
 
       <!-- a.OfferName: {{ a.OfferName ?? 'x' }}      <br/> -->
@@ -17,7 +17,7 @@
         <br />
         a: {{ a }}
       </div> -->
-      
+
     </td>
     <td>{{ a.Quantity }}</td>
     <td>{{ a.PeriodMax }}</td>
