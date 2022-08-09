@@ -64,15 +64,15 @@
                       <!-- <br /> -->
                       <!-- {{ v.a_id }} -->
                     </td>
-                    <td @click="s1 = !s1">
+                    <td>
                       <!-- ++ {{ v.OfferName ?? '' }} -->
                       <!-- ++ {{ v.a_id ?? '' }} -->
                       <!-- <Br/> -->
-                      <span v-if="v.a_categoryid && v.a_categoryid.length">
+                      <span v-if="v.id && v.id > 0 && v.a_id && v.a_id.length">
                         <router-link
                           :to="{
                             name: 'good',
-                            params: { good_id: v.a_categoryid },
+                            params: { good_id: v.a_id },
                           }"
                         >
                           {{ v.head ?? '' }}
@@ -87,9 +87,8 @@
                         {{ v.manufacturer ?? '' }}
                         <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['manufacturer'] ?? '' ) : '' }} -->
                       </div>
-                      <div v-if="s1">
-                        {{ v }}
-                      </div>
+                      <!-- <div @click="s1 = !s1">-- разработка ( показать инфу ) --</div> -->
+                      <!-- <div v-if="s1">                        {{ v }}                      </div> -->
                     </td>
                     <td>
                       {{
@@ -317,7 +316,7 @@ const {
   cartCashSave,
 } = cart()
 
-const s1 = ref(false)
+// const s1 = ref(false)
 // deleteGoodFromCart
 
 // const itemRemove = (good_id) => {
@@ -419,7 +418,7 @@ const sendOrder = async (good_id) => {
       '\n' +
       e.head +
       '\n' +
-      e.a_id +
+      ( ( e.id && e.id > 0 && e.a_id && e.a_id.length ) ? '' : '(заказ) ' ) + e.a_id +
       ' // ' +
       (e.a_price != ''
         ? e.a_price +
