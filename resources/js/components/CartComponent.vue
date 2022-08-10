@@ -12,6 +12,7 @@
           <br />
           доставим в&nbsp;лучшем виде в&nbsp;кратчайшие сроки
         </h2>
+
       </div>
 
       <div class="row" v-else>
@@ -90,15 +91,15 @@
                       <!-- <div @click="s1 = !s1">-- разработка ( показать инфу ) --</div> -->
                       <!-- <div v-if="s1">                        {{ v }}                      </div> -->
                     </td>
-                    <td>
+                    <td class="a-right m-top">
                       {{
                         v.a_price && v.a_price > 0
-                          ? v.a_price
+                          ? NumberFormat(v.a_price)
                           : 'под&nbsp;заказ*'
                       }}
                     </td>
                     <!-- <td>{{ v.kolvo }}</td> -->
-                    <td>
+                    <td class="text-center">
                       <div class="nobr">
                         <button
                           type="button"
@@ -127,9 +128,11 @@
                         </button>
                       </div>
                     </td>
-                    <td>
+                    <td class="a-right m-top">
                       {{
-                        v.a_price && v.a_price > 0 ? v.kolvo * v.a_price : ''
+                        v.a_price && v.a_price > 0 && v.kolvo && v.kolvo > 0
+                          ? NumberFormat(v.kolvo * v.a_price)
+                          : '-'
                       }}
                     </td>
                   </tr>
@@ -378,6 +381,7 @@ const NumberFormat = (num) => {
   return new Intl.NumberFormat('ru-RU', {
     style: 'currency',
     currency: 'RUB',
+    maximumFractionDigits: 0,
   }).format(num)
   // return num + ' 777 ';
 }
@@ -418,7 +422,8 @@ const sendOrder = async (good_id) => {
       '\n' +
       e.head +
       '\n' +
-      ( ( e.id && e.id > 0 && e.a_id && e.a_id.length ) ? '' : '(заказ) ' ) + e.a_id +
+      (e.id && e.id > 0 && e.a_id && e.a_id.length ? '' : '(заказ) ') +
+      e.a_id +
       ' // ' +
       (e.a_price != ''
         ? e.a_price +
@@ -493,5 +498,11 @@ const sendOrder = async (good_id) => {
 }
 .nobr {
   white-space: pre;
+}
+.a-right {
+  text-align: right;
+}
+.m-top {
+  padding-top: 18px;
 }
 </style>

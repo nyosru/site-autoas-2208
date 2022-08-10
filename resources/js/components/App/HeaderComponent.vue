@@ -5,12 +5,12 @@
         <div class="col-md-5 col-sm-5 col-xs-12">
           <div class="left-nav">
             <div class="location dropdown">
-              <a href="/" >
-              <span class="icon">
-                <i class="ion-ios-location" aria-hidden="true"></i>
-              </span>
-              <span>Тюмень</span>
-              </a>
+              <router-link :to="{ name: 'page', params: { id: 'contact' } }">
+                <span class="icon">
+                  <i class="ion-ios-location" aria-hidden="true"></i>
+                </span>
+                <span>Тюмень</span>
+              </router-link>
             </div>
             <div class="language dropdown">
               <span class="icon">
@@ -24,8 +24,10 @@
           <div class="right-nav">
             <ul>
               <li>
-                <i class="ion-log-in fa-1a" aria-hidden="true"></i>
-                г.Тюмень, ул.Пархоменко, 54
+                <router-link :to="{ name: 'page', params: { id: 'contact' } }">
+                  <i class="ion-log-in fa-1a" aria-hidden="true"></i>
+                  г.Тюмень, ул.Пархоменко, 54
+                </router-link>
               </li>
             </ul>
             <a href="tel://+73452560333">

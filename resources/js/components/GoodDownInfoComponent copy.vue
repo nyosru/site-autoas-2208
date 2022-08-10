@@ -2,9 +2,9 @@
   <div>
     <template v-for="tab1 in tabs" :key="tab1.name">
       <div :id="'tab_' + tab1.mini">
-        <ul class="nav nav-tabs">
-          <template v-for="tab in tabs" :key="tab.name">
-            <li
+        <!-- <ul class="nav nav-tabs"> -->
+        <template v-for="tab in tabs" :key="tab.name">
+          <!-- <li
               role="presentation"
               :class="[
                 // 'tab-button',
@@ -12,20 +12,25 @@
                 { active: tab.component === tab1.component },
               ]"
               @click.prevent="scrollFix('#tab_' + tab1.mini)"
-            >
-              <router-link
+            > -->
+          <div v-if="tab.component === tab1.component">
+            <h2>
+              <!-- <router-link
+              
                 :to="'#tab_' + tab1.mini"
                 xxsclick.prevent="scrollFix('#tab_' + tab1.mini)"
-              >
-                {{ tab.name }}
-              </router-link>
-            </li>
-          </template>
+              > -->
+              {{ tab.name }}
+              <!-- </router-link> -->
+            </h2>
+          </div>
+          <!-- </li> -->
+        </template>
 
-          <!-- <li role="presentation" class="active"><a href="#">Home</a></li> -->
-          <!-- <li role="presentation"><a href="#">Profile</a></li> -->
-          <!-- <li role="presentation"><a href="#">Messages</a></li> -->
-        </ul>
+        <!-- <li role="presentation" class="active"><a href="#">Home</a></li> -->
+        <!-- <li role="presentation"><a href="#">Profile</a></li> -->
+        <!-- <li role="presentation"><a href="#">Messages</a></li> -->
+        <!-- </ul> -->
 
         <!-- {{ good }} -->
 
@@ -171,19 +176,19 @@ const props = defineProps({
 //     return {
 const currentTab = ref('GoodDownTabAnalogiComponent')
 const tabs = ref([
-  { name: 'Home00', mini: 'analogi0', component: 'GoodAnalogiComponent' },
-  { name: 'Все запчасти', mini: 'allAutoparts', component: '' },
-  { name: 'Home', mini: 'analogi', component: 'GoodDownTabAnalogiComponent' },
-  {
-    name: 'Home1',
-    mini: 'analogi2',
-    component: 'GoodDownTabAnalogi2Component',
-  },
-  {
-    name: 'Home2',
-    mini: 'analogi3',
-    component: 'GoodDownTabAnalogi3Component',
-  },
+  { name: 'Аналоги', mini: 'analogi0', component: 'GoodAnalogiComponent' },
+  { name: 'Заказ с удалённого склада', mini: 'allAutoparts', component: '' },
+  // { name: 'Home', mini: 'analogi', component: 'GoodDownTabAnalogiComponent' },
+  // {
+  //   name: 'Home1',
+  //   mini: 'analogi2',
+  //   component: 'GoodDownTabAnalogi2Component',
+  // },
+  // {
+  //   name: 'Home2',
+  //   mini: 'analogi3',
+  //   component: 'GoodDownTabAnalogi3Component',
+  // },
   // 'GoodAnalogiComponent', 'Posts', 'Archive'
 ])
 
@@ -276,6 +281,12 @@ const currentTabComponent = (name) => {
 </script>
 
 <style scoped>
+h2{
+  color: rgb(40,57,118);
+  text-decoration: underline;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
 .demo {
   font-family: sans-serif;
   border: 1px solid #eee;

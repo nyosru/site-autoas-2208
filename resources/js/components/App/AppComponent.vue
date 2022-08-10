@@ -49,7 +49,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-content {
+.content1 {
   display: block;
   min-height: 60vh;
 }

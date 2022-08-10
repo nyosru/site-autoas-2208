@@ -56,7 +56,7 @@
               <p v-if="goodData.a_price == ''">
                 Цена:&nbsp;под заказ
               </p>
-              <p v-else>Цена:&nbsp;{{ goodData.a_price }}&nbsp;₽</p>
+              <p v-else>Цена:&nbsp;{{ NumberFormat(goodData.a_price) }}</p>
               <br />
               <br />
 
@@ -127,7 +127,7 @@
             </div>
           </div>
 
-          <good-down-info-component :good="goodData" />
+          <good-down-component :good="goodData" />
 
           <!-- <div v-if="1 == 2">
             <br />
@@ -200,7 +200,7 @@ import { useRoute } from 'vue-router'
 import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 // import GoodAnalogi from './GoodDownTabAnalogi0Component.vue'
 // import GoodSellAuptoparts from './GoodSellAuptopartsComponent.vue'
-import GoodDownInfoComponent from './GoodDownInfoComponent.vue'
+import GoodDownComponent from './GoodDownComponent.vue'
 
 const route = useRoute()
 const goodQuantity = ref(1)
@@ -249,6 +249,15 @@ const goodAdd = () => {
     cartAdd(goodData.value, goodQuantity.value)
     console.log(route.params.good_id, goodQuantity.value)
   }
+}
+
+const NumberFormat = (num) => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+  }).format(num)
+  // return num + ' 777 ';
 }
 </script>
 

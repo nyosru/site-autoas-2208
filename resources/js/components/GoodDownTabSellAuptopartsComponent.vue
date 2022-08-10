@@ -1,7 +1,13 @@
 <template>
+  <h2 v-if="(items && items.length) || loading">
+    {{ tab.name ?? 'x' }}
+  </h2>
   <div>
     <div v-if="loading">.. загрузка предложений ..</div>
-    <div v-else style="max-height: 400px; overflow: auto;">
+    <div
+      v-else
+      style="max-height: 400px; overflow: auto; border: 1px sold green;"
+    >
       <!-- good_articul: {{ good_articul }} -->
       <!-- <br /> -->
       <!-- <br /> -->
@@ -9,19 +15,25 @@
       <!-- <br /> -->
       <!-- <br /> -->
 
-      <table>
+      <table style="margin: 0 auto;">
         <thead>
           <tr>
-            <th>название</th>
-            <th>на складе</th>
-            <th>дней на доставку</th>
-            <th>цена</th>
-            <th>кол-во</th>
-            <th>заказать</th>
+            <th>Название</th>
+            <th><p class="text-center"><div class="nobr">На складе</div></p></th>
+            <th><p class="text-center">
+              Дней
+              <br />
+              <div class="nobr">на доставку</div>
+              </p>
+            </th>
+            <th><p class="text-center">Цена</p></th>
+            <th><p class="text-center">Кол-во</p></th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <template v-for="(a, ind ) in items" :key="a.AnalogueCode">
+          <template v-for="(a, ind) in items" :key="a.OfferName">
+          <!-- <tr><td>{{ a }}</td></tr> -->
             <good-down-tab-sell-auptoparts-item-component :a="a" :ind="ind" />
           </template>
         </tbody>
@@ -41,6 +53,7 @@ import goodsAllautoparts from './../use/goodsAllautoparts.ts'
 const { load, items, loading } = goodsAllautoparts()
 
 const props = defineProps({
+  tab: Object,
   good_articul: String,
 })
 
@@ -48,22 +61,30 @@ onMounted(() => {
   load(props.good_articul)
   console.log(77)
 })
+
+
 </script>
 
 <style scoped>
+h2 {
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
 thead > tr {
   position: sticky;
   top: 0;
-  border-bottom: 2px solid rgb(100,100,100);
+  border-bottom: 2px solid rgb(100, 100, 100);
   margin-bottom: 3px;
 }
 thead th {
   padding-left: 10px;
   text-align: left;
-  background-color: rgb(210,210,210);
-  xbox-shadow: 10px 10px gray;
+  background-color: rgb(210, 210, 210);
 }
-tbody tr.n2 td{
-  background-color: rgb(230,230,230);
+tbody tr.n2 td {
+  background-color: rgb(230, 230, 230);
+}
+.nobr {
+  white-space: pre;
 }
 </style>

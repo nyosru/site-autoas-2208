@@ -21,9 +21,9 @@
     </td>
     <td>{{ a.Quantity }}</td>
     <td>{{ a.PeriodMax }}</td>
-    <td>{{ a.Price }}</td>
+    <td class="text-right" >{{ NumberFormat(a.Price) }}</td>
     <td>
-      <template v-if="goodInCart(a.OfferName) === true"></template>
+    <template v-if="goodInCart(a.OfferName) === true"></template>
       <div v-else class="nobr">
         <button class="minus" @click="kolvo = kolvo > 2 ? kolvo - 1 : 1">
           -
@@ -110,6 +110,18 @@ const show = ref(false)
 //   load(props.good_articul)
 //   console.log(77)
 // })
+
+
+const NumberFormat = (num) => {
+  return new Intl.NumberFormat('ru-RU', {
+    style: 'currency',
+    currency: 'RUB',
+    maximumFractionDigits: 0,
+  }).format(num)
+  // return num + ' 777 ';
+}
+
+
 </script>
 
 <style scoped>

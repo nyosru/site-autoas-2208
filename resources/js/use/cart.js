@@ -104,9 +104,9 @@ const cartMinus = (good, kolvo = 1) => {
 }
 
 const cartRemove = (id) => {
-    // if (!confirm('Удалить товар из заказа ?')) {
-    //     return false
-    // }
+    if (!confirm('Удалить товар из заказа ?')) {
+        return false
+    }
 
     // cartAr.value[good_id]  = -1
     // var myArray = ['one', 'two', 'three'];
