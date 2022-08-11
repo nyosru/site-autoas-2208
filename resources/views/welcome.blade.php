@@ -8,10 +8,10 @@
 
     <title>Авто-АС (Магазин автозапчастей в Тюмени)</title>
 
-    <link href="{{ asset('css/app.css') }}?sd={{ rand() }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}?s=2208120328" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}?sd=2" />
+    <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}?s=2208120328" />
     <link rel="icon" type="image/png" href="/storage/site/img/logo47.png" />
 
     <meta property="og:title" content="Авто-АС запчасти">
@@ -68,7 +68,7 @@
     {{-- </div> --}}
 </body>
 
-<script src="{{ asset('js/app.js') }}?sd={{ rand() }}"></script>
+<script src="{{ asset('js/app.js') }}?s=2208120328"></script>
 
 {{-- <script type="text/javascript" src="https://yastatic.net/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script> --}}
 {{-- <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> --}}
