@@ -127,7 +127,12 @@
             </div>
           </div>
 
-          <good-down-component :good="goodData" />
+<!-- <br/>
+<br/>
+              $route.params.dop : {{ $route.params.dop }}
+<br/>
+<br/> -->
+          <good-down-component :good="goodData" :showOrdersOnSklad=" $route.params.dop == 'showOrdersOnSklad'" />
 
           <!-- <div v-if="1 == 2">
             <br />
@@ -183,8 +188,9 @@
 </template>
 
 <script setup>
+
 import catalogs from './../use/catalogs.ts'
-import goods from './../use/goods.ts'
+import goods from './../use/goods.js'
 import cart from './../use/cart.js'
 
 // import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
@@ -204,6 +210,12 @@ import GoodDownComponent from './GoodDownComponent.vue'
 
 const route = useRoute()
 const goodQuantity = ref(1)
+
+const props = defineProps({
+  // показывать или нет заказ с удалённого склада
+  showOrdersOnSklad: Boolean,
+})
+
 
 // onMounted(() => {
 //   goodQuantity.value = 1
@@ -259,6 +271,7 @@ const NumberFormat = (num) => {
   }).format(num)
   // return num + ' 777 ';
 }
+
 </script>
 
 <style scoped></style>

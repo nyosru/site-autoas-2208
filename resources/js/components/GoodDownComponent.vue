@@ -1,10 +1,14 @@
 <template>
   <div>
+
     <good-analogi-component :tab="tabs[0]" :analogi="good.analog" />
 
+    <!-- <br clear="all" />
+    showOrdersOnSklad {{ showOrdersOnSklad }} -->
     <br clear="all" />
 
     <good-down-tab-all-autoparts-component
+      v-if="showOrdersOnSklad"
       :tab="tabs[1]"
       :good_articul="good.catnumber_search"
     />
@@ -20,7 +24,6 @@
 </template>
 
 <script setup>
-
 import { ref } from '@vue/reactivity'
 
 import GoodAnalogiComponent from './GoodDownTabAnalogi0Component.vue'
@@ -33,6 +36,8 @@ import GoodDownTabAllAutopartsComponent from './GoodDownTabSellAuptopartsCompone
 
 const props = defineProps({
   good: Object,
+  // показывать или нет заказ с удалённого склада
+  showOrdersOnSklad: Boolean,
 })
 
 // const app = Vue.createApp({

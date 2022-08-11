@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" >
     <div class="row">
       <div class="col-xs-12">
         <ul class="other-link-sub xpull-right">
@@ -197,4 +197,6 @@ const stopWatch = watchEffect(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.container{ padding-top: 15px; padding-bottom: 25px;}
+</style>

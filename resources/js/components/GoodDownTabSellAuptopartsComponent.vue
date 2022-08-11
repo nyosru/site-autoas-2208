@@ -1,11 +1,12 @@
 <template>
-  <h2 v-if="(items && items.length) || loading">
+  <!-- <h2 v-if="(items && items.length) || loading"> -->
+  <h2 v-if="itemsCount > 0 || loading">
     {{ tab.name ?? 'x' }}
   </h2>
   <div>
     <div v-if="loading">.. загрузка предложений ..</div>
     <div
-      v-else
+      v-else-if="itemsCount > 0"
       style="max-height: 400px; overflow: auto; border: 1px sold green;"
     >
       <!-- good_articul: {{ good_articul }} -->
@@ -50,7 +51,7 @@ import { onMounted } from '@vue/runtime-core'
 
 // import goodsAllautoparts from './../use/goodsAllautoparts.ts'
 import goodsAllautoparts from './../use/goodsAllautoparts.ts'
-const { load, items, loading } = goodsAllautoparts()
+const { load, items, itemsCount, loading } = goodsAllautoparts()
 
 const props = defineProps({
   tab: Object,

@@ -86,7 +86,7 @@ import { watchEffect, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import catalogs from './../use/catalogs.ts'
-import goods from './../use/goods.ts'
+import goods from './../use/goods.js'
 
 import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 
@@ -120,3 +120,12 @@ const stopWatch2 = watchEffect(() => {
 </script>
 
 <style scoped></style>
+
+
+
+
+
+
+
+
+

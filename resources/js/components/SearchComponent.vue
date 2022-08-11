@@ -5,13 +5,14 @@
         <h3>vitrin mitrin</h3>
       </div>
     </div> -->
-    <br/>
-    <br/>
+    <br />
+    <br />
     <!-- SearchString: {{ SearchString1 }} -->
     <h3 class="alert alert-success text-center">
-    результаты поиска: <u>{{ searchStringNow }}</u>
+      результаты поиска:
+      <u>{{ searchStringNow }}</u>
     </h3>
-    <br/>
+    <br />
     <div class="row">
       <div class="col-12 text-center">
         <template
@@ -27,8 +28,7 @@
             :inf="goodsData.meta"
           />
         </template>
-        <template v-else>          
-        </template>
+        <template v-else></template>
       </div>
     </div>
     <div
@@ -38,24 +38,27 @@
 
       <div class="col-4 text-center" v-if="goodsLoading">
         <h2>.. ищем доступные варианты ..</h2>
-        <br/>
-        <br/>
-        <img src="/storage/site/img/loader.gif" alt="" style="width:120px;" />
+        <br />
+        <br />
+        <img src="/storage/site/img/loader.gif" alt="" style="width: 120px;" />
       </div>
       <template v-else>
         <!-- goodsData: {{ goodsData }} -->
         <!-- <br /> -->
         <!-- goodsLoading: {{ goodsLoading }} -->
         <!-- <vitrin-pagination-component /> -->
-        <h3 v-if="goodsData.data && !goodsData.data.length" class="alert alert-warning text-center">
-        найдено 0 позиций, измените поисковый запрос
+        <h3
+          v-if="goodsData.data && !goodsData.data.length"
+          class="alert alert-warning text-center"
+        >
+          найдено 0 позиций, измените поисковый запрос
         </h3>
         <!-- goodsData: {{ goodsData }} -->
         <!-- <br/>
         <br/> -->
         <!-- goodsData.dat: {{ goodsData.data }} -->
-<!-- <br/> -->
-<!-- <br/> -->
+        <!-- <br/> -->
+        <!-- <br/> -->
         <div
           v-for="i in goodsData.data"
           :key="i.key"
@@ -74,7 +77,7 @@
             goodsData.meta.links.length > 3
           "
         >
-        <br clear="all" />
+          <br clear="all" />
           <vitrin-pagination-component
             v-if="!goodsLoading"
             :inf="goodsData.meta"
@@ -97,14 +100,15 @@ import VitrinPaginationComponent from './VitrinGoodsListPaginationComponent.vue'
 // import ff from VitrinMenuComponentVue
 
 import { watchEffect, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import catalogs from './../use/catalogs.ts'
-import goods from './../use/goods.ts'
+import goods from './../use/goods.js'
 
 import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 
 const route = useRoute()
+const router = useRouter()
 
 // const SearchString1 = ref(route.params.search)
 
@@ -113,13 +117,14 @@ const route = useRoute()
 // catsLevelLower
 const { loading } = catalogs()
 
-const { 
-  goodsLoading, 
+const {
+  goodsLoading,
   goodsData,
-   loadGoods , 
-   searchString,
-   searchStringNow,
-loadSearchGoods, } = goods()
+  loadGoods,
+  searchString,
+  searchStringNow,
+  loadSearchGoods,
+} = goods()
 
 // loadSearchGoods(route.params.search)
 
@@ -137,6 +142,28 @@ const stopWatch2 = watchEffect(() => {
       // loadGoods(route.params.cat_id, route.params.page)
       loadSearchGoods(route.params.search)
       // GoodsLoading.value = false
+    }
+  }
+})
+
+const stopWatch7 = watchEffect(() => {
+  // console.log(1)
+
+  if (loading.value == false) {
+    // console.log(2 , loading.value)
+
+// console.log( 77 , goodsData.value.data);
+// console.log( 77 , goodsData.value);
+
+    if (goodsData.value.data && Object.keys(goodsData.value.data).length == 1) {
+      // console.log('itemsCount', itemsCount, goodsData.value.data[0]['head'])
+      console.log('res search', goodsData.value.data[0])
+
+      router.push({
+        name: 'good',
+        params: { good_id: goodsData.value.data[0]['a_id'] , dop: 'showOrdersOnSklad' },
+        // props: { showOrdersOnSklad: true },
+      })
     }
   }
 })

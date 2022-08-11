@@ -27,7 +27,7 @@ import { ref } from "@vue/reactivity"
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
-import goods from './../../use/goods.ts';
+import goods from './../../use/goods.js';
 const { searchString } = goods();
 
 // const searchString = ref('')

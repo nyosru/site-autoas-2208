@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 
 const items = ref({})
+const itemsCount = ref(0)
 const loading = ref(true)
 
 const sortByField = (field) => {
@@ -57,24 +58,34 @@ const load = async (searchString = '') => {
       // items_loading_module.value = items_now_loading.value;
       // data_filtered.value =
 
-      items.value  = response.data
-      items.value.sort(sortByField('Price'))
-      
-      let lastElem2 = items.value.pop();
-      console.log(lastElem2);
+      if (
+        response.data[0]['AnalogueCode'] 
+      ) {
+        itemsCount.value = Object.keys(response.data).length
+        //   console.log('kolvo',itemsCount.value)
+        //   if ( itemsCount.value == 0) {
+        //     console.log('пуст')
+        //   } else {
+        items.value = response.data
 
-      items.value.unshift(lastElem2)
-      
+        items.value.sort(sortByField('Price'))
 
-      //   localStorage.adver = JSON.stringify(response.data.data)
-      // localStorage.cats = JSON.stringify(response.data.data)
-      // cfg.value = response.data.cfg;
+        let lastElem2 = items.value.pop()
+        console.log(lastElem2)
+
+        items.value.unshift(lastElem2)
+
+        //   localStorage.adver = JSON.stringify(response.data.data)
+        // localStorage.cats = JSON.stringify(response.data.data)
+        // cfg.value = response.data.cfg;
+
+        // return response.data;
+        // items_loading.value = dfalse
+
+        // window.scrollTo(0,0)
+      }
 
       loading.value = false
-      // return response.data;
-      // items_loading.value = dfalse
-
-      // window.scrollTo(0,0)
     })
     .catch((error) => {
       console.log('error', error)
@@ -88,6 +99,7 @@ export default function goodsAllautoparts() {
   return {
     load,
     items,
+    itemsCount,
     loading,
   }
 }

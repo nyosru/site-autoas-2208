@@ -27,15 +27,21 @@ class GoodController extends Controller
     //  */
     public function store(Request $request)
     {
+
+        // $request->search
+
         $s = explode(' ', $request->search);
         return new GoodCollection(Good::with('analog')->
             where(function ($query) use ($s) {
                 foreach ($s as $v) {
+                    
+                    $v2 = preg_replace('/[^a-zA-Zа-яА-Я0-9]/ui', '',$v ); 
+
                     // $query->where('a', '=', 1)
                     //       ->orWhere('b', '=', 1);
-                    $query->Where('head', 'LIKE', '%' . $v . '%');
+                    $query->Where('head', 'LIKE', '%' . $v2 . '%');
                 }                
-                $query->orWhere('catnumber_search', $v);
+                $query->orWhere('catnumber_search', $v2);
             })->where('status', 'show')->
             // orderBy('a_price')->
             limit(150)->get());
