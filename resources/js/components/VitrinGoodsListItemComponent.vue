@@ -58,6 +58,7 @@
             В&nbsp;корзине
           </router-link>
         </template>
+
         <small v-if="showAr">
           {{ i }}
         </small>
@@ -111,4 +112,5 @@ h3 {
   margin-top: 1vh;
   margin-bottom: 1vh;
 }
+.manufacturer{ color: rgb(41,59,119) }
 </style>

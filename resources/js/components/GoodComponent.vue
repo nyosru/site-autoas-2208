@@ -274,4 +274,6 @@ const NumberFormat = (num) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.manufacturer{ color: rgb(41,59,119) }
+</style>
