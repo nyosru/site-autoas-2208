@@ -81,7 +81,8 @@
                       </span>
                       <span v-else>
                         <!-- <small>заказ с удалённого склада</small><br /> -->
-                        {{ v.head ?? '' }}
+                        <!-- {{ v.head ?? '' }} -->
+                        <span v-html="v.head"></span>
                       </span>
                       <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['head'] ?? '' ) : '' }} -->
                       <div class="text-muted text-red-hover">
