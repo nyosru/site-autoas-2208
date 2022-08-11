@@ -31,18 +31,38 @@ class GoodController extends Controller
         // $request->search
 
         $s = explode(' ', $request->search);
-        return new GoodCollection(Good::with('analog')->
-            where(function ($query) use ($s) {
-                foreach ($s as $v) {
-                    
-                    $v2 = preg_replace('/[^a-zA-Zа-яА-Я0-9]/ui', '',$v ); 
+        $s = explode(' ', $request->search);
 
-                    // $query->where('a', '=', 1)
-                    //       ->orWhere('b', '=', 1);
-                    $query->Where('head', 'LIKE', '%' . $v2 . '%');
-                }                
-                $query->orWhere('catnumber_search', $v2);
-            })->where('status', 'show')->
+
+
+        return new GoodCollection(Good::with('analog')->where(function ($query) use ($s, $request) {
+            foreach ($s as $v) {
+
+                $v2 = preg_replace('/[^a-zA-Zа-яА-Я0-9]/ui', '', $v);
+
+                // $query->where('a', '=', 1)
+                //       ->orWhere('b', '=', 1);
+                $query->Where('head', 'LIKE', '%' . $v2 . '%');
+            }
+            $query->orWhere('catnumber_search', $v2);
+
+            if (strlen($request->search) <= 20 && strlen($request->search) >= 5) {
+                $searchString = strtolower(preg_replace('/[^a-zA-Zа-яА-Я0-9xA0x20]/ui', '', $request->search));
+                // die($ee);
+                $query->orWhere('catnumber_search', $searchString );
+            }
+
+            // if (!empty($s2))
+            //     $query->orWhere('catnumber_search', $s2);
+
+        })
+            // ->orWhere(function ($query) use ($request) {
+            //     if (sizeof($request->search) <= 20) {
+            //         $s2 = preg_replace('/[^a-zA-Zа-яА-Я0-9 ]/ui', '', $request->search);
+            //         $query->where('catnumber_search', $s2);
+            //     }
+            // })
+            ->where('status', 'show')->
             // orderBy('a_price')->
             limit(150)->get());
     }
