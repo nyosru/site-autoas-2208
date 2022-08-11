@@ -5,12 +5,13 @@
       <!-- a.OfferName: {{ a.OfferName ?? 'x' }}      <br/> -->
       <!-- ++      <br/> -->
 
-      <span xxclick="show = !show">
+      <!-- <span xxclick="show = !show"> -->
         <!-- {{ ind }} /  -->
         <!-- {{ a.AnalogueCode }} /  -->
-        {{ a.ProductName }}
+        <!-- {{ a.ProductName }} -->
+        <span v-html="a.ProductName"></span>
         <!-- <div class="text-gray" >{{ a.ManufacturerName }}</div> -->
-      </span>
+      <!-- </span> -->
 
       <!-- <div v-if="show">
         <br />
