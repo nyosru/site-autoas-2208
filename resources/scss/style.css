@@ -303,12 +303,13 @@ ol {
     border-color: #6bce04;
 }
 
-.btn-info:before {
+
+/* .btn-info:before {
     content: "\f394";
     font-family: ionicons;
     font-size: 20px;
     margin-right: 15px;
-}
+} */
 
 .btn-info.focus,
 .btn-info:focus {

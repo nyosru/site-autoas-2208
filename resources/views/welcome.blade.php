@@ -6,7 +6,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Авто-АС</title>
+    <title>Авто-АС (Магазин автозапчастей в Тюмени)</title>
+
+    <link href="{{ asset('css/app.css') }}?sd={{ rand() }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}?sd=2" />
+    <link rel="icon" type="image/png" href="/storage/site/img/logo47.png" />
+
+    <meta property="og:title" content="Авто-АС запчасти">
+    <meta property="og:site_name" content="avto-as.ru">
+    <meta property="og:url" content="https://avto-as.ru">
+    <meta property="og:description" content="Запчасти для автомобилей">
+    <meta property="og:image" content="https://22.avto-as.ru/storage/site/img/logo2112.png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
 
     {{-- <!-- Fonts --> --}}
     {{-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> --}}
@@ -20,39 +35,27 @@
             }
         </style> --}}
 
-    <link href="{{ asset('css/app.css') }}?sd={{ rand() }}" rel="stylesheet" />
+
 
     {{-- <link href="{{ asset('site/scss/style.css') }}" rel="stylesheet" /> --}}
-
     {{-- <link href="{{ asset('storage/site/css/style.css') }}" rel="stylesheet" /> --}}
     {{-- <link href="{{ asset('storage/site/css/ionicons.min.css') }}" rel="stylesheet" /> --}}
     {{-- <link href="{{ asset('storage/site/css/font-awesome.css') }}" rel="stylesheet" /> --}}
 
-    {{-- <xlink rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}"> --}}
+    {{-- <xlink rel="stylesheet" href="{{ asset('storage/css/bootstrap.css') }}?sd=1"> --}}
     {{-- <xlink rel="stylesheet" href="{{ asset('storage/css/font-awesome.css') }}"> --}}
-
-    <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}" />
 
     {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('storage/css/slick-theme.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('storage/css/owl.carousel.min.css') }}"> --}}
 
-    <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}?sd={{ rand() }}" />
 
     <!-- Add the slick-theme.css if you want default styling -->
     {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/> --}}
     <!-- Add the slick-theme.css if you want default styling -->
     {{-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/> --}}
 
-    <link rel="icon" type="image/png" href="/storage/site/img/logo47.png" />
 
-    <meta property="og:title" content="Авто-АС запчасти">
-    <meta property="og:site_name" content="avto-as.ru">
-    <meta property="og:url" content="https://avto-as.ru">
-    <meta property="og:description" content="Запчасти для автомобилей">
-    <meta property="og:image" content="https://22.avto-as.ru/storage/site/img/logo2112.png">
-    <meta property="og:image:width" content="968">
-    <meta property="og:image:height" content="504">
 
 </head>
 
@@ -65,17 +68,13 @@
     {{-- </div> --}}
 </body>
 
+<script src="{{ asset('js/app.js') }}?sd={{ rand() }}"></script>
 
 {{-- <script type="text/javascript" src="https://yastatic.net/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script> --}}
 {{-- <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> --}}
-
-<script src="{{ asset('js/app.js') }}?sd={{ rand() }}"></script>
 {{-- <script src="{{ asset('site/js/jquery.js') }}"></script> --}}
-
 {{-- <script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script> --}}
 {{-- <script src="{{ asset('site/js/main.js') }}"></script> --}}
-
-
 {{-- <script type="text/javascript" src="https://vk.com/js/api/openapi.js?167"></script>
     <script type="text/javascript">
         setTimeout(() => {
