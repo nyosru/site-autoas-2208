@@ -25756,7 +25756,7 @@ var load = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             searchString = _args.length > 0 && _args[0] !== undefined ? _args[0] : '';
-            console.log('9879879 load');
+            // console.log('9879879 load')
             items.value = {};
             loading.value = true; // let d = new Date()
             // const now_d =
@@ -25781,7 +25781,7 @@ var load = /*#__PURE__*/function () {
             //     localStorage.adver_date = now_d
             // window.scrollTo(0,0)
 
-            _context.next = 6;
+            _context.next = 5;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/apiAllAutoparts/api.php?search=' + searchString).then(function (response) {
               //   console.log('response', response)
               //   console.log('response', response.data.data)
@@ -25796,10 +25796,10 @@ var load = /*#__PURE__*/function () {
                 //   } else {
 
                 items.value = response.data;
-                items.value.sort(sortByField('Price'));
-                var lastElem2 = items.value.pop();
-                console.log(lastElem2);
-                items.value.unshift(lastElem2); //   localStorage.adver = JSON.stringify(response.data.data)
+                items.value.sort(sortByField('Price')); // let lastElem2 = items.value.pop()
+                // console.log(lastElem2)
+                // items.value.unshift(lastElem2)
+                //   localStorage.adver = JSON.stringify(response.data.data)
                 // localStorage.cats = JSON.stringify(response.data.data)
                 // cfg.value = response.data.cfg;
                 // return response.data;
@@ -25813,7 +25813,7 @@ var load = /*#__PURE__*/function () {
               loading.value = false; // this.errored = true;
             });
 
-          case 6:
+          case 5:
           case "end":
             return _context.stop();
         }

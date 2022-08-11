@@ -11,7 +11,7 @@ const sortByField = (field) => {
 }
 
 const load = async (searchString = '') => {
-  console.log('9879879 load')
+  // console.log('9879879 load')
 
   items.value = {}
   loading.value = true
@@ -67,13 +67,11 @@ const load = async (searchString = '') => {
         //     console.log('пуст')
         //   } else {
         items.value = response.data
-
         items.value.sort(sortByField('Price'))
 
-        let lastElem2 = items.value.pop()
-        console.log(lastElem2)
-
-        items.value.unshift(lastElem2)
+        // let lastElem2 = items.value.pop()
+        // console.log(lastElem2)
+        // items.value.unshift(lastElem2)
 
         //   localStorage.adver = JSON.stringify(response.data.data)
         // localStorage.cats = JSON.stringify(response.data.data)
