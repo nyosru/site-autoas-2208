@@ -19791,10 +19791,8 @@ __webpack_require__.r(__webpack_exports__);
     var link_footer = [{
       id: 'about',
       head: 'О компании'
-    }, {
-      id: 'posted',
-      head: 'Доставка'
-    }, {
+    }, // { id: 'posted', head: 'Доставка' },
+    {
       id: 'contact',
       head: 'Контакты'
     }, {
@@ -19803,10 +19801,8 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       id: 'oferta',
       head: 'Оферта'
-    }, {
-      id: 'return',
-      head: 'Возврат'
-    }];
+    } // { id: 'return', head: 'Возврат' },
+    ];
     var __returned__ = {
       link_footer: link_footer
     };
@@ -22078,13 +22074,7 @@ var _hoisted_32 = {
   "class": ""
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Доставка ");
-
-var _hoisted_34 = {
-  "class": ""
-};
-
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Контакты ");
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Контакты ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
@@ -22143,21 +22133,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: {
-      name: 'page',
-      params: {
-        id: 'posted'
-      }
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_33];
-    }),
-    _: 1
-    /* STABLE */
-
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"\">\n                  <router-link :to=\"{ name: 'page', params: { id: 'posted' } }\">\n                    Доставка\n                  </router-link>\n                </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'page',
       params: {
@@ -22166,7 +22142,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_35];
+      return [_hoisted_33];
     }),
     _: 1
     /* STABLE */

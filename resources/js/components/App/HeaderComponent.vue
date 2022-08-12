@@ -89,11 +89,11 @@
                     О компании
                   </router-link>
                 </li>
-                <li class="">
+                <!-- <li class="">
                   <router-link :to="{ name: 'page', params: { id: 'posted' } }">
                     Доставка
                   </router-link>
-                </li>
+                </li> -->
                 <li class="">
                   <router-link
                     :to="{ name: 'page', params: { id: 'contact' } }"
