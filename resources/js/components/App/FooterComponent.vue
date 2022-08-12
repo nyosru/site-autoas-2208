@@ -113,7 +113,7 @@
   <div class="copyright">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-sm-3 col-lg-4 text-center">
+        <div class="col-xs-12 col-sm-4 text-center">
           <span>
             <a href="/" title="" style="color: #6c6c6c;">
               Авто-АС © 2008 - 2022
@@ -122,7 +122,7 @@
             </a>
           </span>
         </div>
-        <div class="col-xs-12 col-sm-3 col-lg-4 text-center">
+        <div class="col-xs-12 col-sm-4 text-center">
           <img
             src="/storage/site/img/visa.png"
             alt="images"
@@ -135,7 +135,7 @@
             xclass="img-responsive"
           />
         </div>
-        <div class="col-xs-12 col-sm-3 col-lg-4 text-center">
+        <div class="col-xs-12 col-sm-4 text-center">
           <span>
             <a
               href="//php-cat.com"

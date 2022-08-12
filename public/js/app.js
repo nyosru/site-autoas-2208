@@ -21835,7 +21835,7 @@ var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "row"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-xs-12 col-sm-3 col-lg-4 text-center"
+    "class": "col-xs-12 col-sm-4 text-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "/",
     title: "",
@@ -21843,7 +21843,7 @@ var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
       "color": "#6c6c6c"
     }
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Авто-АС © 2008 - 2022 "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Внимательность к деталям! ")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-xs-12 col-sm-3 col-lg-4 text-center"
+    "class": "col-xs-12 col-sm-4 text-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/storage/site/img/visa.png",
     alt: "images",
@@ -21856,7 +21856,7 @@ var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
     alt: "images",
     xclass: "img-responsive"
   })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "col-xs-12 col-sm-3 col-lg-4 text-center"
+    "class": "col-xs-12 col-sm-4 text-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "//php-cat.com",
     target: "_blank",
