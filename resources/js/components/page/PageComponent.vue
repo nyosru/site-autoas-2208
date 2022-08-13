@@ -41,7 +41,7 @@
             <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aa1c21a22720667468e2e00b1009b667e2403d7dfe330b5d32d3f3a4ab255bad4&amp;source=constructor" width="100%" height="600" frameborder="0"></iframe>
           </div>
         </div>
-        <div class="row" v-else >
+        <div class="row page-links" v-else >
           <div class="col-12">
             <div v-html="pageData.html"></div>
           </div>
@@ -82,4 +82,5 @@ const stopWatch = watchEffect(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.page-links a{ color: blue; }</style>

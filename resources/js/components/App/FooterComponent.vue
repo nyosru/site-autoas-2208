@@ -158,10 +158,10 @@
 const link_footer = [
   { id: 'about', head: 'О компании' },
   // { id: 'posted', head: 'Доставка' },
-  { id: 'contact', head: 'Контакты' },
   { id: 'politika', head: 'Политика конфеденциальности' },
   { id: 'oferta', head: 'Оферта' },
-  // { id: 'return', head: 'Возврат' },
+  { id: 'return', head: 'Возврат' },
+  { id: 'contact', head: 'Контакты' },
 ]
 </script>
 
