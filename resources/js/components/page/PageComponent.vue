@@ -49,7 +49,7 @@
             ></iframe>
           </div>
         </div>
-        <div class="row" v-else>
+        <div class="row links" v-else>
           <div class="col-12">
             <div v-html="pageData.html"></div>
           </div>
@@ -90,7 +90,7 @@ const stopWatch = watchEffect(() => {
 </script>
 
 <style scoped>
-a {
+.links a {
   color: blue;
   text-decoration: underline;
 }
