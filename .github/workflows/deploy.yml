@@ -54,4 +54,6 @@ jobs:
             +++ пулл в репу +++
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
+            +++
+            ${{github}}
             
