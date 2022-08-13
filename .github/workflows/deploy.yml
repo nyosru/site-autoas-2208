@@ -43,3 +43,15 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run prod
           # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
+
+      - name: send telega
+        uses: appleboy/telegram-action@master
+        with:
+          # to: ${{ secrets.TELEGRAM_TO }}
+          to: 360209578, phpcat,
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            +++ пулл в репу +++
+            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+            сделал ${{ github.event_name }}. задание ${{github.job}}.
+            
