@@ -89,7 +89,7 @@ const stopWatch = watchEffect(() => {
 })
 </script>
 
-<style scoped>
+<style>
 .links a {
   color: blue;
   text-decoration: underline;
