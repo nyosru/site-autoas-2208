@@ -55,5 +55,6 @@ jobs:
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
             +++            +++
-            ${{github}}
+            1 ${{ github.name }}
+            2 ${{ github.head }}
             
