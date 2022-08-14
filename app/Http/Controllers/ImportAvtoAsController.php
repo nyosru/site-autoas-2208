@@ -488,7 +488,7 @@ class ImportAvtoAsController extends Controller
 
         // echo '<pre style="max-height: 300px; overflow: auto; display: block;" >', print_r($cats), '</pre>';
 
-        unlink($fileImport);
+        // unlink($fileImport);
 
         // dd([
         //     'file' => $data_file,
