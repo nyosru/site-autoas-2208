@@ -15,7 +15,8 @@ class CatalogController extends Controller
     {
         return new CatalogCollection(Catalog::
         // remember(60)->
-        with('icon')->where('status', 'show')->orderBy('sort')->get())
+        with('icon')->where('status', 'show')->orderBy('sort')->get());
+        echo 
     }
 
     /**
