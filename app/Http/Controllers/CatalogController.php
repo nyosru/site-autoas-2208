@@ -14,16 +14,15 @@ class CatalogController extends Controller
     public function index()
     {
         return new CatalogCollection(Catalog::
-        // remember(60)->
-        with('icon')->where('status', 'show')->orderBy('sort')->get());
-        echo 
+            // remember(60)->
+            with('icon')->where('status', 'show')->orderBy('sort')->get());
     }
 
     /**
      * показ одного каталога
      */
-    public function show( string $id )
+    public function show(string $id)
     {
-        return new CatalogCollection(Catalog::where('id',$id)->where('status', 'show')->get());
+        return new CatalogCollection(Catalog::where('id', $id)->where('status', 'show')->get());
     }
 }
