@@ -31,9 +31,7 @@ class GoodController extends Controller
         // $request->search
 
         $s = explode(' ', $request->search);
-        $s = explode(' ', $request->search);
-
-
+        // $s = explode(' ', $request->search);
 
         return new GoodCollection(Good::with('analog')->where(function ($query) use ($s, $request) {
             foreach ($s as $v) {
