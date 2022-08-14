@@ -68,17 +68,12 @@ class ImportAvtoAsController extends Controller
         ];
         Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg, null, 2);
 
-        return '<pre>'.'Обработан импорт данных' . PHP_EOL . $msg.'</pre>';
-        return Storage::exists('import1c/AllCatalog.xml') ? 1 : 2;
+        return '<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . '</pre>';
+        // return Storage::exists('import1c/AllCatalog.xml') ? 1 : 2;
 
         // $file = $_SERVER['DOCUMENT_ROOT'] . '/public/import-1c/files/AllCatalog.xml';
         // return (file_exists($file)) ? 1 : 2 . $_SERVER['DOCUMENT_ROOT'];
     }
-
-
-
-
-
 
 
     /**
@@ -253,13 +248,11 @@ class ImportAvtoAsController extends Controller
         }
     }
 
-
-
-
-
-
     public static function parsingXml($file = 'AllCatalog.xml')
     {
+
+        if (!Storage::exists('import1c/' . $file))
+            return 'файла данных не обнаружено';
 
         // $files = Storage::files('import1c');
         $fileImport = Storage::path('import1c/' . $file);
