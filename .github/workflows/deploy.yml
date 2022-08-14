@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: lint
+        uses: StephaneBour/actions-php-lint@7.4
+
       - name: git pull on server
         uses: appleboy/ssh-action@master
         with:
@@ -54,7 +57,4 @@ jobs:
             +++ пулл в репу +++
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
-            +++            +++
-            1 ${{ github.name }}
-            2 ${{ github.head }}
             
