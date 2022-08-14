@@ -17,10 +17,13 @@ class ImportAvtoAsController extends Controller
      * импорт дата файла
      * @return \Illuminate\Http\Response
      */
-    public function import()
+    public function import($file = 'AllCatalog.xml')
     {
 
-        $ee = self::parsingXml();
+        if (!Storage::exists('import1c/' . $file))
+            return 'файла данных не обнаружено';
+
+        $ee = self::parsingXml($file);
 
         $msg = '';
 
@@ -250,9 +253,6 @@ class ImportAvtoAsController extends Controller
 
     public static function parsingXml($file = 'AllCatalog.xml')
     {
-
-        if (!Storage::exists('import1c/' . $file))
-            return 'файла данных не обнаружено';
 
         // $files = Storage::files('import1c');
         $fileImport = Storage::path('import1c/' . $file);
