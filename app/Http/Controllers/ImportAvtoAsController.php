@@ -68,6 +68,7 @@ class ImportAvtoAsController extends Controller
         ];
         Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg, null, 2);
 
+        return '<pre>'.'Обработан импорт данных' . PHP_EOL . $msg.'</pre>';
         return Storage::exists('import1c/AllCatalog.xml') ? 1 : 2;
 
         // $file = $_SERVER['DOCUMENT_ROOT'] . '/public/import-1c/files/AllCatalog.xml';
@@ -488,7 +489,7 @@ class ImportAvtoAsController extends Controller
 
         // echo '<pre style="max-height: 300px; overflow: auto; display: block;" >', print_r($cats), '</pre>';
 
-        // unlink($fileImport);
+        unlink($fileImport);
 
         // dd([
         //     'file' => $data_file,
