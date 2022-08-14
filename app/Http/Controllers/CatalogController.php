@@ -8,15 +8,15 @@ use App\Models\Catalog;
 
 class CatalogController extends Controller
 {
-    /**
+    /*
      * список всех каталогов
      */
     public function index()
     {
-        return new CatalogCollection(Catalog::
-            // remember(60)->
-            with('icon')->where('status', 'show')->orderBy('sort')->get());;
-            sss
+        return new CatalogCollection(
+            Catalog:: // remember(60)->
+                with('icon')->where('status', 'show')->orderBy('sort')->get()
+        );
     }
 
     /**
