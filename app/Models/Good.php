@@ -22,19 +22,41 @@ class Good extends Model
      *
      * @var bool
      */
-     public $timestamps = false;
+    public $timestamps = false;
 
     //  protected $appends = ['id', 'head' , 'a_id' , 'a_parentid' ]; // доп значения возвращаемые в JSON
 
-     /**
+    protected $fillable = [
+        // 'id',
+        'head',
+        'a_id',
+        'a_categoryid',
+        'a_catnumber',
+        'catnumber_search',
+        'a_price',
+        'a_in_stock',
+        'a_arrayimage',
+        'country',
+        'manufacturer',
+        'comment',
+    ];
+
+    /**
+     * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Получить каталог
      */
     public function catalog()
     {
-        return $this->belongsTo(Catalog::class,'a_id','a_categoryid');
+        return $this->belongsTo(Catalog::class, 'a_id', 'a_categoryid');
     }
 
-     /**
+    /**
      * Получить аналоги
      */
     public function analog()
@@ -49,5 +71,4 @@ class Good extends Model
             'art_origin' // Локальный ключ в таблице `environments` goodanalog ...
         );
     }
-
 }

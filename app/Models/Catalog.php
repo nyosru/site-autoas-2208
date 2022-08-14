@@ -21,16 +21,24 @@ class Catalog extends Model
      *
      * @var bool
      */
-     public $timestamps = false;
+    public $timestamps = false;
 
     //  protected $appends = ['id', 'head' , 'a_id' , 'a_parentid' ]; // доп значения возвращаемые в JSON
 
-     /**
+
+    /**
+     * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+
+    /**
      * Получить телефон, связанный с пользователем.
      */
     public function icon()
     {
-        return $this->hasOne(CatalogIcon::class,'id_cat','a_id')->where('status', 'show');
+        return $this->hasOne(CatalogIcon::class, 'id_cat', 'a_id')->where('status', 'show');
     }
-
 }

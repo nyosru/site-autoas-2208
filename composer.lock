@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61ff82cbf0142a401a48a8161e1595a",
+    "content-hash": "f069e0c95206de1b98215d6afab1da8c",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2068,6 +2068,55 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v4.14.0"
             },
             "time": "2022-05-31T20:59:12+00:00"
+        },
+        {
+            "name": "nyos/msg",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nyosru/composer_nyos_msg.git",
+                "reference": "04ed85280d5da7f7f038826be5a6eb59cdd523ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nyosru/composer_nyos_msg/zipball/04ed85280d5da7f7f038826be5a6eb59cdd523ac",
+                "reference": "04ed85280d5da7f7f038826be5a6eb59cdd523ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Baklanov",
+                    "email": "1@php-cat.com",
+                    "homepage": "https://php-cat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Пакет функций nyos\\msg\\** для работы с сообщениями ( vk telegram )",
+            "homepage": "https://uralweb.info/php/#classes",
+            "keywords": [
+                "api",
+                "nyos",
+                "telegram",
+                "uralweb.info"
+            ],
+            "support": {
+                "issues": "https://github.com/nyosru/composer_nyos_msg/issues",
+                "source": "https://github.com/nyosru/composer_nyos_msg/tree/1.12.0"
+            },
+            "time": "2022-01-14T11:02:30+00:00"
         },
         {
             "name": "opis/closure",

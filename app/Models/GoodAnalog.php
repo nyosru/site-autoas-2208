@@ -21,21 +21,27 @@ class GoodAnalog extends Model
      *
      * @var bool
      */
-     public $timestamps = false;
+    public $timestamps = false;
 
     //  protected $appends = ['id', 'head' , 'a_id' , 'a_parentid' ]; // доп значения возвращаемые в JSON
 
-     /**
+    /**
+     * Атрибуты, для которых НЕ разрешено массовое присвоение значений.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Получить товар
      */
     public function good()
     {
-        return $this->belongsTo(Good::class,'a_id','art_origin');
+        return $this->belongsTo(Good::class, 'a_id', 'art_origin');
     }
 
     public function analog()
     {
-        return $this->belongsTo(Good::class,'a_id','art_analog');
+        return $this->belongsTo(Good::class, 'a_id', 'art_analog');
     }
-
 }
