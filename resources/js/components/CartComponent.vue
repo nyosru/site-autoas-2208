@@ -149,7 +149,10 @@
           </template>
         </div>
         <div class="col-md-4 col-sm-12">
-          <div class="aside-shopping-cart-total">
+
+<cart-order-component />
+
+          <div v-if="1==2" class="aside-shopping-cart-total">
             <div class="alert alert-success" v-if="showOk">
               <h2>Заказ</h2>
               {{ form_name2 }}
@@ -158,7 +161,6 @@
               <br />
               {{ form_postedAddress2 }}
             </div>
-
             <template v-else>
               <div v-if="cartAr.length == 0"></div>
               <div v-else>
@@ -276,6 +278,7 @@
               </div>
             </template>
           </div>
+
         </div>
       </div>
     </form>
@@ -284,9 +287,12 @@
 </template>
 
 <script setup>
+
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.ts'
 import { ref, watchEffect, onMounted } from 'vue'
+
+import CartOrderComponent from './CartOrderComponent.vue'
 
 // import { useRoute } from 'vue-router'
 // const router = useRoute()
