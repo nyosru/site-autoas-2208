@@ -8,8 +8,10 @@
       catOne: {{ catOne ?? 'x' }}
     </div>
 
+    <!-- catOne: {{ catOne }} -->
+
     <div
-      v-if="!catOne || (catOne && catOne.length == 0)"
+      v-if="!catOne"
       class="menu-heading js-nav-menu"
     >
       &nbsp;
@@ -20,7 +22,7 @@
         :class="{ show: showMenu }"
         @click="showMenu = !showMenu"
       >
-        Каталог
+        Каталог 
       </div>
       <div class="vertical-wrapper v3" :class="{ active: showMenu }">
         <ul class="level0">
@@ -35,8 +37,7 @@
                   <tr>
                     <td>
                       <img
-                        v-if="v.icon.icon && v.icon.icon.length > 0"
-                        :src="'/storage/site/module_items_image/' + v.icon.icon"
+                        :src="( v.icon && v.icon.icon && v.icon.icon.length > 0 ? '/storage/site/module_items_image/' + v.icon.icon : '/storage/site/img/icon/vk04.png' )"
                         style="
                           float: left;
                           max-width: 60px;

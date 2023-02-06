@@ -17,12 +17,15 @@ const mix = require('laravel-mix')
  |
  */
 
+
+mix.copy('resources/to-storage-app-public/', 'storage/app/public/')
+
 mix
 // .js([
 //     'resources/site/js/main.js',
 //     // 'resources/site/js/jquery.js'
 // ], 'public/js/app.js')
-    .js('resources/js/app.js', 'public/js')
+    .js('resources/js/app.js', 'public/js/app.js')
 
 // .js([
 //     'resources/site/js/main.js',
