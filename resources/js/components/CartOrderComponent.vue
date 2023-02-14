@@ -1,20 +1,26 @@
 <template>
   <div class="aside-shopping-cart-total">
+
+    
     <div class="alert alert-success" v-if="showOk">
+
       <h2>Заказ</h2>
       {{ form_name2 }}
       <br />
       Тел: {{ form_phone2 }}
       <br />
       {{ form_postedAddress2 }}
+
     </div>
 
     <template v-else>
+
       <div v-if="cartAr.length == 0"></div>
       <div v-else>
         <h2>Заказ</h2>
 
         <ul>
+
           <li>
             <span class="text">
               Итого:
@@ -29,6 +35,7 @@
             <br />
             <span class="text xcalculate">Контактные данные</span>
           </li>
+
           <li>
             <label>
               Как Вас зовут:
@@ -42,19 +49,7 @@
               />
             </label>
           </li>
-          <li>
-            <label>
-              Телефон:
-              <br />
-              <input
-                type="text"
-                class="form-contol"
-                style="max-width: 100%;"
-                v-model="form_phone"
-                required=""
-              />
-            </label>
-          </li>
+
           <li>
             <label>
               Ваш город:
@@ -68,6 +63,35 @@
               />
             </label>
           </li>
+
+          <li>
+            <label>
+              Телефон:
+              <br />
+              <input
+                type="text"
+                class="form-contol"
+                style="max-width: 100%;"
+                v-model="form_phone"
+                required=""
+              />
+            </label>
+          </li>
+
+          <li>
+            <label>
+              E-mail:
+              <br />
+              <input
+                type="email"
+                class="form-contol"
+                style="max-width: 100%;"
+                v-model="form_phone"
+                required=""
+              />
+            </label>
+          </li>
+
           <li>
             <label>
               <input
@@ -78,7 +102,8 @@
               Нужна помощь специалиста
             </label>
           </li>
-          <li id="help_text" style="display: none;">
+
+          <li v-if="1 == 2" id="help_text">
             <div style="padding: 10px;">
               <p style="color: red;">
                 <b>
@@ -94,13 +119,20 @@
           </li>
 
           <li xid="dost1">
-            Нужна доставка ?
-            <span
+            <label>
+              <input
+                type="checkbox"
+                style="max-width: 30px;"
+                v-model="show_form_postedAddress"
+              />
+              Нужна доставка
+            </label>
+            <!-- <span
               class="btn btn-sm btn-primary"
               @click="show_form_postedAddress = !show_form_postedAddress"
             >
               Да
-            </span>
+            </span> -->
           </li>
           <li xid="dost2" v-if="show_form_postedAddress">
             <label>
@@ -117,8 +149,9 @@
           </li>
         </ul>
         <div class="process">
+          <div class="text-xs">Перейти к&nbsp;завершающему шагу<br/>оформления заказа</div>
           <button class="btn-checkout" type="submit">
-            Отправить заказ
+            Отправить
           </button>
         </div>
       </div>
@@ -208,6 +241,7 @@ const form_phone = ref('')
 const form_phone2 = ref('')
 const form_city = ref('Тюмень')
 const form_needHelp = ref(false)
+const form_need_post = ref(false)
 const show_form_postedAddress = ref(false)
 const form_postedAddress = ref('')
 const form_postedAddress2 = ref('')
@@ -333,5 +367,4 @@ const sendOrder = async (good_id) => {
 //     },
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
