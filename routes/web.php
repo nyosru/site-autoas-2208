@@ -13,5 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any?}/{any2?}/{any3?}/{any35?}/{any34?}/{any33?}/{any32?}/{any31?}', function () { return view('welcome'); });
+Route::get(
+    '/{any?}/{any2?}/{any3?}/{any35?}/{any34?}/{any33?}/{any32?}/{any31?}',
+    function () {
+
+        # Запуск события с передачей объекта события
+        // $response = event('RegUserEvent', ['name' => 'привет буфет']);
+        $email = 'nyos@rambler.ru';
+        echo $email;
+        event( 'NewOrderEvent' , [ [ 'name' => 'привет буфет' , 'email' => $email ] ]);
+
+        return view('welcome');
+    }
+);
+    
 // Route::get('/{?any}', function () {    return view('welcome');});

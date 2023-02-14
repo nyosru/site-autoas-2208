@@ -51,6 +51,8 @@
         </div>
         <div class="row links" v-else>
           <div class="col-12">
+            $route.params.id: {{ $route.params.id }}
+            <br/>
             <div v-html="pageData.html"></div>
           </div>
         </div>
@@ -85,6 +87,7 @@ const nowMod = ref('')
 
 const stopWatch = watchEffect(() => {
   nowPage.value = whatThisPage(route.params.id)
+  console.log('pageLoad(route.params.id)',route.params.id);
   pageLoad(route.params.id)
 })
 </script>

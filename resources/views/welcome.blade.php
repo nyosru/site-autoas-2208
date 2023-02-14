@@ -62,7 +62,6 @@
 <body>
     <div id="app"></div>
 
-4747
 
     {{-- <div id="vk_community_messages" style="position: fixed; padding-bottom: 120px; width: 50px; height: 50px; z-index: 10000; 
         bottom: 0px; right: 20px; margin: 0px 0px 20px; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"> --}}
@@ -97,7 +96,7 @@
 </body>
 
 {{-- <script src="{{ asset('js/app.js') }}?s=2208120337{{ rand() }}"></script> --}}
-<script src="{{ asset('js/app.js') }}?s=2208130539"></script>
+<script src="{{ asset('js/app.js') }}?s=2208130539{{ rand() }}"></script>
 
 {{-- <script type="text/javascript" src="https://yastatic.net/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script> --}}
 {{-- <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> --}}

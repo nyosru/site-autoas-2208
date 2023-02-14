@@ -13,7 +13,10 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    // 'default' => env('MAIL_MAILER', 'smtp'),
+    // 'default' => env('MAIL_MAILER', 'sendmail'),
+    // 'default' => env('MAIL_MAILER', 'log'),
+    'default' => env('MAIL_MAILER', 'yandex'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +37,22 @@ return [
     */
 
     'mailers' => [
+
+        'yandex' => [
+            'transport' => 'smtp',
+            'driver' => env('MAIL_DRIVER', 'smtp'),
+            'host' => env('MAIL_HOST', 'smtp.yandex.ru'),
+            'port' => env('MAIL_PORT', 587),
+            'from' => [
+                'address' => env('MAIL_USERNAME'),
+                'name' => 'Автосистема рассылки писем',
+            ],
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD')
+
+        ],
+
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
@@ -74,7 +93,8 @@ return [
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
-                'smtp',
+                'sendmail',
+                // 'smtp',
                 'log',
             ],
         ],
@@ -92,7 +112,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 

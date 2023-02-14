@@ -159,6 +159,7 @@ const link_footer = [
   { id: 'about', head: 'О компании' },
   // { id: 'posted', head: 'Доставка' },
   { id: 'politika', head: 'Политика конфеденциальности' },
+  { id: 'pers', head: 'Персональные данные' },
   { id: 'oferta', head: 'Оферта' },
   { id: 'return', head: 'Возврат' },
   { id: 'contact', head: 'Контакты' },

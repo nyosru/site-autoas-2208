@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\RegUserEvent;
+use App\Listeners\NewOrderListener;
+use App\Listeners\RegUserListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+// use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // 'RegUserEvent' => [ RegUserListener::class ],
+        // 'RegUserEvent' => [ RegUserListener::class, 'handle' ],        
+        // 'Illuminate\Auth\Events\Login' => [ 'App\Listeners\UserEventListener' ]
+        // 'Illuminate\Auth\Events\Registered' => [ RegUserListener::class ]
     ];
 
     /**
@@ -27,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        # Указываем собственный метод класса
+        // app('events')->listen('RegUserEvent', [RegUserListener::class, 'handle' ]);
+        app('events')->listen('NewOrderEvent', [NewOrderListener::class, 'handle' ]);
+
     }
 }
