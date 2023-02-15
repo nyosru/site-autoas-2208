@@ -14,10 +14,18 @@ class PageController extends Controller
     //  *
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function index()
-    // {
-    //     //
-    // }
+    public function index()
+    {
+        # Запуск события с передачей объекта события
+        // $response = event('RegUserEvent', ['name' => 'привет буфет']);
+        $email = 'nyos@rambler.ru';
+        $email = 'support@php-cat.com';
+        echo $email;
+
+        event('NewOrderEvent', [['name' => 'привет буфет 333', 'email' => $email]]);
+
+        return view('welcome');
+    }
 
     // /**
     //  * Store a newly created resource in storage.

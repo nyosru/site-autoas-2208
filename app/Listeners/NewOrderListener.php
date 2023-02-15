@@ -33,8 +33,10 @@ class NewOrderListener
 
         // Mail::to($request->user())->send(new OrderShipped($order));
         // Mail::mailer('yandex')->
-        Mail::to($data['email'])->
-            send(new OrderNew($data));
+        Mail::to($data['email'])
+            // send(new OrderNew($data));
+            ->queue(new OrderNew($data));
+            // ->later(now()->addMinutes(10), new OrderNew($data));
 
         // Mail::send(
         //     // $data['email'],
