@@ -26,17 +26,38 @@ class NewOrderListener
      * @param  object  $event
      * @return void
      */
+    public function handle2($data = [])
+    {
+
+        file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
+            array(
+                's' => '1',
+                // 'id' => $to, // id кому пишем
+                // 'msg' => 'пример handle(RegUserEvent $event) '. ( $event->aa ?? 'x' ) // текст сообщения
+                'msg' => '11 пример 33333 handle(RegUserEvent $event) ' . serialize($data ?? []) // текст сообщения
+            )
+        ));
+
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  object  $event
+     * @return void
+     */
     public function handle($data = [])
     {
 
         // dd($data);
-
         // Mail::to($request->user())->send(new OrderShipped($order));
         // Mail::mailer('yandex')->
+
         Mail::to($data['email'])
-            // send(new OrderNew($data));
-            ->queue(new OrderNew($data));
-            // ->later(now()->addMinutes(10), new OrderNew($data));
+            ->send(new OrderNew($data));
+
+            // ->queue(new OrderNew($data));
+            // ->later(now()->addMinutes(1), new OrderNew($data));
 
         // Mail::send(
         //     // $data['email'],
@@ -52,5 +73,7 @@ class NewOrderListener
                 'msg' => '11 пример handle(RegUserEvent $event) ' . serialize($data) // текст сообщения
             )
         ));
+
+        return true;
     }
 }

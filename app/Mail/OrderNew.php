@@ -28,7 +28,7 @@ class OrderNew extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newOrder.confirm');
+        return $this->view('emails.newOrder.confirm',['name'=>'Sergey']);
     }
 
 }

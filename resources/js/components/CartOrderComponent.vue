@@ -1,26 +1,20 @@
 <template>
   <div class="aside-shopping-cart-total">
-
-    
     <div class="alert alert-success" v-if="showOk">
-
       <h2>Заказ</h2>
       {{ form_name2 }}
       <br />
       Тел: {{ form_phone2 }}
       <br />
       {{ form_postedAddress2 }}
-
     </div>
 
     <template v-else>
-
       <div v-if="cartAr.length == 0"></div>
-      <div v-else>
+      <form action="" method="POST" @submit.prevent="sendOrder" v-else>
         <h2>Заказ</h2>
 
         <ul>
-
           <li>
             <span class="text">
               Итого:
@@ -48,6 +42,10 @@
                 required=""
               />
             </label>
+            <cart-order-show-error-component
+              v-if="errorToHtml.name && errorToHtml.name.length > 0"
+              :errors="errorToHtml.name"
+            />
           </li>
 
           <li>
@@ -62,6 +60,10 @@
                 required=""
               />
             </label>
+            <cart-order-show-error-component
+              v-if="errorToHtml.city && errorToHtml.city.length > 0"
+              :errors="errorToHtml.city"
+            />
           </li>
 
           <li>
@@ -72,10 +74,14 @@
                 type="text"
                 class="form-contol"
                 style="max-width: 100%;"
-                v-model="form_phone"
+                v-model="phone"
                 required=""
               />
             </label>
+            <cart-order-show-error-component
+              v-if="errorToHtml.phone && errorToHtml.phone.length > 0"
+              :errors="errorToHtml.phone"
+            />
           </li>
 
           <li>
@@ -86,10 +92,14 @@
                 type="email"
                 class="form-contol"
                 style="max-width: 100%;"
-                v-model="form_phone"
+                v-model="email"
                 required=""
               />
             </label>
+            <cart-order-show-error-component
+              v-if="errorToHtml.email && errorToHtml.email.length > 0"
+              :errors="errorToHtml.email"
+            />
           </li>
 
           <li>
@@ -134,36 +144,47 @@
               Да
             </span> -->
           </li>
-          <li xid="dost2" v-if="show_form_postedAddress">
-            <label>
-              Адрес доставки
-              <br />
-              <input
-                type="text"
-                class="form-contol"
-                style="max-width: 100%;"
-                v-model="form_postedAddress"
-              />
-              <br />
-            </label>
-          </li>
+
+          <transition>
+            <li xid="dost2" v-if="show_form_postedAddress">
+              <label>
+                Адрес доставки
+                <br />
+                <input
+                  type="text"
+                  class="form-contol"
+                  style="max-width: 100%;"
+                  v-model="form_postedAddress"
+                />
+                <br />
+              </label>
+            </li>
+          </transition>
         </ul>
+
+        errorToHtml: {{ errorToHtml }}
+
         <div class="process">
-          <div class="text-xs">Перейти к&nbsp;завершающему шагу<br/>оформления заказа</div>
+          <div class="text-xs">
+            Перейти к&nbsp;завершающему шагу
+            <br />
+            оформления заказа
+          </div>
           <button class="btn-checkout" type="submit">
             Отправить
           </button>
         </div>
-      </div>
+      </form>
     </template>
   </div>
 </template>
 
 <script setup>
-
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.ts'
 import { ref, watchEffect, onMounted } from 'vue'
+
+import CartOrderShowErrorComponent from './CartOrderShowErrorComponent.vue'
 
 // import { useRoute } from 'vue-router'
 // const router = useRoute()
@@ -237,7 +258,8 @@ const stopWatch7 = watchEffect(() => {
 
 const form_name = ref('')
 const form_name2 = ref('')
-const form_phone = ref('')
+const email = ref('')
+const phone = ref('')
 const form_phone2 = ref('')
 const form_city = ref('Тюмень')
 const form_needHelp = ref(false)
@@ -252,6 +274,11 @@ const { sendToTelegramm, sendTo } = sendTelegramm()
 const textSms = ref('')
 const showOk = ref(false)
 
+const errorToHtml = ref([])
+
+// отправили заказ на сервер
+const sendOrderRes = ref(false)
+
 // onMounted(() => {
 //   showOk.value = false
 // })
@@ -264,81 +291,135 @@ const NumberFormat = (num) => {
   }).format(num)
   // return num + ' 777 ';
 }
-const sendOrder = async (good_id) => {
+
+const sendOrder = async () => {
   console.log(77700)
 
-  // добавляем серхио тест
-  // sendTo.value.push(5152088168)
-  // first_name: Авто-АС
-  sendTo.value.push(1022228978)
-  // Денис Авто-СА
-  sendTo.value.push(663501687)
+  errorToHtml.value = []
 
-  podZakaz.value = false
+  sendOrderRes.value = false
+  let res2 = await axios
+    .post('/api/orger', {
 
-  textSms.value =
-    'новый заказ:' +
-    '\n' +
-    form_name.value +
-    ' (' +
-    form_city.value +
-    ')' +
-    '\n' +
-    'Тел: ' +
-    form_phone.value +
-    '\n' +
-    'Нужна помощь:' +
-    (form_needHelp.value ? 'ДА' : 'НЕТ') +
-    '\n' +
-    'Доставка:' +
-    (show_form_postedAddress.value
-      ? 'нужна > Адрес: ' + (form_postedAddress.value ?? '-')
-      : 'НЕ нужна') +
-    '\n'
+      name: form_name.value,
+      city: form_city.value,
+      phone: phone.value,
+      email: email.value,
 
-  cartAr.value.forEach((e) => {
-    textSms.value +=
+      form_needHelp: form_needHelp.value,
+      form_postedAddress:
+        show_form_postedAddress.value == true ? form_postedAddress.value : '',
+
+      goods: cartAr.value,
+
+      // domain: window.location.hostname,
+      // // show_datain: 1,
+      // answer: 'json',
+
+      // // s: md5('1'),
+      // // s: md5(window.location.hostname),
+
+      // // id: 1,
+      // id: sendTo.value,
+    })
+    .then((res) => {
+      console.log('res.status', res.status)
+      console.log('res', res)
+      sendOrderRes.value = true
+    })
+    .catch((error) => {
+      // console.log('error response', error.response)
+      errorToHtml.value = error.response.data.errors
+      // console.log('error status', error.status)
+      // console.log('error status', error.errors)
+      // console.log('error', error.data)
+      // console.log('error', error)
+      // return 'errored'
+    })
+
+  console.log('sendOrderRes.value', sendOrderRes.value)
+
+  if (sendOrderRes.value == true) {
+    // console.log('res2', res2)
+    console.log('res2', 333)
+    return false
+
+    // добавляем серхио тест
+    // sendTo.value.push(5152088168)
+    // first_name: Авто-АС
+    // sendTo.value.push(1022228978)
+    // Денис Авто-СА
+    // sendTo.value.push(663501687)
+
+    podZakaz.value = false
+
+    textSms.value =
+      'новый заказ:' +
       '\n' +
-      e.head +
+      form_name.value +
+      ' (' +
+      form_city.value +
+      ')' +
       '\n' +
-      (e.id && e.id > 0 && e.a_id && e.a_id.length ? '' : '(заказ) ') +
-      e.a_id +
-      ' // ' +
-      (e.a_price != ''
-        ? e.a_price +
-          ' р * ' +
-          e.kolvo +
-          ' ед.' +
-          ' = ' +
-          e.a_price * e.kolvo +
-          'р'
-        : 'под заказ ' + e.kolvo + ' ед.') +
+      'Тел: ' +
+      phone.value +
+      '\n' +
+      'Email: ' +
+      email.value +
+      '\n' +
+      'Нужна помощь:' +
+      (form_needHelp.value ? 'ДА' : 'НЕТ') +
+      '\n' +
+      'Доставка:' +
+      (show_form_postedAddress.value
+        ? 'нужна > Адрес: ' + (form_postedAddress.value ?? '-')
+        : 'НЕ нужна') +
       '\n'
-    if (e.a_price != '') {
-      podZakaz.value = true
+
+    cartAr.value.forEach((e) => {
+      textSms.value +=
+        '\n' +
+        e.head +
+        '\n' +
+        (e.id && e.id > 0 && e.a_id && e.a_id.length ? '' : '(заказ) ') +
+        e.a_id +
+        ' // ' +
+        (e.a_price != ''
+          ? e.a_price +
+            ' р * ' +
+            e.kolvo +
+            ' ед.' +
+            ' = ' +
+            e.a_price * e.kolvo +
+            'р'
+          : 'под заказ ' + e.kolvo + ' ед.') +
+        '\n'
+      if (e.a_price != '') {
+        podZakaz.value = true
+      }
+    })
+
+    textSms.value +=
+      '\n Итого: ' +
+      sumall.value +
+      ' р. ' +
+      (podZakaz.value ? ' + под заказ ' : '')
+
+    let ww = await sendToTelegramm(textSms.value)
+
+    console.log(77711, ww)
+
+    if (ww == 'sended') {
+      // alert('Заказ отправлен, позвоним в рабочее время')
+      // router.push({ name: 'orderOk' })
+
+      form_name2.value = form_name.value
+      form_phone2.value = phone.value
+      form_postedAddress2.value = form_postedAddress.value
+      showOk.value = true
+      cartAr.value = []
+      cartCashSave()
     }
-  })
-
-  textSms.value +=
-    '\n Итого: ' +
-    sumall.value +
-    ' р. ' +
-    (podZakaz.value ? ' + под заказ ' : '')
-
-  let ww = await sendToTelegramm(textSms.value)
-
-  console.log(77711, ww)
-
-  if (ww == 'sended') {
-    // alert('Заказ отправлен, позвоним в рабочее время')
-    // router.push({ name: 'orderOk' })
-
-    form_name2.value = form_name.value
-    form_phone2.value = form_phone.value
-    form_postedAddress2.value = form_postedAddress.value
-    showOk.value = true
-    cartAr.value = []
-    cartCashSave()
   }
 }
 

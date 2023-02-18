@@ -32,3 +32,6 @@ Route::apiResource('page', PageController::class );
 Route::apiResource('banner', BannerController::class );
 Route::get('adverIndex', [ BannerController::class , 'adverIndex' ] );
 Route::get('import/1c', [ ImportAvtoAsController::class , 'import' ] );
+
+// Route::post('orger', [ PageController::class , 'sendOrder' ] );
+Route::any('orger', [ PageController::class , 'sendOrder' ] );
