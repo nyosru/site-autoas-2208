@@ -17,6 +17,7 @@ class CreateOrderGoodsTable extends Migration
         Schema::create('order_goods', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Order::class);
+            $table->integer('good_id');
             $table->text('goodOrigin');
             $table->integer('price')->nullable();
             $table->integer('kolvo');

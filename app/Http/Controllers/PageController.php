@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SendOrderRequest;
 use App\Mail\OrderNew;
+use App\Models\Order;
+use App\Models\OrderGood;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
@@ -86,7 +88,7 @@ class PageController extends Controller
     /**
      *  отправка почты для подтверждения ящика
      */
-    public function sendMailVerify( string $email )
+    public function sendMailVerify(string $email)
     {
 
 
@@ -117,13 +119,12 @@ class PageController extends Controller
 
         if (!empty($request->email)) {
             $email = $request->email;
-        } 
-        else if (!empty($request->phone)) {
-
+        } else if (!empty($request->phone)) {
         }
 
         $data = ['msg' => 'Привет буфет'];
         $data['email'] = 'nyos@rambler.ru';
+
         // Mail::to($data['email'])
         //     //     ->send(new OrderNew($data));
         //     ->queue(new OrderNew($data));
@@ -147,6 +148,37 @@ class PageController extends Controller
         } else {
             $return['send_mail_verified'] = false;
         }
+
+        $order = new Order();
+        $order->user_id = $user->id;
+        $oo = $order->save();
+        $orId = $order->id;
+        // dd([ $oo , $order ]);
+
+        // $return['goods'] = $request->goods;
+        $goodsInDb = [];
+        foreach ($request->goods as $k => $v) {
+
+            $good = [
+                'good_id' => $v['id'],
+                'order_id' => $orId,
+                'goodOrigin' => $v['head'] . ' <br/> ' .
+                    'id: ' . $v['a_id'] . ' <br/> ' .
+                    'цена: ' . $v['a_price'],
+                'price' => $v['a_price'],
+                'kolvo' => $v['kolvo'],
+            ];
+
+            $oGood = OrderGood::create($good);
+            $good['save'] = $oGood;
+
+            $return['goods'][] =
+                $goodsInDb[] = $good;
+
+        }
+
+        // $oGood = new OrderGood($good);
+        // $order->goods()->createMany($goodsInDb);
 
         // name: form_name.value,
         // city: form_city.value,

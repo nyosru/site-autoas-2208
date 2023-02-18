@@ -15,6 +15,7 @@ class OrderGoodFactory extends Factory
     {
         return [
             'order_id' => rand(1,10),
+            'good_id' => rand(1,10),
             'goodOrigin' => $this->faker->name(),
             'price' => rand(100,10000),
             'kolvo' => rand(1,10),
