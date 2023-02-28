@@ -52,6 +52,7 @@
                 <!-- cartAr, -->
                 <!-- cartArGoods, -->
                 <template v-for="(v, id_good) in cartAr" :key="id_good">
+
                   <tr v-if="v.kolvo >= 0" class="cartItem">
                     <td>
                       <a
@@ -99,8 +100,14 @@
                           : 'под&nbsp;заказ*'
                       }}
                     </td>
+
+
+                    <td v-if="step2Show" class="text-center m-top">
+                      {{ v.kolvo }}
+                    </td>
+
                     <!-- <td>{{ v.kolvo }}</td> -->
-                    <td class="text-center">
+                    <td v-else class="text-center">
                       <div class="nobr">
                         <button
                           type="button"
@@ -129,6 +136,9 @@
                         </button>
                       </div>
                     </td>
+
+
+
                     <td class="a-right m-top">
                       {{
                         v.a_price && v.a_price > 0 && v.kolvo && v.kolvo > 0
@@ -137,6 +147,7 @@
                       }}
                     </td>
                   </tr>
+
                 </template>
               </tbody>
             </table>
@@ -324,6 +335,8 @@ const {
   // deleteGoodFromCart,
   cartRemove,
   cartCashSave,
+     // показ подтверждения заказа
+     step2Show,
 } = cart()
 
 // const s1 = ref(false)

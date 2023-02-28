@@ -7,6 +7,8 @@ import {
 
 // import axios from 'axios'
 
+const nowOrder = ref({})
+
 // товары в корзине a_id = quantity
 const cartAr = ref([])
 
@@ -260,8 +262,14 @@ const goodInCart = (id_str) => {
 //     })
 // }
 
+// показ подтверждения заказа
+const step2Show = ref(false)
+
 export default function cart() {
     return {
+        nowOrder,
+        // показ подтверждения заказа
+        step2Show,
         // товары в корзине a_id = quantity
         cartAr,
         // cartArGoods,

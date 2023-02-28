@@ -9,12 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
-  /**
+    protected $fillable = [
+        'user_id',
+        'status'
+    ];
+
+    /**
      * Получить товары к заказу
      */
     public function goods()
     {
-        return $this->hasMany(OrderGood::class,'good_id');
+        return $this->hasMany(OrderGood::class, 'good_id');
     }
-
 }

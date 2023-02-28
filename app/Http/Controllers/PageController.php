@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Validator;
 class PageController extends Controller
 {
 
-
-
     public static function customRegistration(Request $request)
     {
 
@@ -61,7 +59,7 @@ class PageController extends Controller
 
     /**
      * приводим телефон к строке, начинается с 7
-     * return number | show
+     * return number | show | 8
      */
     public static function phoneNormalize($str, $return = 'number')
     {
@@ -70,19 +68,58 @@ class PageController extends Controller
         $sPhone = preg_replace("[^0-9]", '', $str);
         // dd($sPhone);
 
-        if ($return == 'number')
+        // dd( $sPhone[0] );
+        // dd(substr($sPhone, 0, 1));
+
+        if ($return == 'number') {
             return $sPhone;
+        } else if ($return == 8) {
+            return ($sPhone[0] == 7) ? '8' . substr($sPhone, 1, 10) : $sPhone;
+        }
+
+        if ($sPhone[0] == 7) {
+            $phone = '+' . $sPhone;
+        } elseif ($sPhone[0] == 8) {
+            $phone = '+7' . substr($sPhone, 1, 10);
+            // dD($ph);    
+        }
 
         if (strlen($sPhone) != 11)
             return False;
 
-        $sArea = substr($sPhone, 0, 3);
-        $sPrefix = substr($sPhone, 3, 3);
-        $sNumber = substr($sPhone, 6, 4);
-        $sPhone = "(" . $sArea . ")" . $sPrefix . "-" . $sNumber;
-        return $sPhone;
+        return $phone;
+
+        // $sArea = substr($sPhone, 0, 3);
+        // $sPrefix = substr($sPhone, 3, 3);
+        // $sNumber = substr($sPhone, 6, 4);
+        // $sPhone = "(" . $sArea . ")" . $sPrefix . "-" . $sNumber;
+        // return $sPhone;
     }
 
+    /**
+     *  отправка звонка для подтверждения номера
+     */
+    public function smsConfirm(string $phone)
+    {
+        $res = file_get_contents('https://api.ucaller.ru/v1.0/initCall?key=uRmr0VI3HISaACc1v7EFtY1IXlvjLB0L&service_id=529316&phone=' . $phone);
+        return response()->json($res);
+    }
+
+    /**
+     *  при выхове этой функции номер делаем подтверждённым
+     */
+    // public function smsConfirmSend( $orderId )
+    public function smsConfirmSend($phone)
+    {
+        $phone1 = self::phoneNormalize($phone, 8);
+        // $res = file_get_contents('https://api.ucaller.ru/v1.0/initCall?key=uRmr0VI3HISaACc1v7EFtY1IXlvjLB0L&service_id=529316&phone=' . $phone);
+        // $res = User::find( $orderId )->update(['phone_confirm' => date('Y-m-d H:I:s')]);
+        $res = User::where('phone', $phone1)
+            ->whereNull('phone_confirm')
+            ->update(['phone_confirm' => date('Y-m-d H:I:s')]);
+        // $res = 1;
+        return response()->json(['result' => $res]);
+    }
 
 
     /**
@@ -90,7 +127,6 @@ class PageController extends Controller
      */
     public function sendMailVerify(string $email)
     {
-
 
         $data = ['msg' => 'Привет буфет'];
         // $data['email'] = 'nyos@rambler.ru';
@@ -110,33 +146,53 @@ class PageController extends Controller
 
         // echo '123';
         $return = [];
-        $return['validated'] =
-            $validated = $request->validated();
+
         $return['request'] = $request->all();
 
-        // dd(self::phoneNormalize($request->phone));
-        $phone = self::phoneNormalize($request->phone);
+        $return['validated'] =
+            $validated = $request->validated();
 
-        if (!empty($request->email)) {
-            $email = $request->email;
-        } else if (!empty($request->phone)) {
+
+        // dd(self::phoneNormalize($request->phone));
+
+        $data = [];
+
+        $userIn = [];
+
+        $return['phone'] =
+            $phone = self::phoneNormalize($return['validated']['phone'], '8');
+
+        if (!empty($phone)) {
+            $userIn['phone'] = $phone;
         }
 
-        $data = ['msg' => 'Привет буфет'];
-        $data['email'] = 'nyos@rambler.ru';
+
+        if (!empty($request->email)) {
+            $data['email'] =
+                // $email = 
+                $request->email;
+        }
+        if (!empty($request->phone)) {
+        }
+
+
+        // $data = ['msg' => 'Привет буфет'];
+        // $data['email'] = 'nyos@rambler.ru';
 
         // Mail::to($data['email'])
         //     //     ->send(new OrderNew($data));
         //     ->queue(new OrderNew($data));
         // // ->later(now()->addMinutes(1), new OrderNew($data));
 
+        $userIn['name'] = $request->name ?? 'x';
+        $userIn['password'] = md5(rand());
+
+        $return['user-in'] = $userIn;
+
         $return['user'] =
             $user = User::firstOrCreate(
                 ['email' =>  $data['email']],
-                [
-                    'name' => $request->name ?? 'x',
-                    'password' => md5(rand())
-                ]
+                $userIn
             );
 
         // если пользователь 
@@ -149,11 +205,19 @@ class PageController extends Controller
             $return['send_mail_verified'] = false;
         }
 
+
+
+        // try {
         $order = new Order();
         $order->user_id = $user->id;
         $oo = $order->save();
-        $orId = $order->id;
+
+        // $orId = $order->id;
         // dd([ $oo , $order ]);
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     dd($th->getMessage());
+        // }
 
         // $return['goods'] = $request->goods;
         $goodsInDb = [];
@@ -161,7 +225,7 @@ class PageController extends Controller
 
             $good = [
                 'good_id' => $v['id'],
-                'order_id' => $orId,
+                'order_id' => $order->id,
                 'goodOrigin' => $v['head'] . ' <br/> ' .
                     'id: ' . $v['a_id'] . ' <br/> ' .
                     'цена: ' . $v['a_price'],
@@ -170,10 +234,12 @@ class PageController extends Controller
             ];
 
             $oGood = OrderGood::create($good);
-            $good['save'] = $oGood;
 
             $return['goods'][] =
-                $goodsInDb[] = $good;
+                $goodsInDb[] = $oGood;
+
+            // $return['goods'][] =
+            //     $goodsInDb[] = $good;
 
         }
 
