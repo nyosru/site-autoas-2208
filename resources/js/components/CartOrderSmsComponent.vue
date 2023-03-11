@@ -6,10 +6,13 @@
       <b>{{ phoneNom }}</b>
     </div>
     <br />
+
+    <div v-if="nowOrder.phone_confirm == ''" >
+
     <div v-if="smsSendResCode == ''" class="text-center">
       Загружаем возможность подтверждения
       <br />
-      <img src="/storage/img/admin-loader.gif" />
+      <img src="/storage/img/admin-loader.gif" width="32" />
     </div>
     <div v-else>
       <span v-if="!smsConfirmResult">
@@ -53,6 +56,8 @@
         <br />
         <br />
         <br />
+        nowOrder: {{ nowOrder }}        
+        <br />
         smsConfirmResult: {{ smsConfirmResult }}
         <br />
         smsConfirmResult.result: {{ smsConfirmResult.result }}
@@ -60,6 +65,9 @@
         smsConfirmLoading: {{ smsConfirmLoading }}
       </div>
     </div>
+  
+  </div>
+
   </form>
 </template>
 
@@ -67,7 +75,7 @@
 import { ref } from 'vue'
 import sms from './../use/sms.js'
 
-const props = defineProps({
+const props = defineProps({  
   phoneNom: '',
   // code: '',
 })
@@ -85,9 +93,15 @@ import cart from './../use/cart.js'
 const { nowOrder } = cart()
 
 const ConfirmSendForm = async () => {
+
   console.log('phone', props.phoneNom, smsText.value, smsSendResCode.value)
 
   if (smsText.value == smsSendResCode.value) {
+
+    let rr = await smsConfirmSend(smsText.value);
+
+    console.log(['7722',rr]);
+
     // console.log(33, nowOrder.id)
     // smsConfirmResult.value = await smsConfirmSend(smsText.value)
     smsConfirmResult.value = true
@@ -97,6 +111,7 @@ const ConfirmSendForm = async () => {
     smsTextError.value = 'Введён не верный код подтверждения'
     console.log('res 2')
   }
+
 }
 </script>
 

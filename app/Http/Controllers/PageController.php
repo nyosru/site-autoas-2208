@@ -125,17 +125,19 @@ class PageController extends Controller
     /**
      *  отправка почты для подтверждения ящика
      */
-    public function sendMailVerify(string $email)
+    public function sendMailVerify(User $user)
     {
 
-        $data = ['msg' => 'Привет буфет'];
+        // $data = ['msg' => 'Привет буфет'];
         // $data['email'] = 'nyos@rambler.ru';
 
-        Mail::to($email)
-            ->send(new OrderNew($data));
+        // if (empty($user->email_verified_at)) {
+        Mail::to($user->email)
+            ->send(new OrderNew($user));
         // ->queue(new OrderNew($data));
         // ->later(now()->addMinutes(1), new OrderNew($data));
-
+        // dd($rr);
+        // }
     }
 
     /**
@@ -152,7 +154,7 @@ class PageController extends Controller
         $return['validated'] =
             $validated = $request->validated();
 
-
+        // dd($return);
         // dd(self::phoneNormalize($request->phone));
 
         $data = [];
@@ -165,7 +167,6 @@ class PageController extends Controller
         if (!empty($phone)) {
             $userIn['phone'] = $phone;
         }
-
 
         if (!empty($request->email)) {
             $data['email'] =
@@ -195,80 +196,158 @@ class PageController extends Controller
                 $userIn
             );
 
+        // формирование заказа +
+        $return['newOrder'] =
+            $orderNew = OrderController::store($user, $request);
+
+        // dd( [ 77 , $orderNew->toArray() ] );
+
+        // if( $orderNew ){
+        // }
+
+        // $order = new Order;
+        // $order->user_id = $user->id;
+        // $return['order_add'] =
+        //     $order->save();
+        // $return['order_id'] = $order->id;
+        // // формирование заказа -
+
+        // // добавляем товары в заказ + 
+        // $return['goods'] = [];
+        // foreach ($request->goods as $good) {
+
+        //     try {
+
+        //         // $g = [ 'id'=>$good['id'],
+        //         // 'name'=>$good['name'],
+        //         // 'price'=>$good['price'],
+        //         // ];
+
+        //         // $return['goods'][] = $good;
+        //         $good['analog'] = ''; 
+        //         $return['goods'][] = $good;
+
+        //         $g = new OrderGood;
+        //         $g->order_id = $return['order_id'];
+        //         $g->good_id = $good['id'];
+        //         $g->goodOrigin = $good['head'];
+        //         $g->price = $good['a_price'];
+        //         $g->kolvo = $good['kolvo'];
+        //         $g->save();
+
+        //         $return['goods'][] = $g->id;
+
+        //     } catch (\Exception $ex) {
+        //         $return['goods'][] = $ex->getMessage();
+
+        //     }
+        // }
+        // // добавляем товары в заказ -
+
+        // dd($return);
+
         // если пользователь 
         // указал почту
         // новый или не подтвердил ещё почту ... то шлём ему почту
-        if (!empty($user->email) && (!isset($user->email_verified_at) || empty($user->email_verified_at))) {
+
+        if (!empty($user->email) && empty($user->email_verified_at)) {
             $return['send_mail_verified'] = true;
-            self::sendMailVerify($user->email);
+            self::sendMailVerify($user);
         } else {
             $return['send_mail_verified'] = false;
         }
 
+        // // try {
+        // $order = new Order();
+        // $order->user_id = $user->id;
+        // $oo = $order->save();
 
+        // // $orId = $order->id;
+        // // dd([ $oo , $order ]);
+        // // } catch (\Throwable $th) {
+        // //     //throw $th;
+        // //     dd($th->getMessage());
+        // // }
 
-        // try {
-        $order = new Order();
-        $order->user_id = $user->id;
-        $oo = $order->save();
+        // // $return['goods'] = $request->goods;
+        // $goodsInDb = [];
 
-        // $orId = $order->id;
-        // dd([ $oo , $order ]);
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        //     dd($th->getMessage());
-        // }
-
-        // $return['goods'] = $request->goods;
-        $goodsInDb = [];
+        $msg = 'новый заказ' . PHP_EOL .
+            $return['user']['name'] . PHP_EOL .
+            $return['user']['phone'] . PHP_EOL .
+            $return['user']['email'] . PHP_EOL .
+            'Город: ' . $request->city . PHP_EOL .
+            'Нужна помощь спеца: ' . ($request->form_needHelp ? 'Да!' : '') .            PHP_EOL .
+            'Доставка: ' . (!empty($request->form_postedAddress) ? $request->form_postedAddress : 'не нужна') .            PHP_EOL .
+            PHP_EOL;
+        $summa = 0;
         foreach ($request->goods as $k => $v) {
 
-            $good = [
-                'good_id' => $v['id'],
-                'order_id' => $order->id,
-                'goodOrigin' => $v['head'] . ' <br/> ' .
-                    'id: ' . $v['a_id'] . ' <br/> ' .
-                    'цена: ' . $v['a_price'],
-                'price' => $v['a_price'],
-                'kolvo' => $v['kolvo'],
-            ];
+            $msg .= $v['head'] . ' (' . $v['a_id'] . ')' . PHP_EOL .
+                $v['a_price'] . ' * ' . $v['kolvo'] . ' = ' . ($v['a_price'] * $v['kolvo'])
+                . PHP_EOL
+                . PHP_EOL;
+            $summa += $v['a_price'] * $v['kolvo'];
+            // $good = [
+            //     'good_id' => $v['id'],
+            //     'order_id' => $order->id,
+            //     'goodOrigin' => $v['head'] . ' <br/> ' .
+            //         'id: ' . $v['a_id'] . ' <br/> ' .
+            //         'цена: ' . $v['a_price'],
+            //     'price' => $v['a_price'],
+            //     'kolvo' => $v['kolvo'],
+            // ];
 
-            $oGood = OrderGood::create($good);
+            // $oGood = OrderGood::create($good);
 
-            $return['goods'][] =
-                $goodsInDb[] = $oGood;
+            // $return['goods'][] =
+            //     $goodsInDb[] = $oGood;
 
             // $return['goods'][] =
             //     $goodsInDb[] = $good;
 
         }
 
-        // $oGood = new OrderGood($good);
-        // $order->goods()->createMany($goodsInDb);
+        $msg .= 'Сумма: ' . $summa;
 
-        // name: form_name.value,
-        // city: form_city.value,
-        // phone: phone.value,
-        // email: email.value,
+        // // $oGood = new OrderGood($good);
+        // // $order->goods()->createMany($goodsInDb);
 
-        // form_needHelp: form_needHelp.value,
-        // form_postedAddress: show_form_postedAddress.value == true ? form_postedAddress.value : '',
+        // // name: form_name.value,
+        // // city: form_city.value,
+        // // phone: phone.value,
+        // // email: email.value,
 
-        // goods: cartAr.value,
-        // event(new Registered($user));
+        // // form_needHelp: form_needHelp.value,
+        // // form_postedAddress: show_form_postedAddress.value == true ? form_postedAddress.value : '',
+
+        // // goods: cartAr.value,
+        // // event(new Registered($user));
 
         file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
             array(
                 's' => '1',
                 // 'id' => $to, // id кому пишем
                 // 'msg' => 'пример handle(RegUserEvent $event) '. ( $event->aa ?? 'x' ) // текст сообщения
-                'msg' => '22 333 sпример handle(RegUserEvent $event) ' . serialize($request->goods) // текст сообщения
+                // 'msg' => '22 333 sпример handle(RegUserEvent $event) ' . serialize($request->goods) // текст сообщения
+                'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
+                // OrderUraBot @order_ura_bot:
+                'token' => '5960307100:AAHshaEf6WXw4rKbDg-JCeAyOEsFoHqZmNA'
             )
         ));
 
         return response()->json($return);
     }
 
+
+    // /**
+    //  * Display a listing of the resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    public function mailVerify($email)
+    {
+    }
 
 
     // /**

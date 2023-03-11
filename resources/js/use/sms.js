@@ -14,16 +14,8 @@ const smsConfirmLoading = ref(false)
 const smsSendRes = ref({})
 const smsSendResCode = ref('')
 
-
-
-
-
-
-
-
 // const smsConfirmSend = async(code) => {
 const smsConfirmSend = async(code) => {
-
     // if (smsSendResCode.value != code) {
     //     return false
     // }
@@ -32,11 +24,16 @@ const smsConfirmSend = async(code) => {
     smsConfirmLoading.value = true
         //   // window.scrollTo(0,0)
 
+    let ress = false
+
     await axios
+
         .post('/api/smsConfirmSend/' + phone.value + '/' + code)
         //
         .then((response) => {
             console.log('smsConfirmSend', phone.value, code, response.data)
+            console.log('smsConfirmSend2', response.data.data.result)
+            ress = response.data.data.result
                 //       // items_loading_module.value = items_now_loading.value;
                 //       // data_filtered.value =
                 //       goodData.value = response.data.data[0]
@@ -54,15 +51,9 @@ const smsConfirmSend = async(code) => {
         .finally(() => {
             smsConfirmLoading.value = false
         })
+
+    return ress
 }
-
-
-
-
-
-
-
-
 
 const smsSend = async(phone) => {
     //   goodData.value = []
@@ -74,7 +65,6 @@ const smsSend = async(phone) => {
         .post('/api/smsConfirm/' + phone)
         //
         .then((response) => {
-
             const re = JSON.parse(response.data)
                 // console.log('smsConfirmSend', phone, code, response.data)
             smsSendRes.value = re
@@ -103,9 +93,7 @@ const smsSend = async(phone) => {
 }
 
 const smsSend22 = async(inCode) => {
-
     if (inCode == smsSendResCode.value) {
-
         //   goodData.value = []
         smsSendRes.value = {}
             //   // window.scrollTo(0,0)
@@ -114,7 +102,6 @@ const smsSend22 = async(inCode) => {
             .post('/api/smsSendConfirm/' + phone)
             //
             .then((response) => {
-
                 const re = JSON.parse(response.data)
                     // console.log('smsConfirmSend', phone, code, response.data)
                 smsSendRes.value = re
@@ -184,6 +171,5 @@ export default function sms() {
         // // loadGood,
         // // goodLoading,
         // // goodData,
-
     }
 }

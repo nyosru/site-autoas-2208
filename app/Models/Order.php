@@ -14,6 +14,16 @@ class Order extends Model
         'status'
     ];
 
+
+    /**
+     * Получить каталог
+     */
+    public function user()
+    {
+        // return $this->belongsTo(User::class, 'id', 'a_categoryid');
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Получить товары к заказу
      */

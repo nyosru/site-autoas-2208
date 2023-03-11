@@ -45,7 +45,7 @@
                 />
               </label>
               <cart-order-show-error-component
-                v-if="errorToHtml.name && errorToHtml.name.length > 0"
+                v-if="errorToHtml && errorToHtml.name && errorToHtml.name.length > 0"
                 :errors="errorToHtml.name"
               />
             </li>
@@ -189,6 +189,9 @@
       <div v-else>
         <br />
         <br />
+        <h2>Заказ принят</h2>
+        <br />
+        <br />
 
         <!-- На e-mail
       <u>{{ email }}</u><br/>
@@ -204,6 +207,7 @@
 </template>
 
 <script setup>
+
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.ts'
 import { ref, watchEffect, onMounted } from 'vue'
@@ -341,7 +345,7 @@ const NumberFormat = (num) => {
 
 const sendOrder = async () => {
 
-  console.log(77700)
+  // console.log(77700)
 
   if (loadingForm1.value == true) {
     return false

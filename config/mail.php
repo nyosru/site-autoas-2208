@@ -36,21 +36,25 @@ return [
     |
     */
 
+
     'mailers' => [
 
         'smtp' => [
+
             'transport' => 'smtp',
             'driver' => env('MAIL_DRIVER', 'smtp'),
             'host' => env('MAIL_HOST', 'smtp.yandex.ru'),
-            // 'port' => env('MAIL_PORT', 587),
-            'port' => env('MAIL_PORT', 465),
 
             'from' => [
-                'address' => env('MAIL_USERNAME'),
-                'name' => 'Автосистема рассылки писем',
+                'address' => env('MAIL_FROM_ADDRESS'),
+                'name' => env('MAIL_FROM_NAME'),
             ],
+
             // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            // 'port' => env('MAIL_PORT', 587),
+
             'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'port' => env('MAIL_PORT', 465),
 
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD')
