@@ -18,10 +18,10 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-            [NewOrderListener::class, 'handle2' ]
-        ],
+        // Registered::class => [
+        //     SendEmailVerificationNotification::class,
+        //     // [NewOrderListener::class, 'handle2' ]
+        // ],
         // 'RegUserEvent' => [ RegUserListener::class ],
         // 'RegUserEvent' => [ RegUserListener::class, 'handle' ],        
         // 'Illuminate\Auth\Events\Login' => [ 'App\Listeners\UserEventListener' ]
@@ -37,7 +37,7 @@ class EventServiceProvider extends ServiceProvider
     {
         # Указываем собственный метод класса
         // app('events')->listen('RegUserEvent', [RegUserListener::class, 'handle' ]);
-        app('events')->listen('NewOrderEvent', [NewOrderListener::class, 'handle' ]);
+        // app('events')->listen('NewOrderEvent', [NewOrderListener::class, 'handle' ]);
 
     }
 }
