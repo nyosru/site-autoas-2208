@@ -42,8 +42,12 @@
     <br />
     <br />
 
-    <p>Вы можете отписаться от рассылки такого вида писем, для этого кликните на ссылку > <a
-            href="https://php-cat.com/wed">Отписаться</a></p>
+    <p>Вы можете отписаться от рассылки такого вида писем, для этого кликните на ссылку > 
+        <br/>
+        <br/>
+        <br/>        localhost <a href="http://localhost/dop/mailStop/{{ $user->email ?? 'x' }}">Отписаться</a></p>
+        <br/>        avto-as.ru <a href="https://avto-as.ru/dop/mailStop/{{ $user->email ?? 'x' }}">Отписаться</a></p>
+        <br/>        22.avto-as.ru <a href="https://22.avto-as.ru/dop/mailStop/{{ $user->email ?? 'x' }}">Отписаться</a></p>
 </body>
 
 </html>

@@ -14,6 +14,8 @@
     <header-component></header-component>
   </header>
 
+  <warn-component></warn-component>
+
   <div class="content1">
     <!-- <router-view name="blockHeader" /> -->
 
@@ -34,8 +36,10 @@
 </template>
 
 <script setup>
+
 import HeaderComponent from './HeaderComponent.vue'
 import FooterComponent from './FooterComponent.vue'
+import WarnComponent from './WarnComponent.vue'
 
 import cart from './../../use/cart.js'
 

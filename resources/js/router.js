@@ -37,6 +37,20 @@ const routes = [
         },
     },
 
+    {
+        path: '/dop/:var1?/:var2?',
+        name: 'index2',
+        components: {
+            // BreadcrumbsComponent
+            // adver: UpBannerComponent,
+            adverList: IndexLineAdver,
+            // starter: StarterComponent,
+            // page: null,
+            // cart: null,
+            // vitrin: null,
+        },
+    },
+
     // текстовая страница
     {
         path: '/page/:id',

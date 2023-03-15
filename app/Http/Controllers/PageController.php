@@ -19,6 +19,11 @@ use Illuminate\Support\Facades\Validator;
 class PageController extends Controller
 {
 
+    public static function mailVerifyGood(String $email)
+    {
+        return redirect('/')->with('emailVerify', $email);
+    }
+
     public static function customRegistration(Request $request)
     {
 
@@ -393,8 +398,6 @@ class PageController extends Controller
         //         'msg' => '11 пример handle(RegUserEvent $event) ' . serialize($data) // текст сообщения
         //     )
         // ));
-
-
 
         return view('welcome');
     }

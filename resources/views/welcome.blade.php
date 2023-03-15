@@ -60,8 +60,8 @@
 </head>
 
 <body>
-    <div id="app"></div>
 
+    <div id="app"></div>
 
     {{-- <div id="vk_community_messages" style="position: fixed; padding-bottom: 120px; width: 50px; height: 50px; z-index: 10000; 
         bottom: 0px; right: 20px; margin: 0px 0px 20px; background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"> --}}
