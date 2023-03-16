@@ -369,7 +369,7 @@ class PageController extends Controller
                 // 'msg' => '22 333 sпример handle(RegUserEvent $event) ' . serialize($request->goods) // текст сообщения
                 'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
                 // OrderUraBot @order_ura_bot:
-                'token' => '5960307100:AAHshaEf6WXw4rKbDg-JCeAyOEsFoHqZmNA'
+                'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx')
             )
         ));
 
