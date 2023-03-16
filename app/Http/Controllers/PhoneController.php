@@ -22,7 +22,7 @@ class PhoneController extends Controller
      *  при выхове этой функции номер делаем подтверждённым
      */
     // public function smsConfirmSend( $orderId )
-    public function smsConfirmSend($phone)
+    public function smsConfirmSend($phone, $code = '')
     {
         $phone1 = self::phoneNormalize($phone, 8);
         $res = Phone::where('phone', $phone1)

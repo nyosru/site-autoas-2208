@@ -45,7 +45,7 @@ Route::get('import/1c', [ImportAvtoAsController::class, 'import']);
 Route::any('orger', [PageController::class, 'sendOrder']);
 
 // Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
-Route::post('smsConfirmSend/{phone}/{code}', [PhoneController::class, 'smsConfirmSend']);
+Route::any('smsConfirmSend/{phone}/{code?}', [PhoneController::class, 'smsConfirmSend']);
 // Route::post('smsConfirm/{phone}', [PageController::class, 'smsConfirm']);
 Route::post('smsConfirm/{phone}', [PhoneController::class, 'smsConfirm']);
 
