@@ -1,13 +1,15 @@
 <template>
   <div class="aside-shopping-cart-total">
     <transition>
+
       <div class="alert alert-success" v-if="showOk">
+
         <h2>Заказ</h2>
-        {{ form_name2 }}
-        <br />
+        {{ form_name2 }}        <br />
         Тел: {{ form_phone2 }}
         <br />
         {{ form_postedAddress2 }}
+
       </div>
 
       <template v-else-if="!step2Show">
@@ -45,7 +47,9 @@
                 />
               </label>
               <cart-order-show-error-component
-                v-if="errorToHtml && errorToHtml.name && errorToHtml.name.length > 0"
+                v-if="
+                  errorToHtml && errorToHtml.name && errorToHtml.name.length > 0
+                "
                 :errors="errorToHtml.name"
               />
             </li>
@@ -193,11 +197,16 @@
         <br />
         <br />
 
+        <!-- res2: {{ res2 }} -->
+
         <!-- На e-mail
       <u>{{ email }}</u><br/>
       отправили ссылку подтверждения -->
 
-        <cart-order-email-component :email="email" />
+        <cart-order-email-component
+          :email="email"
+          :mail_send="mail_send ?? false" 
+        />
         <br />
         <br />
         <cart-order-sms-component :phoneNom="phone" />
@@ -207,7 +216,6 @@
 </template>
 
 <script setup>
-
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.ts'
 import { ref, watchEffect, onMounted } from 'vue'
@@ -217,6 +225,24 @@ import CartOrderSmsComponent from './CartOrderSmsComponent.vue'
 import CartOrderEmailComponent from './CartOrderEmailComponent.vue'
 
 import sms from './../use/sms.js'
+
+
+
+
+
+
+const res2 = ref({})
+const mail_send = ref(false)
+
+
+
+
+
+
+
+
+
+
 
 const {
   phone,
@@ -303,8 +329,10 @@ const stopWatch7 = watchEffect(() => {
 
 const form_name = ref('')
 const form_name2 = ref('')
-const email = ref('11@11')
+// const email = ref('11@11')
+const email = ref('')
 // const phone = ref('79000000001')
+// const form_phone2 = ref('79000000001')
 const form_phone2 = ref('')
 const form_city = ref('Тюмень')
 const form_needHelp = ref(false)
@@ -343,8 +371,8 @@ const NumberFormat = (num) => {
   // return num + ' 777 ';
 }
 
-const sendOrder = async () => {
 
+const sendOrder = async () => {
   // console.log(77700)
 
   if (loadingForm1.value == true) {
@@ -357,7 +385,7 @@ const sendOrder = async () => {
   errorToHtml.value = []
   sendOrderRes.value = false
 
-  let res2 = await axios
+  await axios
     .post('/api/orger', {
       name: form_name.value,
       city: form_city.value,
@@ -381,6 +409,13 @@ const sendOrder = async () => {
       // id: sendTo.value,
     })
     .then((res) => {
+
+      res2.value = res.data
+
+      //+
+      mail_send.value = res.data.send_mail_verified ?? false
+      
+
       console.log('res.status', res.status)
       console.log('res', res)
 
@@ -389,6 +424,7 @@ const sendOrder = async () => {
 
       sendOrderRes.value = true
       loadingForm1.value = false
+      console.log(55,11);
     })
     .catch((error) => {
       // console.log('error response', error.response)
@@ -399,13 +435,16 @@ const sendOrder = async () => {
       // console.log('error', error)
       // return 'errored'
       loadingForm1.value = false
+
+      console.log(55,22);
     })
 
-  console.log('sendOrderRes.value', sendOrderRes.value)
+  // console.log('res2.value', res2.value)
+  // console.log('sendOrderRes.value', sendOrderRes.value)
 
   if (sendOrderRes.value == true) {
-    console.log('res2 1 ', res2 ?? 'x')
-    console.log('res2', 333)
+    console.log('res2 1 ', res2.value ?? 'x')
+    // console.log('res2', 333)
 
     step2Show.value = true
     // const smsText = ref('')

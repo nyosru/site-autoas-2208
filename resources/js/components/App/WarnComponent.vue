@@ -22,31 +22,37 @@
 
       <div class="row" v-else-if="route.params.var1 == 'mailStop'">
         <Transition>
-        <div
-          class="col-12 alert alert-success p-5 text-center"
-          v-if="mailStopRes === true"
-        >
-          <h2>Ок, Спасибо</h2>
-        </div>
-        <div v-else class="col-12 alert alert-warning p-5 text-center">
-          <h2>
-            Отписаться от рассылки ?
+          <div
+            class="col-12 alert alert-success p-5 text-center"
+            v-if="mailStopRes === true"
+          >
+            <h2>Ок, Спасибо</h2>
+          </div>
+          <div v-else class="col-12 alert alert-warning p-5 text-center">
+            <h2>
+              Отписаться от рассылки ?
+              <br />
+              на E-mail:
+              <u>{{ route.params.var2 }}</u>
+            </h2>
+
             <br />
-            на E-mail:
-            <u>{{ route.params.var2 }}</u>
-          </h2>
 
-          <br />
-
-          <a @click.prevent="saveStopMail" href="#" class="btn btn-danger">
-            Не хочу больше получать сообщения
-          </a>
-          &nbsp;
-          <a @click.prevent="mailStopRes = true" class="btn btn-success">
-            Ладно, Пусть приходят
-          </a>
-        </div>
-      </Transition>
+            <a @click.prevent="saveStopMail" href="#" class="btn btn-danger">
+              <span
+                v-if="stopMailLoading === true"
+                class="btn btn-ligth inline"
+              >
+                ... загружаю ...
+              </span>
+              <span v-else>Не хочу больше получать сообщения</span>
+            </a>
+            &nbsp;
+            <a @click.prevent="mailStopRes = true" class="btn btn-success">
+              Ладно, Пусть приходят
+            </a>
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
@@ -99,7 +105,6 @@ const saveStopMail = async () => {
 </script>
 
 <style scoped>
-
 /* we will explain what these classes do next! */
 .v-enter-active,
 .v-leave-active {

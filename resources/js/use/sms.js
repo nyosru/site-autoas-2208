@@ -7,7 +7,8 @@ import {
 
 import axios from 'axios'
 
-const phone = ref('79000000001')
+// const phone = ref('79000000001')
+const phone = ref('')
 const smsConfirmResult = ref(false)
 const smsConfirmLoading = ref(false)
 
@@ -32,8 +33,10 @@ const smsConfirmSend = async(code) => {
         //
         .then((response) => {
             console.log('smsConfirmSend', phone.value, code, response.data)
-            console.log('smsConfirmSend2', response.data.data.result)
-            ress = response.data.data.result
+                // console.log('smsConfirmSend2', response.data.data.result)
+            console.log('smsConfirmSend2', response.data.result)
+                // ress = response.data.data.result
+            ress = response.data.result
                 //       // items_loading_module.value = items_now_loading.value;
                 //       // data_filtered.value =
                 //       goodData.value = response.data.data[0]

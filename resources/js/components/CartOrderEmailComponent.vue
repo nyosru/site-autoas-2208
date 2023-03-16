@@ -5,13 +5,22 @@
       <br />
       <b>{{ email }}</b>
     </div>
-    Для подтверждения, перейдите по ссылке, которую Вам послали
+    <!-- mail_send: {{ mail_send }} -->
+    <div v-if="mail_send">
+      Для подтверждения, перейдите по ссылке, которую Вам послали
+    </div>
+    <!-- <br />
+    <br />
+    mail_verify_ranee: {{ mail_verify_ranee }}
+    <br />
+    mail_in_stop_list: {{ mail_in_stop_list }} -->
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   email: '',
+  mail_send: false,
 })
 </script>
 

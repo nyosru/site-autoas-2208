@@ -20851,6 +20851,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var res2 = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
+    var mail_send = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var _sms = (0,_use_sms_js__WEBPACK_IMPORTED_MODULE_6__["default"])(),
       phone = _sms.phone,
       smsSend = _sms.smsSend,
@@ -20929,8 +20931,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     });
     var form_name = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
     var form_name2 = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
-    var email = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('11@11');
+    // const email = ref('11@11')
+    var email = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
     // const phone = ref('79000000001')
+    // const form_phone2 = ref('79000000001')
     var form_phone2 = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('');
     var form_city = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)('Тюмень');
     var form_needHelp = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
@@ -20971,7 +20975,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     var sendOrder = /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var res2, _form_postedAddress$v, ww;
+        var _res2$value, _form_postedAddress$v, ww;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -21005,12 +21009,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // // id: 1,
                 // id: sendTo.value,
               }).then(function (res) {
+                var _res$data$send_mail_v;
+                res2.value = res.data;
+
+                //+
+                mail_send.value = (_res$data$send_mail_v = res.data.send_mail_verified) !== null && _res$data$send_mail_v !== void 0 ? _res$data$send_mail_v : false;
                 console.log('res.status', res.status);
                 console.log('res', res);
                 console.log('res d user', res.data.user.id);
                 nowOrder.value = res.data.user;
                 sendOrderRes.value = true;
                 loadingForm1.value = false;
+                console.log(55, 11);
               })["catch"](function (error) {
                 // console.log('error response', error.response)
                 errorToHtml.value = error.response.data.errors;
@@ -21020,22 +21030,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // console.log('error', error)
                 // return 'errored'
                 loadingForm1.value = false;
+                console.log(55, 22);
               });
             case 8:
-              res2 = _context.sent;
-              console.log('sendOrderRes.value', sendOrderRes.value);
               if (!(sendOrderRes.value == true)) {
-                _context.next = 27;
+                _context.next = 24;
                 break;
               }
-              console.log('res2 1 ', res2 !== null && res2 !== void 0 ? res2 : 'x');
-              console.log('res2', 333);
+              console.log('res2 1 ', (_res2$value = res2.value) !== null && _res2$value !== void 0 ? _res2$value : 'x');
+              // console.log('res2', 333)
+
               step2Show.value = true;
               // const smsText = ref('')
               // phone.value = '79000000001'
-              _context.next = 16;
+              _context.next = 13;
               return smsSend(phone.value);
-            case 16:
+            case 13:
               // console.log(77,smsSendRes.value, smsSendRes.value.code )
               console.log(77, smsSendRes.value);
               // console.log(77, smsSendResCode.value)
@@ -21045,7 +21055,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               // console.log('22211',smsSendRes.value>code);
               // console.log('333',smsSendRes.code);
               return _context.abrupt("return", false);
-            case 24:
+            case 21:
               ww = _context.sent;
               console.log(77711, ww);
               if (ww == 'sended') {
@@ -21059,7 +21069,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 cartAr.value = [];
                 cartCashSave();
               }
-            case 27:
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -21095,6 +21105,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     //     },
 
     var __returned__ = {
+      res2: res2,
+      mail_send: mail_send,
       phone: phone,
       smsSend: smsSend,
       smsSendRes: smsSendRes,
@@ -21172,7 +21184,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'CartOrderEmailComponent',
   props: {
-    email: ''
+    email: '',
+    mail_send: false
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -21280,7 +21293,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 4:
               rr = _context.sent;
               console.log(['7722', rr]);
-
               // console.log(33, nowOrder.id)
               // smsConfirmResult.value = await smsConfirmSend(smsText.value)
               smsConfirmResult.value = true;
@@ -23364,6 +23376,13 @@ var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
 var _hoisted_15 = ["onClick"];
+var _hoisted_16 = {
+  key: 0,
+  "class": "btn btn-ligth inline"
+};
+var _hoisted_17 = {
+  key: 1
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [ false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.route.params.var1 == 'mailVerify' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" E-mail: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("u", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.route.params.var2), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" подтверждён успешно, спасибо ")])])])) : $setup.route.params.var1 == 'mailStop' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -23371,7 +23390,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.saveStopMail, ["prevent"]),
         href: "#",
         "class": "btn btn-danger"
-      }, " Не хочу больше получать сообщения ", 8 /* PROPS */, _hoisted_15), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      }, [$setup.stopMailLoading === true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_16, " ... загружаю ... ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, "Не хочу больше получать сообщения"))], 8 /* PROPS */, _hoisted_15), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
         onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return $setup.mailStopRes = true;
         }, ["prevent"])),
@@ -23897,6 +23916,7 @@ var _hoisted_38 = /*#__PURE__*/_withScopeId(function () {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      var _$setup$mail_send;
       return [$setup.showOk ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form_name2) + " ", 1 /* TEXT */), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Тел: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form_phone2) + " ", 1 /* TEXT */), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form_postedAddress2), 1 /* TEXT */)])) : !$setup.step2Show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         key: 1
       }, [$setup.cartAr.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
@@ -23986,9 +24006,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form_postedAddress]]), _hoisted_22])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
         }),
         _: 1 /* STABLE */
-      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" errorToHtml: {{ errorToHtml }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" loadingForm1: {{ loadingForm1 }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, $setup.loadingForm1 == true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, _hoisted_27)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, _hoisted_30))])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_7))], 64 /* STABLE_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [_hoisted_32, _hoisted_33, _hoisted_34, _hoisted_35, _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" На e-mail\n      <u>{{ email }}</u><br/>\n      отправили ссылку подтверждения "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CartOrderEmailComponent"], {
-        email: $setup.email
-      }, null, 8 /* PROPS */, ["email"]), _hoisted_37, _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CartOrderSmsComponent"], {
+      })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" errorToHtml: {{ errorToHtml }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" loadingForm1: {{ loadingForm1 }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, $setup.loadingForm1 == true ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, _hoisted_27)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, _hoisted_30))])], 40 /* PROPS, HYDRATE_EVENTS */, _hoisted_7))], 64 /* STABLE_FRAGMENT */)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [_hoisted_32, _hoisted_33, _hoisted_34, _hoisted_35, _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" res2: {{ res2 }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" На e-mail\n      <u>{{ email }}</u><br/>\n      отправили ссылку подтверждения "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CartOrderEmailComponent"], {
+        email: $setup.email,
+        mail_send: (_$setup$mail_send = $setup.mail_send) !== null && _$setup$mail_send !== void 0 ? _$setup$mail_send : false
+      }, null, 8 /* PROPS */, ["email", "mail_send"]), _hoisted_37, _hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["CartOrderSmsComponent"], {
         phoneNom: $setup.phone
       }, null, 8 /* PROPS */, ["phoneNom"])]))];
     }),
@@ -24018,9 +24039,11 @@ var _hoisted_2 = {
   "class": "text-center mb-1"
 };
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-
+var _hoisted_4 = {
+  key: 0
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Указан E-mail: "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Для подтверждения, перейдите по ссылке, которую Вам послали ")]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Указан E-mail: "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.email), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" mail_send: {{ mail_send }} "), $props.mail_send ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, " Для подтверждения, перейдите по ссылке, которую Вам послали ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <br />\n    <br />\n    mail_verify_ranee: {{ mail_verify_ranee }}\n    <br />\n    mail_in_stop_list: {{ mail_in_stop_list }} ")]);
 }
 
 /***/ }),
@@ -24080,47 +24103,50 @@ var _hoisted_4 = {
   key: 0
 };
 var _hoisted_5 = {
+  key: 1
+};
+var _hoisted_6 = {
   key: 0,
   "class": "text-center"
 };
-var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
-var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/storage/img/admin-loader.gif",
     width: "32"
   }, null, -1 /* HOISTED */);
 });
-var _hoisted_8 = {
+var _hoisted_9 = {
   key: 1
 };
-var _hoisted_9 = {
+var _hoisted_10 = {
   key: 0
 };
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-});
 var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
 var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
-var _hoisted_13 = {
-  "class": "text-center"
-};
-var _hoisted_14 = {
-  key: 0
-};
-var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
-var _hoisted_16 = {
+var _hoisted_14 = {
+  "class": "text-center"
+};
+var _hoisted_15 = {
+  key: 0
+};
+var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+});
+var _hoisted_17 = {
   key: 0,
   "class": "mb-5 alert alert-danger"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
   key: 1,
   "class": "btn-success",
   type: "button",
@@ -24129,7 +24155,7 @@ var _hoisted_17 = {
     "padding": "5px 10px 5px 10px"
   }
 };
-var _hoisted_18 = {
+var _hoisted_19 = {
   key: 2,
   "class": "btn-checkout",
   type: "submit",
@@ -24138,22 +24164,10 @@ var _hoisted_18 = {
     "padding": "5px 10px 5px 10px"
   }
 };
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-});
 var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
 var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-});
-var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-});
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-});
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
 
@@ -24164,13 +24178,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $setup.ConfirmSendForm();
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Указан телефон: "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.phoneNom), 1 /* TEXT */)]), _hoisted_3, $setup.nowOrder.phone_confirm == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [$setup.smsSendResCode == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Загружаем возможность подтверждения "), _hoisted_6, _hoisted_7])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [!$setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Подтвердите сотовый телефон, сейчас вам позвонит автономер, введите 4 последних цифры этого номера "), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" smsSendResCode: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsSendResCode) + " ", 1 /* TEXT */), _hoisted_11, _hoisted_12])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [!$setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Указан телефон: "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.phoneNom), 1 /* TEXT */)]), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" nowOrder: {{ nowOrder }} "), $setup.nowOrder.phone_confirm && $setup.nowOrder.phone_confirm.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [$setup.smsSendResCode == '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Загружаем возможность подтверждения "), _hoisted_7, _hoisted_8])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [!$setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Подтвердите сотовый телефон, сейчас вам позвонит автономер, введите 4 последних цифры этого номера "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" smsSendResCode: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsSendResCode) + " ", 1 /* TEXT */), _hoisted_12, _hoisted_13])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [!$setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.smsText = $event;
     }),
     "class": "sms-input"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.smsText]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <cart-order-show-error-component\n      v-if=\"errorToHtmlSms && errorToHtmlSms.length > 0\"\n      :errors=\"errorToHtmlSms\"\n    /> "), _hoisted_15, $setup.smsTextError != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsTextError), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_17, " Подтверждено! ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_18, " Подтвердить ")), _hoisted_19, _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" nowOrder: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.nowOrder) + " ", 1 /* TEXT */), _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" smsConfirmResult: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsConfirmResult) + " ", 1 /* TEXT */), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" smsConfirmResult.result: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsConfirmResult.result) + " ", 1 /* TEXT */), _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" smsConfirmLoading: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsConfirmLoading), 1 /* TEXT */)])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 32 /* HYDRATE_EVENTS */);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.smsText]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <cart-order-show-error-component\n              v-if=\"errorToHtmlSms && errorToHtmlSms.length > 0\"\n              :errors=\"errorToHtmlSms\"\n            /> "), _hoisted_16, $setup.smsTextError != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.smsTextError), 1 /* TEXT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.smsConfirmResult ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_18, " Подтверждено! ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", _hoisted_19, " Подтвердить ")), _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <br />\n          nowOrder: {{ nowOrder }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <br />\n          smsConfirmResult: {{ smsConfirmResult }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <br />\n          smsConfirmResult.result: {{ smsConfirmResult.result }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <br />\n          smsConfirmLoading: {{ smsConfirmLoading }} ")])]))]))], 32 /* HYDRATE_EVENTS */);
 }
 
 /***/ }),
@@ -27106,7 +27120,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var phone = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('79000000001');
+
+// const phone = ref('79000000001')
+var phone = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
 var smsConfirmResult = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
 var smsConfirmLoading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
 var smsSendRes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)({});
@@ -27132,8 +27148,10 @@ var smsConfirmSend = /*#__PURE__*/function () {
           //
           .then(function (response) {
             console.log('smsConfirmSend', phone.value, code, response.data);
-            console.log('smsConfirmSend2', response.data.data.result);
-            ress = response.data.data.result;
+            // console.log('smsConfirmSend2', response.data.data.result)
+            console.log('smsConfirmSend2', response.data.result);
+            // ress = response.data.data.result
+            ress = response.data.result;
             //       // items_loading_module.value = items_now_loading.value;
             //       // data_filtered.value =
             //       goodData.value = response.data.data[0]
@@ -27536,7 +27554,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n/* we will explain what these classes do next! */\n.v-enter-active[data-v-cc1c3ba4],\n.v-leave-active[data-v-cc1c3ba4] {\n  transition: opacity 0.5s ease;\n}\n.v-enter-from[data-v-cc1c3ba4],\n.v-leave-to[data-v-cc1c3ba4] {\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n/* we will explain what these classes do next! */\n.v-enter-active[data-v-cc1c3ba4],\n.v-leave-active[data-v-cc1c3ba4] {\n  transition: opacity 0.5s ease;\n}\n.v-enter-from[data-v-cc1c3ba4],\n.v-leave-to[data-v-cc1c3ba4] {\n  opacity: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

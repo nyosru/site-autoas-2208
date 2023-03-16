@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SendOrderRequest;
 use App\Mail\OrderNew;
+use App\Models\MailStop;
 use App\Models\Order;
 use App\Models\OrderGood;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
+use App\Models\Phone;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Mail;
@@ -164,13 +166,15 @@ class PageController extends Controller
 
         $data = [];
 
+        $phoneIn = [];
         $userIn = [];
 
         $return['phone'] =
             $phone = self::phoneNormalize($return['validated']['phone'], '8');
 
         if (!empty($phone)) {
-            $userIn['phone'] = $phone;
+            // $userIn['phone'] = $phone;
+            $phoneIn['phone'] = $phone;
         }
 
         if (!empty($request->email)) {
@@ -180,7 +184,6 @@ class PageController extends Controller
         }
         if (!empty($request->phone)) {
         }
-
 
         // $data = ['msg' => 'Привет буфет'];
         // $data['email'] = 'nyos@rambler.ru';
@@ -200,6 +203,17 @@ class PageController extends Controller
                 ['email' =>  $data['email']],
                 $userIn
             );
+
+        $phoneIn['user_id'] = $user->id;
+
+        // добавляем телефон
+        $phoneNow = Phone::firstOrCreate(
+            ['user_id' =>  $user->id, 'phone' => $phoneIn['phone']],
+            $phoneIn
+        );
+
+        // dd('$phoneNow',$phoneNow);
+        $return['phone_veritify'] = $phoneNow['phone_confirm'];
 
         // формирование заказа +
         $return['newOrder'] =
@@ -253,13 +267,31 @@ class PageController extends Controller
 
         // если пользователь 
         // указал почту
-        // новый или не подтвердил ещё почту ... то шлём ему почту
 
-        if (!empty($user->email) && empty($user->email_verified_at)) {
-            $return['send_mail_verified'] = true;
-            self::sendMailVerify($user);
-        } else {
-            $return['send_mail_verified'] = false;
+
+        $return['mail_in_stop_list'] =
+            $mailToStopList = MailStop::where('email', $user->email)->count();
+        // dd('$mailToStopList',$mailToStopList);
+        if ($mailToStopList == 0) {
+
+            $return['mail_verify_ranee'] = false;
+            $verifyRanee = User::where('email', $user->email)->whereNotNull('email_verified_at')->count();
+
+            // если ранее уже подтверждали
+            if ($verifyRanee > 0) {
+                $return['mail_verify_ranee'] = true;
+                User::where('email', $user->email)->whereNull('email_verified_at')->update(['email_verified_at' => date('Y-m-d H:i:s')]);
+            }
+            // если ранее уже НЕ подтверждали
+            else {
+                // новый или не подтвердил ещё почту ... то шлём ему почту
+                if (!empty($user->email) && empty($user->email_verified_at)) {
+                    $return['send_mail_verified'] = true;
+                    self::sendMailVerify($user);
+                } else {
+                    $return['send_mail_verified'] = false;
+                }
+            }
         }
 
         // // try {

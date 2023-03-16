@@ -10,6 +10,7 @@ use App\Http\Controllers\BannerController;
 
 use App\Http\Controllers\ImportAvtoAsController;
 use App\Http\Controllers\MailStopController;
+use App\Http\Controllers\PhoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +44,10 @@ Route::get('import/1c', [ImportAvtoAsController::class, 'import']);
 // Route::post('orger', [ PageController::class , 'sendOrder' ] );
 Route::any('orger', [PageController::class, 'sendOrder']);
 
-Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
-Route::post('smsConfirm/{phone}', [PageController::class, 'smsConfirm']);
+// Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
+Route::post('smsConfirmSend/{phone}/{code}', [PhoneController::class, 'smsConfirmSend']);
+// Route::post('smsConfirm/{phone}', [PageController::class, 'smsConfirm']);
+Route::post('smsConfirm/{phone}', [PhoneController::class, 'smsConfirm']);
 
 Route::apiResource('emailStop', MailStopController::class);
 // Route::resource('emailStop', MailStopController::class);
