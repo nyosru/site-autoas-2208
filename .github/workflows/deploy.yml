@@ -50,6 +50,7 @@ jobs:
             cd www 
             cd ${{ secrets.FOLDER }} 
             /opt/php74/bin/php ./composer.phar i 
+            /opt/php74/bin/php artisan migrate
 
       - name: setup npm
         uses: appleboy/ssh-action@master

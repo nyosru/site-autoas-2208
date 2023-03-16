@@ -96,7 +96,7 @@
 </body>
 
 {{-- <script src="{{ asset('js/app.js') }}?s=2208120337{{ rand() }}"></script> --}}
-<script src="{{ asset('js/app.js') }}?s=2208130539{{ rand() }}"></script>
+<script src="{{ asset('js/app.js') }}?s=2303162131{{ rand() }}"></script>
 
 {{-- <script type="text/javascript" src="https://yastatic.net/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script> --}}
 {{-- <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> --}}
