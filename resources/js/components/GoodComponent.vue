@@ -115,7 +115,9 @@
                 <div class="button-ver2 text-center">
                   В корзине: {{ cartAr[$route.params.good_id] }}
                   <br />
-                  <router-link :to="{ name: 'cart' }" class="btn btn-success">
+                  <router-link :to="{ name: 'cart' }" class="btn btn-success"
+                  xxclick="orderFormSended = false"
+                  >
                     Перейти к заказу
                   </router-link>
                 </div>

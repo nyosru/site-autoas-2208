@@ -164,7 +164,7 @@
 <script>
 import { ref } from "vue";
 
-import sendTelegramm from "./../use/sendTelegramm.ts";
+import sendTelegramm from "./../use/sendTelegramm.js";
 
 export default {
   props: {

@@ -19,7 +19,9 @@ class OrderController extends Controller
     public static function store(User $user, Request $request)
     {
 
-        $return = [];
+        $return = [
+            'file' => __FILE__
+        ];
 
         $order = new Order;
         $order->user_id = $user->id;
@@ -31,8 +33,10 @@ class OrderController extends Controller
         // добавляем товары в заказ + 
         $return['goods'] = [];
         foreach ($request->goods as $good) {
-
-            $return['goods'][] = OrderGoodController::store($order, $good);
+            // dd( $good );
+            if (!empty($good['kolvo']) && $good['kolvo'] > 0){
+                $return['goods'][] = OrderGoodController::store($order, $good);
+            }
 
             // try {
 

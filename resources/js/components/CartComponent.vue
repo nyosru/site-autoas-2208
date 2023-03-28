@@ -1,7 +1,26 @@
 <template>
   <div class="container xcheckout-cart-form">
     <form action="" method="post" @submit.prevent="sendOrder">
-      <div v-if="cartAr.length == 0 && !showOk">
+      <Div style="max-height: 200px; overflow-x: auto;">
+        route:
+        <br />
+        {{ route }}
+        <br />
+        router:
+        <br />
+        {{ router }}
+      </Div>
+
+      <br />
+
+      route.name: {{ route.name }}
+      <br />
+      cartAr.length: {{ cartAr.length }}
+      <br />
+      showOk: {{ showOk }}
+      <br />
+
+      <div v-if="route.name == 'cart' && cartAr.length == 0 && !showOk">
         <br />
         <br />
         <br />
@@ -12,10 +31,19 @@
           <br />
           доставим в&nbsp;лучшем виде в&nbsp;кратчайшие сроки
         </h2>
-
       </div>
 
-      <div class="row" v-else>
+      <div class="row" v-else-if="route.name == 'orderOk'">
+        23
+      </div>
+
+      <!-- <div class="row" v-else-if=" true " >
+        12
+      </div> -->
+
+      <!-- <div class="row" v-else-if="1 == 1 || route.name == 'orderOk'"> -->
+
+      <div class="row" v-else-if="true || route.name == 'orderOk'">
         <div class="col-md-8 col-sm-12">
           <!-- cartAr: {{ cartAr }} -->
           <!-- <br /> -->
@@ -48,109 +76,132 @@
                   <th>&nbsp;</th>
                 </tr>
               </thead>
-              <tbody>
+
+              <!-- <tbody v-if="route.name === 'orderOk' && cartArBauyed.length > 0" > -->
+              <tbody v-if="route.name === 'orderOk'">
+                <template v-for="(v, id_good) in cartArBauyed" :key="id_good">
+                  <tr><td colspan="3">orderOk</td></tr>
+                  <cart-item-component
+                    :v="v"
+                    :step2Show="step2Show"
+                    type="buyed"
+                  />
+                </template>
+              </tbody>
+
+              <tbody v-else>
                 <!-- cartAr, -->
                 <!-- cartArGoods, -->
                 <template v-for="(v, id_good) in cartAr" :key="id_good">
+                  <cart-item-component :v="v" :step-2-show="step2Show" />
 
-                  <tr v-if="v.kolvo >= 0" class="cartItem">
-                    <td>
-                      <a
-                        href="#"
-                        @click.prevent="cartRemove(v.a_id)"
-                        class="remove"
-                      >
-                        <i class="ion-close" aria-hidden="true"></i>
-                      </a>
-
-                      <!-- <br /> -->
-                      <!-- {{ v.a_id }} -->
-                    </td>
-                    <td>
-                      <!-- ++ {{ v.OfferName ?? '' }} -->
-                      <!-- ++ {{ v.a_id ?? '' }} -->
-                      <!-- <Br/> -->
-                      <span v-if="v.id && v.id > 0 && v.a_id && v.a_id.length">
-                        <router-link
-                          :to="{
-                            name: 'good',
-                            params: { good_id: v.a_id },
-                          }"
+                  <template v-if="1 == 2">
+                    <tr v-if="v.kolvo >= 0" class="cartItem">
+                      <td>
+                        <a
+                          v-if="!step2Show"
+                          href="#"
+                          @click.prevent="cartRemove(v.a_id)"
+                          class="remove"
                         >
-                          {{ v.head ?? '' }}
-                        </router-link>
-                      </span>
-                      <span v-else>
-                        <!-- <small>заказ с удалённого склада</small><br /> -->
-                        <!-- {{ v.head ?? '' }} -->
-                        <span v-html="v.head"></span>
-                      </span>
-                      <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['head'] ?? '' ) : '' }} -->
-                      <div class="text-muted text-red-hover">
-                        {{ v.manufacturer ?? '' }}
-                        <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['manufacturer'] ?? '' ) : '' }} -->
-                      </div>
-                      <!-- <div @click="s1 = !s1">-- разработка ( показать инфу ) --</div> -->
-                      <!-- <div v-if="s1">                        {{ v }}                      </div> -->
-                    </td>
-                    <td class="a-right m-top">
-                      {{
-                        v.a_price && v.a_price > 0
-                          ? NumberFormat(v.a_price)
-                          : 'под&nbsp;заказ*'
-                      }}
-                    </td>
+                          <i class="ion-close" aria-hidden="true"></i>
+                        </a>
 
-
-                    <td v-if="step2Show" class="text-center m-top">
-                      {{ v.kolvo }}
-                    </td>
-
-                    <!-- <td>{{ v.kolvo }}</td> -->
-                    <td v-else class="text-center">
-                      <div class="nobr">
-                        <button
-                          type="button"
-                          class="btn btn-xs btn-danger BtnPlusMinus"
-                          @click="cartMinus(v, 1)"
+                        <!-- <br /> -->
+                        <!-- {{ v.a_id }} -->
+                      </td>
+                      <td>
+                        <!-- ++ {{ v.OfferName ?? '' }} -->
+                        <!-- ++ {{ v.a_id ?? '' }} -->
+                        <!-- <Br/> -->
+                        <span
+                          v-if="v.id && v.id > 0 && v.a_id && v.a_id.length"
                         >
-                          <i class="fa fa-minus"></i>
-                        </button>
-                        <input
-                          type="text"
-                          readonly=""
-                          style="
-                            display: inline-block;
-                            width: 40px;
-                            text-align: center;
-                          "
-                          :value="v.kolvo"
-                          class="form-control kolvo-items"
-                        />
-                        <button
-                          type="button"
-                          class="btn btn-xs btn-success BtnPlusMinus"
-                          @click="cartAdd(v, 1)"
-                        >
-                          <i class="fa fa-plus"></i>
-                        </button>
-                      </div>
-                    </td>
+                          <router-link
+                            :to="{
+                              name: 'good',
+                              params: { good_id: v.a_id },
+                            }"
+                          >
+                            {{ v.head ?? '' }}
+                          </router-link>
+                        </span>
+                        <span v-else>
+                          <!-- <small>заказ с удалённого склада</small><br /> -->
+                          <!-- {{ v.head ?? '' }} -->
+                          <span v-html="v.head"></span>
+                        </span>
+                        <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['head'] ?? '' ) : '' }} -->
+                        <div class="text-muted text-red-hover">
+                          {{ v.manufacturer ?? '' }}
+                          <!-- {{ cartArGoods[id_good] ? ( cartArGoods[id_good]['manufacturer'] ?? '' ) : '' }} -->
+                        </div>
+                        <!-- <div @click="s1 = !s1">-- разработка ( показать инфу ) --</div> -->
+                        <!-- <div v-if="s1">                        {{ v }}                      </div> -->
+                      </td>
+                      <td class="a-right m-top">
+                        {{
+                          v.a_price && v.a_price > 0
+                            ? NumberFormat(v.a_price)
+                            : 'под&nbsp;заказ*'
+                        }}
+                      </td>
 
+                      <td v-if="step2Show" class="text-center m-top">
+                        {{ v.kolvo }}
+                      </td>
 
+                      <!-- <td>{{ v.kolvo }}</td> -->
+                      <td v-else class="text-center">
+                        <div class="nobr">
+                          <button
+                            type="button"
+                            class="btn btn-xs btn-danger BtnPlusMinus"
+                            @click="cartMinus(v, 1)"
+                          >
+                            <i class="fa fa-minus"></i>
+                          </button>
+                          <input
+                            type="text"
+                            readonly=""
+                            style="
+                              display: inline-block;
+                              width: 40px;
+                              text-align: center;
+                            "
+                            :value="v.kolvo"
+                            class="form-control kolvo-items"
+                          />
+                          <button
+                            type="button"
+                            class="btn btn-xs btn-success BtnPlusMinus"
+                            @click="cartAdd(v, 1)"
+                          >
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                      </td>
 
-                    <td class="a-right m-top">
-                      {{
-                        v.a_price && v.a_price > 0 && v.kolvo && v.kolvo > 0
-                          ? NumberFormat(v.kolvo * v.a_price)
-                          : '-'
-                      }}
-                    </td>
-                  </tr>
-
+                      <td class="a-right m-top">
+                        {{
+                          v.a_price && v.a_price > 0 && v.kolvo && v.kolvo > 0
+                            ? NumberFormat(v.kolvo * v.a_price)
+                            : '-'
+                        }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3">v {{ v }}</td>
+                    </tr>
+                  </template>
                 </template>
               </tbody>
             </table>
+
+            <!-- <br />
+            <br />
+
+            cartArBauyed: {{ cartArBauyed }} -->
 
             <br />
             <br />
@@ -160,10 +211,8 @@
           </template>
         </div>
         <div class="col-md-4 col-sm-12">
-
-<cart-order-component />
-
-          <div v-if="1==2" class="aside-shopping-cart-total">
+          <cart-order-component />
+          <div v-if="1 == 2" class="aside-shopping-cart-total">
             <div class="alert alert-success" v-if="showOk">
               <h2>Заказ</h2>
               {{ form_name2 }}
@@ -289,7 +338,6 @@
               </div>
             </template>
           </div>
-
         </div>
       </div>
     </form>
@@ -298,15 +346,23 @@
 </template>
 
 <script setup>
-
 import cart from './../use/cart.js'
-import sendTelegramm from './../use/sendTelegramm.ts'
+import sendTelegramm from './../use/sendTelegramm.js'
 import { ref, watchEffect, onMounted } from 'vue'
 
 import CartOrderComponent from './CartOrderComponent.vue'
+import CartItemComponent from './CartItemComponent.vue'
+
+import fn from './../use/fn.js'
+
+const { NumberFormat } = fn()
 
 // import { useRoute } from 'vue-router'
 // const router = useRoute()
+
+import { useRouter, useRoute } from 'vue-router'
+const router = useRouter()
+const route = useRoute()
 
 // const props = defineProps({
 //   orderGood: false,
@@ -325,6 +381,7 @@ import CartOrderComponent from './CartOrderComponent.vue'
 const {
   // товары в корзине a_id = quantity
   cartAr,
+  cartArBauyed,
   // cartArGoods,
   // добавляем
   cartAdd,
@@ -335,8 +392,9 @@ const {
   // deleteGoodFromCart,
   cartRemove,
   cartCashSave,
-     // показ подтверждения заказа
-     step2Show,
+  // показ подтверждения заказа
+  step2Show,
+  cartCashSaveBeforeOrder,
 } = cart()
 
 // const s1 = ref(false)
@@ -365,26 +423,34 @@ const stopWatch7 = watchEffect(() => {
   //   catNow.value = goodData.value.a_categoryid
   //   // console.log(882, goodData.value.a_categoryid)
   // }
-  sumall.value = cartAr.value
-    .map((item) => (item.a_price > 0 ? item.kolvo * item.a_price : 0))
-    .reduce((prev, curr) => prev + curr, 0)
-  // console.log(sumall);
+  if (cartAr.value.length > 0) {
+    sumall.value = cartAr.value
+      .map((item) => (item.a_price > 0 ? item.kolvo * item.a_price : 0))
+      .reduce((prev, curr) => prev + curr, 0)
+    // console.log(sumall);
 
-  if (cartAr.value.find((el) => el.a_price == '')) {
-    addPodZakaz.value = true
+    if (cartAr.value.find((el) => el.a_price == '')) {
+      addPodZakaz.value = true
+    } else {
+      addPodZakaz.value = false
+    }
   } else {
-    addPodZakaz.value = false
+    sumall.value = 0
   }
 })
 
 const form_name = ref('')
 const form_name2 = ref('')
+
 const form_phone = ref('')
 const form_phone2 = ref('')
+
 const form_city = ref('Тюмень')
 const form_needHelp = ref(false)
+
 const show_form_postedAddress = ref(false)
 const form_postedAddress = ref('')
+
 const form_postedAddress2 = ref('')
 const podZakaz = ref(false)
 
@@ -393,119 +459,6 @@ const { sendToTelegramm, sendTo } = sendTelegramm()
 const textSms = ref('')
 const showOk = ref(false)
 
-// onMounted(() => {
-//   showOk.value = false
-// })
-
-const NumberFormat = (num) => {
-  return new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: 'RUB',
-    maximumFractionDigits: 0,
-  }).format(num)
-  // return num + ' 777 ';
-}
-const sendOrder = async (good_id) => {
-  console.log(77700)
-
-  // добавляем серхио тест
-  // sendTo.value.push(5152088168)
-  // first_name: Авто-АС
-  sendTo.value.push(1022228978)
-  // Денис Авто-СА
-  sendTo.value.push(663501687)
-
-  podZakaz.value = false
-
-  textSms.value =
-    'новый заказ:' +
-    '\n' +
-    form_name.value +
-    ' (' +
-    form_city.value +
-    ')' +
-    '\n' +
-    'Тел: ' +
-    form_phone.value +
-    '\n' +
-    'Нужна помощь:' +
-    (form_needHelp.value ? 'ДА' : 'НЕТ') +
-    '\n' +
-    'Доставка:' +
-    (show_form_postedAddress.value
-      ? 'нужна > Адрес: ' + (form_postedAddress.value ?? '-')
-      : 'НЕ нужна') +
-    '\n'
-
-  cartAr.value.forEach((e) => {
-    textSms.value +=
-      '\n' +
-      e.head +
-      '\n' +
-      (e.id && e.id > 0 && e.a_id && e.a_id.length ? '' : '(заказ) ') +
-      e.a_id +
-      ' // ' +
-      (e.a_price != ''
-        ? e.a_price +
-          ' р * ' +
-          e.kolvo +
-          ' ед.' +
-          ' = ' +
-          e.a_price * e.kolvo +
-          'р'
-        : 'под заказ ' + e.kolvo + ' ед.') +
-      '\n'
-    if (e.a_price != '') {
-      podZakaz.value = true
-    }
-  })
-
-  textSms.value +=
-    '\n Итого: ' +
-    sumall.value +
-    ' р. ' +
-    (podZakaz.value ? ' + под заказ ' : '')
-
-  let ww = await sendToTelegramm(textSms.value)
-
-  console.log(77711, ww)
-
-  if (ww == 'sended') {
-    // alert('Заказ отправлен, позвоним в рабочее время')
-    // router.push({ name: 'orderOk' })
-
-    form_name2.value = form_name.value
-    form_phone2.value = form_phone.value
-    form_postedAddress2.value = form_postedAddress.value
-    showOk.value = true
-    cartAr.value = []
-    cartCashSave()
-  }
-}
-
-//  async formSend() {
-//       //   console.log(2222, this.formName, this.formPhone, this.formMsg);
-//       //   console.log(2222, this.formPhone, this.titleFrom);
-
-//       this.loading = true;
-
-//       const { sendToTelegramm } = sendTelegramm();
-//       let ww = await sendToTelegramm(
-//         "Где: " +
-//           this.titleFrom +
-//           "<br>" +
-//           "Как зовут: " +
-//           this.formName +
-//           "<br>" +
-//           "Телефон: " +
-//           this.formPhone +
-//           "<br>" +
-//           "Сообщение: " +
-//           this.formMsg
-//       );
-//       //   console.log('ww',ww);
-//       this.result = ww;
-//     },
 </script>
 
 <style scoped>

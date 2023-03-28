@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Validator;
 
 class MailStopController extends Controller
 {
+
     public function store(Request $request)
     {
-
 
         $validator = Validator::make([ 'email' => $request->email ] , [
             // 'head' => 'required|unique:posts|max:255',

@@ -5,6 +5,7 @@
               <router-link
                 :to="{ name: 'cart' }"
                 role="button"
+                xxclick="orderFormSended = false"
               >
                 <div class="photo photo-cart">
                   <img
@@ -34,6 +35,7 @@ import { watchEffect } from '@vue/runtime-core';
 import cart from './../../use/cart.js'
 
 const {
+  orderFormSended,
   // товары в корзине a_id = quantity
   cartAr,
   // // добавляем

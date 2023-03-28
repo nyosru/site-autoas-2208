@@ -174,7 +174,7 @@ const stopWatch = watchEffect(() => {
       a_id: 'x',
     })
 
-}else if (route.name == 'cart') {
+}else if (route.name == 'cart' || route.name == 'orderOk') {
 
   nowPage.value = whatThisPage(route.params.id)
 

@@ -11,11 +11,62 @@ import VitrinComponent from './components/VitrinComponent.vue'
 import SearchComponent from './components/SearchComponent.vue'
 import PageComponent from './components/page/PageComponent.vue'
 import CartComponent from './components/CartComponent.vue'
+import CartComponent2 from './components/Cart2Component.vue'
+import CartComponentOrderOk from './components/CartComponentOrderOk.vue'
 import GoodComponent from './components/GoodComponent.vue'
 
 import IndexLineAdver from './components/IndexLineAdverComponent.vue'
 
 const routes = [
+
+
+    // корзина товаров
+    {
+        path: '/cart',
+        name: 'cart',
+        components: {
+            BreadcrumbsComponent,
+            vitrin: CartComponent2,
+        },
+        meta: { level: 1 }
+    },
+    // корзина товаров - ок
+    {
+        path: '/cart',
+        name: 'orderOk',
+        components: {
+            BreadcrumbsComponent,
+            vitrin: CartComponent2,
+        },
+        meta: { level: 2 }
+    },
+
+    // // корзина товаров
+    // {
+    //     path: '/cart',
+    //     name: 'cart',
+    //     components: {
+    //         BreadcrumbsComponent,
+    //         vitrin: CartComponent,
+    //     },
+    // },
+
+    // // orderOk
+    // {
+    //     path: '/order_ok',
+    //     name: 'orderOk',
+    //     components: {
+    //         BreadcrumbsComponent,
+    //         // vitrin: CartComponent,
+    //         vitrin: CartComponentOrderOk,
+    //     },
+    //     props: {
+    //         orderGood: true
+    //     }
+    // },
+
+
+
 
     // {
     //     path: '/',
@@ -112,27 +163,9 @@ const routes = [
     },
 
 
-    // корзина товаров
-    {
-        path: '/cart',
-        name: 'cart',
-        components: {
-            BreadcrumbsComponent,
-            vitrin: CartComponent,
-        },
-    },
-    // orderOk
-    {
-        path: '/cart',
-        name: 'orderOk',
-        components: {
-            BreadcrumbsComponent,
-            vitrin: CartComponent,
-        },
-        props: {
-            orderGood: true
-        }
-    },
+
+
+
     // если не сработал ни один роут, показываем первую страничку
     {
         path: '/:catchAll(.*)*',

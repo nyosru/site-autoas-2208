@@ -14,6 +14,16 @@ const app = createApp(App)
 app.use(router)
     // app.use(ElementPlus);
 
+// app.mixin({
+//     beforeRouteUpdate(to, from, next) {
+//         // // просто используйте `this`
+//         // this.name = to.params.name
+//         // next()
+//         orderFormSended.value = false
+//     }
+
+// })
+
 app.mount('#app')
 
 // // // 1. Define route components.

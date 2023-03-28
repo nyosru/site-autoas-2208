@@ -11,6 +11,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ImportAvtoAsController;
 use App\Http\Controllers\MailStopController;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\SendOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +42,11 @@ Route::apiResource('banner', BannerController::class);
 Route::get('adverIndex', [BannerController::class, 'adverIndex']);
 Route::get('import/1c', [ImportAvtoAsController::class, 'import']);
 
+// отправить заказ
 // Route::post('orger', [ PageController::class , 'sendOrder' ] );
-Route::any('orger', [PageController::class, 'sendOrder']);
+// Route::any('orger', [PageController::class, 'sendOrder']);
+Route::apiResource('order', SendOrderController::class)
+    ->only(['store']);
 
 // Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
 Route::any('smsConfirmSend/{phone}/{code?}', [PhoneController::class, 'smsConfirmSend']);

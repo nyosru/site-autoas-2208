@@ -19,7 +19,7 @@ class OrderNew extends Mailable
      *
      * @return void
      */
-    public function __construct( User $user )
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -31,7 +31,9 @@ class OrderNew extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newOrder.confirm');
+        return $this
+            ->subject('Avto-as.ru Подтверждение E-mail адреса')
+            ->view('emails.newOrder.confirm');
     }
-
+    
 }
