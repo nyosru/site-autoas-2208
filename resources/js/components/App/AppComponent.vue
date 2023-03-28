@@ -50,6 +50,8 @@ const { cartCashRead } = cart()
 onMounted(() => {
   cartCashRead()
 })
+
+
 </script>
 
 <style scoped>
