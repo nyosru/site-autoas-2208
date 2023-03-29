@@ -129,7 +129,7 @@ class SendOrderController extends Controller
 
         $msg = 'новый заказ' . PHP_EOL .
             $return['user']['name'] . PHP_EOL .
-            'Тел: '.( $return['phone'] ?? '..' ) . PHP_EOL .
+            'Тел: '.( $return['phone']['phone'] ?? '..' ) . PHP_EOL .
             ( $return['user']['email'] ?? '...' ) . PHP_EOL .
             'Город: ' . $request->city . PHP_EOL .
             'Нужна помощь спец-а: ' . ($request->form_needHelp ? 'Да!' : 'Нет') .            PHP_EOL .
