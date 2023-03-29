@@ -162,7 +162,7 @@ class SendOrderController extends Controller
                 'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx'),
                 'id' => [   // 1368605419, // я тест
                     // серхио тест
-                    5152088168,
+                    // 5152088168,
                     // 2037908418 // ваш метролог
                 
                     // first_name: Авто-АС
