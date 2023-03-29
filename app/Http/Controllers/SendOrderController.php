@@ -154,7 +154,9 @@ class SendOrderController extends Controller
 
         file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
             array(
-                's' => '1',
+                // 's' => '1',
+                's' => md5($_SERVER['HTTP_HOST']),
+                'domain' => $_SERVER['HTTP_HOST'],
                 'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
                 // OrderUraBot @order_ura_bot:
                 'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx'),
