@@ -11,20 +11,22 @@ const sendTo = ref([
     360209578, // я
 
     // 1368605419, // я тест
+    // серхио тест
+    5152088168,
     // 2037908418 // ваш метролог
 
     // first_name: Авто-АС
     1022228978,
     // Денис Авто-СА
     663501687
-
 ])
 
 const sendToTelegramm = async(msg) => {
     loading.value = true
 
     let res = await axios
-        .post('https://api.uralweb.info/telegram.php', {
+        // .post('https://api.uralweb.info/telegram.php', {
+        .get('https://api.uralweb.info/telegram.php', {
             domain: window.location.hostname,
             // show_datain: 1,
             answer: 'json',
