@@ -78,6 +78,10 @@ class PageController extends Controller
         // dd( $sPhone[0] );
         // dd(substr($sPhone, 0, 1));
 
+        if (strlen($sPhone) == 10){
+            $sPhone = '8'.$sPhone;
+        }
+
         if ($return == 'number') {
             return $sPhone;
         } else if ($return == 8) {
@@ -90,6 +94,7 @@ class PageController extends Controller
             $phone = '+7' . substr($sPhone, 1, 10);
             // dD($ph);    
         }
+
 
         if (strlen($sPhone) != 11)
             return False;
