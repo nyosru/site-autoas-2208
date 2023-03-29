@@ -202,7 +202,7 @@ const sendOrder = async() => {
     if (sendOrderRes.value == true) {
         if (
             typeof res2.value.phone.phone_confirm !== 'undefined' &&
-            res2.value.phone.phone_confirm.length == 0
+            res2.value.phone.phone_confirm === null
         ) {
             await smsSend(res2.value.phone.phone)
         }

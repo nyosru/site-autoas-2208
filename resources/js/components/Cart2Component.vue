@@ -44,7 +44,6 @@
 
               <tbody v-else>
                 <template v-for="(v, id_good) in cartArBauyed" :key="id_good">
-                  <tr><td colspan="3">orderOk</td></tr>
                   <cart-item-component
                     :v="v"
                     :step2Show="step2Show"
