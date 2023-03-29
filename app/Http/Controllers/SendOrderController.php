@@ -157,7 +157,8 @@ class SendOrderController extends Controller
                 // 's' => '1',
                 's' => md5($_SERVER['HTTP_HOST']),
                 'domain' => $_SERVER['HTTP_HOST'],
-                'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
+                // 'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
+                'msg' => $msg,
                 // OrderUraBot @order_ura_bot:
                 'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx'),
                 'id' => [   // 1368605419, // я тест
