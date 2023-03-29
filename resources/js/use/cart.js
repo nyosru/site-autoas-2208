@@ -1,14 +1,8 @@
-import {
-    ref,
-} from 'vue'
+import { ref } from 'vue'
 
 import sms from './sms.js'
 
-const {
-    phone,
-    smsSend,
-    smsSendRes,
-} = sms()
+const { phone, smsSend, smsSendRes } = sms()
 
 const nowOrder = ref({})
 
@@ -33,13 +27,11 @@ const setStandartGood = (good) => {
 }
 
 const cartAdd = (good, kolvo = 1) => {
-
     good = setStandartGood(good)
 
     let findIndex = cartAr.value.findIndex((o) => o.a_id === good.a_id)
 
     if (findIndex === -1) {
-
         good.kolvo = kolvo
 
         cartAr.value.push(good)
@@ -78,7 +70,6 @@ const cartRemove = (id, conf = true) => {
         cartAr.value.splice(index, 1)
         cartCashSave()
     }
-
 }
 
 // пишем корзину в кеш
@@ -108,7 +99,6 @@ const orderGoodsInOrder = () => {
     cartAr.value = res2
 
     return res
-
 }
 
 // читаем корзину из кеш
@@ -119,7 +109,6 @@ const cartCashRead = () => {
 }
 
 const goodInCart = (id_str) => {
-
     if (Object.keys(cartAr.value).length === 0) return false
 
     let findIndex = cartAr.value.findIndex((o) => o.a_id === id_str)
@@ -156,6 +145,11 @@ const errorToHtml = ref([])
 // загрузка первой формы
 const loadingForm1 = ref(false)
 
+/**
+ * отправлять после запроса смс для подтверждения номера или нет
+ */
+const sendPhoneConfirmSms = ref(false)
+
 const sendOrder = async() => {
     if (loadingForm1.value == true) {
         return false
@@ -190,6 +184,11 @@ const sendOrder = async() => {
             sendOrderRes.value = true
             loadingForm1.value = false
 
+            if (typeof res.data.phone.phone_confirm === 'undefined' ||
+                res.data.phone.phone_confirm === null) {
+                sendPhoneConfirmSms.value = true
+            }
+
             cartArBauyed.value = orderGoodsInOrder()
         })
         .catch((error) => {
@@ -201,11 +200,14 @@ const sendOrder = async() => {
 
     if (sendOrderRes.value == true) {
         if (
-            typeof res2.value.phone.phone_confirm !== 'undefined' &&
-            res2.value.phone.phone_confirm === null
+            // typeof res2.value.phone.phone_confirm !== 'undefined' &&
+            // res2.value.phone.phone_confirm === null
+            sendPhoneConfirmSms.value === true
         ) {
             await smsSend(res2.value.phone.phone)
+            sendPhoneConfirmSms.value = false
         }
+
         step2Show.value = true
         orderFormSended.value = true
     }

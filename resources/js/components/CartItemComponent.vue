@@ -55,7 +55,7 @@
 
     <!-- <td>{{ v.kolvo }}</td> -->
     <td v-else class="text-center">
-      <div class="nobr">
+      <div class="nobr" style="min-width: 85px;">
         <button
           type="button"
           class="btn btn-xs btn-danger BtnPlusMinus"
