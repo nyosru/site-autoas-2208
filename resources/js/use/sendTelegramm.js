@@ -25,8 +25,8 @@ const sendToTelegramm = async(msg) => {
     loading.value = true
 
     let res = await axios
-        // .post('https://api.uralweb.info/telegram.php', {
-        .get('https://api.uralweb.info/telegram.php', {
+        .post('https://api.uralweb.info/telegram.php', {
+            // .get('https://api.uralweb.info/telegram.php', {
             domain: window.location.hostname,
             // show_datain: 1,
             answer: 'json',
@@ -35,7 +35,7 @@ const sendToTelegramm = async(msg) => {
             s: md5(window.location.hostname),
 
             // id: 1,
-            id: sendTo.value,
+            id: sendTo.value.join(','),
             msg,
         })
         .then((res) => {
