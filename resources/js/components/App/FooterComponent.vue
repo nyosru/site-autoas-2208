@@ -14,7 +14,7 @@
             </router-link>
           </div>
         </div>
-        <div class="col-md-3 xhidden-xs xhidden-sm  xtext-center">
+        <div class="col-md-3 xhidden-xs xhidden-sm xtext-center">
           <div class="widget-info">
             <ul>
               <li>
@@ -40,7 +40,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-4 pd-left xhidden-xs xhidden-sm  text-center">
+        <div class="col-md-4 pd-left xhidden-xs xhidden-sm text-center">
           <span class="link_footer">
             <router-link
               v-for="u in link_footer"
@@ -116,7 +116,7 @@
         <div class="col-xs-12 col-sm-4 text-center">
           <span>
             <a href="/" title="" style="color: #6c6c6c;">
-              Авто-АС © 2008 - 2022
+              Авто-АС © 2008 - {{ currentYear }}
               <br />
               Внимательность к деталям!
             </a>
@@ -164,6 +164,9 @@ const link_footer = [
   { id: 'return', head: 'Возврат' },
   { id: 'contact', head: 'Контакты' },
 ]
+
+const date = new Date()
+const currentYear = date.getFullYear()
 </script>
 
 <style scoped>
