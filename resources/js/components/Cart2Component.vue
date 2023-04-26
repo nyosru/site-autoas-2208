@@ -12,7 +12,7 @@
               <router-link to="/" class="link7">
                 перейти к предложениям
               </router-link>
-            
+
           </div>
           <div v-else>
             <table class="table">
@@ -70,6 +70,7 @@
 </template>
 
 <script setup>
+
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.js'
 import { ref, watchEffect, onMounted } from 'vue'
@@ -89,6 +90,9 @@ import {
 const route = useRoute()
 
 const {
+
+  sendOrder,
+
   orderFormSended,
   // товары в корзине a_id = quantity
   cartAr,

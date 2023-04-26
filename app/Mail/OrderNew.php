@@ -33,7 +33,7 @@ class OrderNew extends Mailable
     {
         return $this
             ->subject('Avto-as.ru Подтверждение E-mail адреса')
-            ->view('emails.newOrder.confirm');
+            ->view('emails.newOrder.confirm', [ 'domain' => $_SERVER['HTTP_HOST'] ] );
     }
     
 }

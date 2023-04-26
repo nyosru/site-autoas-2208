@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PageController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -15,17 +16,38 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | contains the "web" middleware group. Now create something great!
 */
 
+// Route::get('/ess', function ( ) { 
+//     $user = User::limit(1)->get();
+//     // dd($user);
+//     return view( 'emails.newOrder.confirm', [ 'user' => $user[0], 'domain' => $_SERVER['HTTP_HOST'] ] );
+// });
+
 Route::get('/email/verify/{email}', [MailController::class, 'store'] );
+
+Route::get(
+    '/{any?}/{any2?}/{any3?}/{any35?}/{any34?}/{any33?}/{any32?}/{any31?}',
+    [PageController::class, 'index']
+);    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 //     $request->fulfill();
 //     return redirect('/home');
 // })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get(
-    '/{any?}/{any2?}/{any3?}/{any35?}/{any34?}/{any33?}/{any32?}/{any31?}',
-    [PageController::class, 'index']
-);    
+// Route::get('/s', function () { return view('emails.newOrder.confirm'); });
 
 // Route::get(
 //     '/{any?}/{any2?}/{any3?}/{any35?}/{any34?}/{any33?}/{any32?}/{any31?}',

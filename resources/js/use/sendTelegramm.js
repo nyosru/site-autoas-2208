@@ -22,6 +22,9 @@ const sendTo = ref([
 ])
 
 const sendToTelegramm = async(msg) => {
+
+    // return false
+
     loading.value = true
 
     let res = await axios

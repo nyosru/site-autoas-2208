@@ -1,5 +1,6 @@
 <template>
   <div class="aside-shopping-cart-total">
+    
     <transition>
       <div class="alert alert-success" v-if="showOk">
         <h2>Заказ</h2>

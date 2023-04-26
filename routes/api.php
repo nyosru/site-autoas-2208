@@ -34,6 +34,7 @@ use App\Http\Controllers\SendOrderController;
 //     return $request->user();
 // });
 
+
 Route::apiResource('catalog', CatalogController::class);
 Route::apiResource('goodscat', GoodsCatController::class);
 Route::apiResource('good', GoodController::class);
