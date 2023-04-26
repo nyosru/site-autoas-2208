@@ -1,6 +1,5 @@
 <template>
   <div class="aside-shopping-cart-total">
-
     step2Show: {{ step2Show }}
 
     <transition>
@@ -15,6 +14,7 @@
 
       <div v-else-if="!step2Show">
         <div v-if="cartAr.length == 0"></div>
+
         <form action="" method="POST" @submit.prevent="sendOrder" v-else>
           <h2>Заказ</h2>
 
@@ -182,6 +182,7 @@
             <div v-if="loadingForm1 == true" class="text-center">
               <img src="/storage/img/admin-loader.gif" />
             </div>
+
             <div v-else>
               <button class="btn-checkout" type="submit">
                 Отправить
@@ -192,7 +193,7 @@
       </div>
 
       <!-- <div v-else> -->
-      <div v-else-if="route.name === 'orderOk' && cartArBauyed.length > 0" >
+      <div v-else-if="route.name === 'orderOk' && cartArBauyed.length > 0">
         <div>
           <br />
           <br />
@@ -223,7 +224,6 @@
 </template>
 
 <script setup>
-
 import cart from './../use/cart.js'
 import sendTelegramm from './../use/sendTelegramm.js'
 import { ref, watchEffect, onMounted } from 'vue'
@@ -384,7 +384,7 @@ const NumberFormat = (num) => {
 }
 
 const sendOrder11 = async () => {
-  console.log('sendOrder',77700)
+  console.log('sendOrder', 77700)
 }
 
 const sendOrder = async () => {
@@ -424,7 +424,6 @@ const sendOrder = async () => {
       // id: sendTo.value,
     })
     .then((res) => {
-
       res2.value = res.data
 
       //+
@@ -443,7 +442,6 @@ const sendOrder = async () => {
 
       cartArBauyed.value = cartAr.value
       cartAr.value = []
-
     })
     .catch((error) => {
       console.log('error', error)
@@ -475,17 +473,16 @@ const sendOrder = async () => {
 
     console.log(77, 11, 22)
 
-    if ( res2.value && !res2.value.phone.phone_confirm) {
+    if (res2.value && !res2.value.phone.phone_confirm) {
       //   console.log(77 , 11, 33, 55);
       // }
       // if ( res2.value.phone.phone_confirm ) {
 
-      console.log(77, 11, 33)
+      // console.log(77, 11, 33)
       // console.log(77, 11, res2.value.phone.phone_confirm)
       // console.log(77, res2.value.phone.phone)
       await smsSend(res2.value.phone.phone)
       console.log(77, smsSendRes.value)
-
     }
 
     console.log(77, 11, 44)
@@ -494,7 +491,6 @@ const sendOrder = async () => {
     // cartCashSaveBeforeOrder()
     // router.push('/cart_ok')
     // router.push({ name: 'orderOk' })
-
   }
 }
 </script>

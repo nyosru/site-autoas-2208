@@ -25,7 +25,7 @@ class SendOrderController extends Controller
             'file' => __FILE__,
             'line' => __LINE__
         ];
-
+   
         $return['request'] = $request->all();
 
         $return['validated'] =
@@ -86,11 +86,8 @@ class SendOrderController extends Controller
         $return['newOrder'] =
             $orderNew = OrderController::store($user, $request);
 
-
         $return['mail_in_stop_list'] = 0;
         $return['mail_verify_ranee'] = false;
-
-
 
         $return['mail_in_stop_list'] =
             $mailToStopList = MailStop::where('email', $user->email)->count();
@@ -101,7 +98,7 @@ class SendOrderController extends Controller
             $verifyRanee = User::where('email', $user->email)->whereNotNull('email_verified_at')->count();
 
             // если ранее уже подтверждали
-            if ($verifyRanee > 0) {
+            if ( 1 == 2 && $verifyRanee > 0) {
                 $return['mail_verify_ranee'] = true;
                 User::where('email', $user->email)->whereNull('email_verified_at')->update(['email_verified_at' => date('Y-m-d H:i:s')]);
             }
@@ -109,18 +106,18 @@ class SendOrderController extends Controller
             else {
 
                 // новый или не подтвердил ещё почту ... то шлём ему почту
-                if (!empty($user->email) && empty($user->email_verified_at)) {
+                if ( 1 == 1 || ( !empty($user->email) && empty($user->email_verified_at) ) ) {
                     $return['send_mail_verified'] = true;
                     // PageController::sendMailVerify($user);
                     MailController::sendMailVerify($user);
                 } else {
                     $return['send_mail_verified'] = false;
                 }
+
             }
         }
 
-        self::sendTelega($return, $request);
-
+        //self::sendTelega($return, $request);
         return response()->json($return);
     }
 
