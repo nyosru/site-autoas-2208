@@ -212,6 +212,10 @@
                                                                                         href="https://avto-as.ru/"
                                                                                         target="_blank">сайте магазина
                                                                                         "Авто-АС"</a></nobr>
+                                                                                        <br/>
+                                                                                        <br/>
+                                                                                        <br/>
+                                                                                        Для пожтверждения своего e-mail нажмите 
                                                                                 </span>
                                                                             </p>
                                                                         </div>
