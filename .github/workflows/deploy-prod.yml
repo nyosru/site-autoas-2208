@@ -37,7 +37,7 @@ jobs:
       #     password: ${{ secrets.SERVER_PASSWORD }}
       #     script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
 
-      - name: setup composer pacs on server
+      - name: setup composer pacs on server + migrate
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
@@ -47,6 +47,7 @@ jobs:
             cd www 
             cd ${{ secrets.FOLDER_PROD }} 
             /opt/php74/bin/php ./composer.phar i 
+            /opt/php74/bin/php artisan migrate
 
       - name: setup npm
         uses: appleboy/ssh-action@master
