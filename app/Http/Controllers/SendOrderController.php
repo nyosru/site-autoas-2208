@@ -119,7 +119,7 @@ class SendOrderController extends Controller
             }
         }
 
-        //self::sendTelega($return, $request);
+        self::sendTelega($return, $request);
         return response()->json($return);
     }
 
