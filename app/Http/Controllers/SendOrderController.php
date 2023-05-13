@@ -151,7 +151,8 @@ class SendOrderController extends Controller
 
         $msg .= 'Сумма: ' . $summa . $addEndSumma;
 
-        file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
+        // file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
+        file_get_contents('https://api.php-cat.com/telegram.php?' . http_build_query(
             array(
                 // 's' => '1',
                 's' => md5($_SERVER['HTTP_HOST']),
