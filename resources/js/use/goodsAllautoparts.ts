@@ -16,7 +16,7 @@ const sortByField = (field) => {
 }
 
 const load = async (searchString = '') => {
-  
+
   // console.log('9879879 load')
 
   items.value = {}
@@ -55,7 +55,7 @@ const load = async (searchString = '') => {
     //   search: searchString,
     //   // ss: 222,
     // })
-    .get('/apiAllAutoparts/api.php?search=' + searchString)
+    .get('/apiAllAutoparts/api.php?search=' + searchString.replaceAll(' ', ''))
     .then((response) => {
       //   console.log('response', response)
       //   console.log('response', response.data.data)
