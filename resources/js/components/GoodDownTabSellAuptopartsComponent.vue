@@ -1,4 +1,7 @@
 <template>
+
+<div>
+777777
   <!-- <h2 v-if="(items && items.length) || loading"> -->
   <h2 v-if="itemsCount > 0 || loading">
     {{ tab.name ?? 'x' }}
@@ -40,6 +43,7 @@
         </tbody>
       </table>
     </div>
+  </div>
   </div>
 </template>
 

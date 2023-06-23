@@ -87,6 +87,20 @@
           <br />
           <br />
         </template>
+
+
+
+        <br clear="all" />
+111
+<good-down-tab-all-autoparts-component
+  :tab="{ name: 'супер' }"
+  :good_articul="searchStringNow"
+/>
+
+222<br/>
+333
+
+
       </template>
     </div>
   </div>
@@ -96,6 +110,8 @@
 // import VitrinGoodsListComponentVue from './VitrinGoodsListComponent.vue'
 // import VitrinMenuComponentVue from './VitrinMenuComponent.vue'
 import VitrinPaginationComponent from './VitrinGoodsListPaginationComponent.vue'
+
+import GoodDownTabAllAutopartsComponent from './GoodDownTabSellAuptopartsComponent.vue'
 
 // import ff from VitrinMenuComponentVue
 
