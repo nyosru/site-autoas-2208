@@ -2,6 +2,11 @@ import { ref } from 'vue'
 
 import axios from 'axios'
 
+
+import use_var from './var.js'
+const{ findedOnPartner , findedOnPartnerLoading } = use_var()
+
+
 const items = ref({})
 const itemsCount = ref(0)
 const loading = ref(true)
@@ -11,10 +16,12 @@ const sortByField = (field) => {
 }
 
 const load = async (searchString = '') => {
+  
   // console.log('9879879 load')
 
   items.value = {}
   loading.value = true
+  findedOnPartnerLoading.value = true
 
   // let d = new Date()
   // const now_d =
@@ -61,6 +68,7 @@ const load = async (searchString = '') => {
       if (
         response.data[0]['AnalogueCode'] 
       ) {
+        findedOnPartner.value =
         itemsCount.value = Object.keys(response.data).length
         //   console.log('kolvo',itemsCount.value)
         //   if ( itemsCount.value == 0) {
@@ -68,6 +76,7 @@ const load = async (searchString = '') => {
         //   } else {
         items.value = response.data
         items.value.sort(sortByField('Price'))
+
 
         // let lastElem2 = items.value.pop()
         // console.log(lastElem2)
@@ -84,8 +93,10 @@ const load = async (searchString = '') => {
       }
 
       loading.value = false
+      findedOnPartnerLoading.value = false
     })
     .catch((error) => {
+      findedOnPartnerLoading.value = false
       console.log('error', error)
       loading.value = false
       // this.errored = true;

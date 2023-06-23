@@ -1,11 +1,15 @@
 <template>
 
 <div>
-777777
+<!-- 777777 -->
   <!-- <h2 v-if="(items && items.length) || loading"> -->
   <h2 v-if="itemsCount > 0 || loading">
-    {{ tab.name ?? 'x' }}
+    {{ tab.name ?? '' }}
   </h2>
+
+  <!-- findedOnPartner     {{findedOnPartner }}<br/> -->
+    <!-- findedOnPartnerLoading    {{findedOnPartnerLoading}} -->
+
   <div>
     <div v-if="loading">.. загрузка предложений ..</div>
     <div
@@ -61,6 +65,10 @@ const props = defineProps({
   tab: Object,
   good_articul: String,
 })
+
+
+import use_var from './../use/var.js'
+const{ findedOnPartner , findedOnPartnerLoading } = use_var()
 
 onMounted(() => {
   load(props.good_articul)
