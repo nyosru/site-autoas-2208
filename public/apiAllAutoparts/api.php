@@ -11,11 +11,9 @@ if (empty($_REQUEST['search']))
    // die($_SERVER['SERVER_NAME']);
 
 // if( $_SERVER['SERVER_NAME'] == 'localhost' ){
-// if( $_REQUEST['ss'] != 'da' ){
-   
-//    die( file_get_contents('https://22.avto-as.ru/apiAllAutoparts/api.php?ss=da&search='.$_REQUEST['search'] ?? 'x' ) );
-
-// }
+if( $_REQUEST['ss'] != 'da' ){   
+   die( file_get_contents('http://22.avto-as.ru/apiAllAutoparts/api.php?ss=da&search='.$_REQUEST['search'] ?? 'x' ) );
+}
 
 require('./index_f.php');
 
