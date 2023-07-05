@@ -75,6 +75,7 @@ class GoodController extends Controller
     public function show($id)
     {
         return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
+        // return new GoodCollection(Good::with('analog')->where('a_id', 'LIKE', $id)->where('status', 'show')->get());
     }
 
     // /**

@@ -61,14 +61,39 @@ class Good extends Model
      */
     public function analog()
     {
+
+        // return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
+        // return $this->hasMany(GoodAnalog::class, 'art_origin', 'catnumber_search');
+        // return $this->hasMany(GoodAnalog::class, 'art_origin', 'a_catnumber');
+
         // return $this->hasMany(GoodAnalog::class,'a_id','a_categoryid');
         return $this->hasManyThrough(
+
             Good::class,
             GoodAnalog::class,
+
             'art_analog', // Внешний ключ в таблице `environments` goodanalog ...
-            'a_catnumber', // Внешний ключ в таблице `deployments` good ...
+            // 'a_catnumber', // Внешний ключ в таблице `deployments` good ...
+            'a_catnumber_search', // Внешний ключ в таблице `deployments` good ...
+
             'a_catnumber', // Локальный ключ в таблице `projects` good ...
             'art_origin' // Локальный ключ в таблице `environments` goodanalog ...
+
         );
+
+    // projects
+    //     id - integer
+    //     name - string
+
+    // environments
+    //     id - integer
+    //     project_id - integer
+    //     name - string
+
+    // deployments
+    //     id - integer
+    //     environment_id - integer
+    //     commit_hash - string
+
     }
 }
