@@ -34,7 +34,7 @@ class CreatePagesTable extends Migration
             ->comment('краткое описание')
             ;
             //     `html` text COLLATE utf8mb4_unicode_ci COMMENT 'хтмл странички',
-            $table->text('manufacturer')
+            $table->text('html')
             //    ->nullable()->default(NULL)
                 ->comment('хтмл странички')
             ;
