@@ -29,7 +29,7 @@ class CreateMod021ItemsTable extends Migration
             //`head` varchar(150) DEFAULT NULL,
             $table->string('head',150)->nullable()->default(NULL);
             //`a_id` varchar(150) DEFAULT NULL,
-            $table->string('id_cat',150)->nullable()->default(NULL);
+            $table->string('a_id',150)->nullable()->default(NULL);
             //`a_categoryid` varchar(150) DEFAULT NULL,
             $table->string('a_categoryid',150)->nullable()->default(NULL);
             //`a_catnumber` varchar(150) DEFAULT NULL,
