@@ -25,3 +25,4 @@ Homestead.json
 public/
 public/js/app.js
 .vscode/sftp.json
+.idea/
