@@ -66,6 +66,7 @@ class GoodController extends Controller
             limit(150)->get());
     }
 
+    
     /**
      * Display the specified resource.
      *
