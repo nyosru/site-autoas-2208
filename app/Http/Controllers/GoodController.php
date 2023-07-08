@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GoodAnalog;
 use Illuminate\Http\Request;
 
 use App\Http\Resources\GoodCollection;
@@ -32,7 +33,7 @@ class GoodController extends Controller
 
         $s = explode(' ', $request->search);
         // $s = explode(' ', $request->search);
-       
+
 
         return new GoodCollection(Good::with('analog')->where(function ($query) use ($s, $request) {
             foreach ($s as $v) {
@@ -66,7 +67,7 @@ class GoodController extends Controller
             limit(150)->get());
     }
 
-    
+
     /**
      * Display the specified resource.
      *
@@ -75,7 +76,32 @@ class GoodController extends Controller
      */
     public function show($id)
     {
-        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
+//        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+        $good = Good::where('a_id', $id)->where('status', 'show')->get();
+//        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
+
+//        dd($good);
+//        dd($good->items[0]->analog);
+//        dd($good->items);
+//        dd($good[0]);
+//        dd($good[0]->relations);
+        $good2 = $good->toArray()[0];
+//        dd($good2);
+
+        if( !empty($good2) && empty($good2['analog']) ){
+//            dd(__LINE__);
+
+            $ana = GoodAnalog::with('good')
+                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+                ->get()
+            ;
+            $ee = $ana->toArray();
+            dd($ee);
+
+        }
+
+//        return new GoodCollection($good);
+        return new GoodCollection($good2);
         // return new GoodCollection(Good::with('analog')->where('a_id', 'LIKE', $id)->where('status', 'show')->get());
     }
 
