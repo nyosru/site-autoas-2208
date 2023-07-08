@@ -13,6 +13,7 @@ class CreateGmUserTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('gm_user'))
         Schema::create('gm_user', function (Blueprint $table) {
             $table->id();
 

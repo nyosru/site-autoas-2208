@@ -13,6 +13,7 @@ class CreateMod020CatsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('mod_020_cats'))
         Schema::create('mod_020_cats', function (Blueprint $table) {
             $table->id();
 

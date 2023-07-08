@@ -14,6 +14,7 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('pages'))
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             //     `site` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'название сайта',

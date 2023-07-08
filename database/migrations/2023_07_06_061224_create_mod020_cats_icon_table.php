@@ -13,6 +13,7 @@ class CreateMod020CatsIconTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('mod_020_cats_icon'))
         Schema::create('mod_020_cats_icon', function (Blueprint $table) {
             $table->id();
 

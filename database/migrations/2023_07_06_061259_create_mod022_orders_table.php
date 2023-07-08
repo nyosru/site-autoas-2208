@@ -13,6 +13,7 @@ class CreateMod022OrdersTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('mod_022_orders'))
         Schema::create('mod_022_orders', function (Blueprint $table) {
             $table->id();
 

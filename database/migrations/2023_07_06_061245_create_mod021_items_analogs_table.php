@@ -13,6 +13,7 @@ class CreateMod021ItemsAnalogsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('mod_021_items_analogs'))
         Schema::create('mod_021_items_analogs', function (Blueprint $table) {
             $table->id();
 

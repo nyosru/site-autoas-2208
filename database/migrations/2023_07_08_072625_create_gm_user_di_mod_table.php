@@ -13,6 +13,7 @@ class CreateGmUserDiModTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('gm_user_di_mod'))
         Schema::create('gm_user_di_mod', function (Blueprint $table) {
             $table->id();
 

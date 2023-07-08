@@ -13,6 +13,7 @@ class CreateModBannerUpTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('mod_banner_up'))
         Schema::create('mod_banner_up', function (Blueprint $table) {
             $table->id();
 
