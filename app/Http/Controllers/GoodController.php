@@ -77,7 +77,12 @@ class GoodController extends Controller
     public function show($id)
     {
 //        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+
+        try{
+
+//        $good = Good::where('a_id', $id)->where('status', 'show')->get();
         $good = Good::where('a_id', $id)->where('status', 'show')->get();
+
 //        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
 
 //        dd($good);
@@ -85,18 +90,33 @@ class GoodController extends Controller
 //        dd($good->items);
 //        dd($good[0]);
 //        dd($good[0]->relations);
-        $good2 = $good->toArray()[0];
+        $g = $good->toArray();
+        $good2 = $g[0] ?? null;
 //        dd($good2);
 
-        if( !empty($good2) && empty($good2['analog']) ){
+//            \Debugbar::error($g[0]);
+//            \Debugbar::message('Error!');
+
+//        if( !empty($good2) && empty($good2['analog']) ){
+        if( 1 == 1 ){
 //            dd(__LINE__);
 
-            $ana = GoodAnalog::with('good')
-                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+            $ana = GoodAnalog::with('angood')
+//                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+                ->where( 'art_origin' , $good2['a_catnumber'])
                 ->get()
             ;
+            $good2['anals'] =
             $ee = $ana->toArray();
-            dd($ee);
+
+//                \Debugbar::error($good2);
+//            dd($ee);
+
+        }
+
+        }catch ( \Exception $ex ){
+
+            $good2 = [ 'error' => $ex->getMessage() ];
 
         }
 

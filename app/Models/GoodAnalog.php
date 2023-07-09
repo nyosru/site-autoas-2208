@@ -41,6 +41,12 @@ class GoodAnalog extends Model
         return $this->belongsTo(Good::class, 'a_catnumber', 'art_origin');
     }
 
+    public function angood()
+    {
+//        return $this->belongsTo(Good::class, 'a_id', 'art_origin');
+        return $this->belongsTo(Good::class, 'art_analog', 'a_catnumber');
+    }
+
     public function analog()
     {
         return $this->belongsTo(Good::class, 'a_id', 'art_analog');
