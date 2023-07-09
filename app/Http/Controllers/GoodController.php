@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\GoodResource;
 use App\Models\GoodAnalog;
 use Illuminate\Http\Request;
 
@@ -81,44 +82,50 @@ class GoodController extends Controller
         try{
 
 //        $good = Good::where('a_id', $id)->where('status', 'show')->get();
+            $good2 =
         $good = Good::where('a_id', $id)->where('status', 'show')->get();
 
-//        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
-
-//        dd($good);
-//        dd($good->items[0]->analog);
-//        dd($good->items);
-//        dd($good[0]);
-//        dd($good[0]->relations);
-        $g = $good->toArray();
-        $good2 = $g[0] ?? null;
-//        dd($good2);
-
-//            \Debugbar::error($g[0]);
-//            \Debugbar::message('Error!');
-
-        if( !empty($good2) && empty($good2['analog']) ){
-//        if( 1 == 1 ){
-//            dd(__LINE__);
-
-            $ana = GoodAnalog::with('angood')
-//                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
-                ->where( 'art_origin' , $good2['a_catnumber'])
-                ->get()
-            ;
-//            $good2['anals'] =
-            $ee = $ana->toArray();
-
-            $good2['analog'] = [];
-
-            foreach( $ee as $ana ){
-                $good2['analog'][] = $ana['angood'];
-            }
-
-//                \Debugbar::error($good2);
-//            dd($ee);
-
-        }
+//////        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
+////
+//////        dd($good);
+//////        dd($good->items[0]->analog);
+//////        dd($good->items);
+//////        dd($good[0]);
+//////        dd($good[0]->relations);
+////        $g = $good->toArray();
+////        $good2 = $g[0] ?? null;
+//////        dd($good2);
+////
+//////            \Debugbar::error($g[0]);
+//            \Debugbar::error($good2);
+////            \Debugbar::error(json($good2));
+//////            \Debugbar::message('Error!');
+////
+////        if( 1 ==2 && !empty($good2) && empty($good2['analog']) ){
+//////        if( 1 == 1 ){
+//////            dd(__LINE__);
+////
+//            $ana = GoodAnalog::with('angood')
+////                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+//                ->where( 'art_origin' , $good2['a_catnumber'])
+//                ->get()
+//            ;
+////            $good2['anals'] =
+//            $ee = $ana->toArray();
+//
+////            $good2['analog'] = [];
+//
+//            foreach( $ee as $ana ){
+////                $good2['analog'][] = $ana['angood'];
+//                $good2->analog[] = $ana['angood'];
+//            }
+////
+//////                \Debugbar::error($good2);
+//////            dd($ee);
+////
+////        }
+//
+////            return response()->json(['data' => $good2]);
 
         }catch ( \Exception $ex ){
 
@@ -128,7 +135,9 @@ class GoodController extends Controller
 
 //        return new GoodCollection($good);
 //        return new GoodCollection($good2);
-        return new GoodResource($good2);
+//        return new GoodResource($good2);
+//        return response()->json([ 'data' => ['data' => $good2] ]);
+        return response()->json(['data' => $good2]);
         // return new GoodCollection(Good::with('analog')->where('a_id', 'LIKE', $id)->where('status', 'show')->get());
     }
 
