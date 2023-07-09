@@ -72,7 +72,7 @@ class GoodController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return GoodResource
      */
     public function show($id)
     {
@@ -127,7 +127,8 @@ class GoodController extends Controller
         }
 
 //        return new GoodCollection($good);
-        return new GoodCollection($good2);
+//        return new GoodCollection($good2);
+        return new GoodResource($good2);
         // return new GoodCollection(Good::with('analog')->where('a_id', 'LIKE', $id)->where('status', 'show')->get());
     }
 
