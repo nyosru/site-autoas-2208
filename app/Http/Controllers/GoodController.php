@@ -97,8 +97,8 @@ class GoodController extends Controller
 //            \Debugbar::error($g[0]);
 //            \Debugbar::message('Error!');
 
-//        if( !empty($good2) && empty($good2['analog']) ){
-        if( 1 == 1 ){
+        if( !empty($good2) && empty($good2['analog']) ){
+//        if( 1 == 1 ){
 //            dd(__LINE__);
 
             $ana = GoodAnalog::with('angood')
@@ -106,8 +106,14 @@ class GoodController extends Controller
                 ->where( 'art_origin' , $good2['a_catnumber'])
                 ->get()
             ;
-            $good2['anals'] =
+//            $good2['anals'] =
             $ee = $ana->toArray();
+
+            $good2['analog'] = [];
+
+            foreach( $ee as $ana ){
+                $good2['analog'][] = $ana['angood'];
+            }
 
 //                \Debugbar::error($good2);
 //            dd($ee);
