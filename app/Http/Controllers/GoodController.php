@@ -98,8 +98,9 @@ class GoodController extends Controller
 //            \Debugbar::error($good);
 //            \Debugbar::error( [ 2 , $good[0]->analog ?? 55 ] );
 //            \Debugbar::error( 777 );
-
-            if( empty($good[0]->analog->items) ){
+//            $good2[0]['analog']
+//            if( empty($good[0]->analog->items) ){
+            if( empty($good[0]['analog']) ){
 //                \Debugbar::error( 123 , __LINE__ );
 
 //                $good2[0]['analog1'] = GoodAnalog::with('angood')->take(5)->get();
