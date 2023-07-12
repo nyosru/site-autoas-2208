@@ -104,7 +104,7 @@ class GoodController extends Controller
 
 //                $good2[0]['analog1'] = GoodAnalog::with('angood')->take(5)->get();
 //                $good2[0]['analog2'] = GoodAnalog::with('analog2')->take(5)->get();
-                $good2['analog'] =
+//                $good2['analog'] =
                 $good2[0]['analog'] = DB::table('mod_021_items_analogs')
                     ->join('mod_021_items','mod_021_items.catnumber_search', 'LIKE', 'mod_021_items_analogs.art_analog')
                     ->where( 'mod_021_items_analogs.art_origin' , $good[0]->a_catnumber)
