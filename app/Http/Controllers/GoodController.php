@@ -78,12 +78,29 @@ class GoodController extends Controller
     public function show($id)
     {
 //        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
-
+        \Debugbar::error( __LINE__ );
         try{
 
 //        $good = Good::where('a_id', $id)->where('status', 'show')->get();
             $good2 =
-        $good = Good::where('a_id', $id)->where('status', 'show')->get();
+        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+
+
+
+//            \Debugbar::error($good);
+//            \Debugbar::error( [ 2 , $good[0]->analog ?? 55 ] );
+//            \Debugbar::error( 777 );
+
+            if( empty($good[0]->analog->items) ){
+//                \Debugbar::error( 123 , __LINE__ );
+
+                $good2['analog'] = GoodAnalog::with('angood')
+//                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+                ->where( 'art_origin' , $good[0]->a_catnumber)
+                ->get()
+            ;
+//                \Debugbar::error( 1231 , $good2['analog'] );
+            }
 
 //////        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
 ////
@@ -130,7 +147,8 @@ class GoodController extends Controller
         }catch ( \Exception $ex ){
 
             $good2 = [ 'error' => $ex->getMessage() ];
-
+//            \Debugbar::error( __LINE__ );
+            \Debugbar::error( $ex->getMessage() );
         }
 
 //        return new GoodCollection($good);
