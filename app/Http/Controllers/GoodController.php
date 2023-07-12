@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Resources\GoodCollection;
 use App\Models\Good;
+use Illuminate\Support\Facades\DB;
 
 class GoodController extends Controller
 {
@@ -103,6 +104,10 @@ class GoodController extends Controller
 
                 $good2[0]['analog1'] = GoodAnalog::with('angood')->take(5)->get();
                 $good2[0]['analog2'] = GoodAnalog::with('analog2')->take(5)->get();
+                $good2[0]['analog3'] = DB::table('mod_021_items_analogs')
+                    ->join('mod_021_items','mod_021_items.catnumber_search', 'LIKE', 'mod_021_items_analogs.art_analog')
+                    ->take(5)
+                    ->get();
 
                 $good2[0]['analog'] = GoodAnalog::with('angood')
 //                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
