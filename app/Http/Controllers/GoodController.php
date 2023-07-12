@@ -102,6 +102,7 @@ class GoodController extends Controller
 //                \Debugbar::error( 123 , __LINE__ );
 
                 $good2[0]['analog1'] = GoodAnalog::with('angood')->take(5)->get();
+                $good2[0]['analog2'] = GoodAnalog::with('analog2')->take(5)->get();
 
                 $good2[0]['analog'] = GoodAnalog::with('angood')
 //                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
