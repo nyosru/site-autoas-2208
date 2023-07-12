@@ -60,6 +60,8 @@ class Good extends Model
      * Получить аналоги
      */
     public function analog()
+//    public function analogi()
+//    public function good_analog()
     {
 
         // return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
