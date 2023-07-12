@@ -101,7 +101,7 @@ class GoodController extends Controller
             if( empty($good[0]->analog->items) ){
 //                \Debugbar::error( 123 , __LINE__ );
 
-                $good2['analog'] = GoodAnalog::with('angood')
+                $good2[0]['analog'] = GoodAnalog::with('angood')
 //                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
                 ->where( 'art_origin' , $good[0]->a_catnumber)
                 ->get()
