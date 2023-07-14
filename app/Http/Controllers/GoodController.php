@@ -123,6 +123,15 @@ class GoodController extends Controller
 //                ->get()
 //            ;
 //                \Debugbar::error( 1231 , $good2['analog'] );
+
+                $good2[0]['analog'][] = [
+                    'id' =>	9542,
+                    'head' =>"Стартер",
+                    'a_id' =>	"ЦБ002382",
+                    'a_categoryid' =>	"ЦБ001926",
+                    'a_catnumber' => "LFB479Q-3708100A"
+                ];
+
             }
 
 //////        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
