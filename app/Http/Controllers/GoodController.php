@@ -79,10 +79,12 @@ class GoodController extends Controller
     public function show($id)
     {
 //        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+        if( class_exists(\Debugbar))
         \Debugbar::error( __LINE__ , 'show' );
 
         try{
 
+            if( class_exists(\Debugbar))
             \Debugbar::error( __LINE__ , 'show' , 'try' );
 
 ////        $good = Good::where('a_id', $id)->where('status', 'show')->get();
