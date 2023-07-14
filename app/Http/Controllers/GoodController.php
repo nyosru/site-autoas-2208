@@ -126,13 +126,22 @@ class GoodController extends Controller
 
                 $good2[0]['analog'][] = [
                     'id' =>	9542,
-                    'head' =>"Стартер",
+                    'head' =>"Стартер1",
                     'a_id' =>	"ЦБ002382",
                     'a_categoryid' =>	"ЦБ001926",
                     'a_catnumber' => "LFB479Q-3708100A"
                 ];
 
             }
+
+
+            $good2[0]['analog'][] = [
+                'id' =>	9542,
+                'head' =>"Стартер1",
+                'a_id' =>	"ЦБ002382",
+                'a_categoryid' =>	"ЦБ001926",
+                'a_catnumber' => "LFB479Q-3708100A"
+            ];
 
 //////        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
 ////
@@ -187,7 +196,50 @@ class GoodController extends Controller
 //        return new GoodCollection($good2);
 //        return new GoodResource($good2);
 //        return response()->json([ 'data' => ['data' => $good2] ]);
-        return response()->json(['data' => $good2]);
+
+
+//        $good2->dump();
+//        $good2[0]->analodg->setAttribute()
+//        array_push($good2[0]['analog'] , [
+
+//        dd($good2[0]);
+//        dd($good2[0]->analog);
+//        dd($good2);
+
+//        $good2->data[0]->push([
+//            'id' =>	9542,
+//            'head' =>"Стартер",
+//            'a_id' =>	"ЦБ002382",
+//            'a_categoryid' =>	"ЦБ001926",
+//            'a_catnumber' => "LFB479Q-3708100A"
+//        ]);
+
+//        $good2->dump();
+
+        $g3 = $good2->toArray();
+
+        $good2 = $g3;
+//        dd($good2);
+
+//        $good2[0]['analog'][] = [
+//            'id' =>	9542,
+//            'head' =>"Стартер1",
+//            'a_id' =>	"ЦБ002382",
+//            'a_categoryid' =>	"ЦБ001926",
+//            'a_catnumber' => "LFB479Q-3708100A"
+//        ];
+
+//        $analogs = GoodAnalog::with('angood')->where('art_origin', 'LIKE', $good[0]->catnumber_search)
+////            ->take(5)
+//            ->get();
+
+//        $good2
+
+        return response()->json([
+            'data' => $good2,
+//            'ananlogs' => $analogs
+        ]);
+
         // return new GoodCollection(Good::with('analog')->where('a_id', 'LIKE', $id)->where('status', 'show')->get());
     }
 
