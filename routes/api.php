@@ -38,6 +38,8 @@ use App\Http\Controllers\SendOrderController;
 Route::apiResource('catalog', CatalogController::class);
 Route::apiResource('goodscat', GoodsCatController::class);
 Route::apiResource('good', GoodController::class);
+Route::get('goodAnalog/{id}', [ GoodController::class , 'showAnalog' ]);
+
 Route::apiResource('page', PageController::class);
 Route::apiResource('banner', BannerController::class);
 Route::get('adverIndex', [BannerController::class, 'adverIndex']);

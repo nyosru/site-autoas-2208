@@ -5,7 +5,7 @@
 
     <!-- <br clear="all" />
     showOrdersOnSklad {{ showOrdersOnSklad }} -->
-    
+
     <br clear="all" />
 
     <good-down-tab-all-autoparts-component

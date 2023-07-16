@@ -1,6 +1,5 @@
 import {
-    ref,
-    // reactive, toRefs, readonly,
+    ref, // reactive, toRefs, readonly,
     // watch,
     // computed
 } from 'vue'
@@ -50,22 +49,21 @@ const loadGoods = (cat_id, page = 0) => {
 
             // data_filtered.value =
             goodsData.value = response.data
-                // localStorage.cats = JSON.stringify(response.data.data)
-                // cfg.value = response.data.cfg;
+            // localStorage.cats = JSON.stringify(response.data.data)
+            // cfg.value = response.data.cfg;
             goodsLoading.value = false
-                // return response.data;
-                // items_loading.value = dfalse
+            // return response.data;
+            // items_loading.value = dfalse
             window.scrollTo(0, 0)
         })
         .catch((error) => {
             console.log(error)
-                // this.errored = true;
+            // this.errored = true;
         })
 }
 
 const searchString = ref('')
 const searchStringNow = ref('')
-
 
 
 // import { useRouter, useRoute } from 'vue-router'
@@ -88,19 +86,19 @@ const loadSearchGoods = (search, page = 0) => {
     // window.scrollTo(0,0)
 
     axios
-        .post('/api/good' + page0.value, { search })
+        .post('/api/good' + page0.value, {search})
         .then((response) => {
             searchStringNow.value = search
-                // console.log("get_datar", response.data);
-                // items_loading_module.value = items_now_loading.value;
+            // console.log("get_datar", response.data);
+            // items_loading_module.value = items_now_loading.value;
 
             // data_filtered.value =
             goodsData.value = response.data
-                // localStorage.cats = JSON.stringify(response.data.data)
-                // cfg.value = response.data.cfg;
+            // localStorage.cats = JSON.stringify(response.data.data)
+            // cfg.value = response.data.cfg;
             goodsLoading.value = false
-                // return response.data;
-                // items_loading.value = dfalse
+            // return response.data;
+            // items_loading.value = dfalse
             window.scrollTo(0, 0)
 
             // let itemsCount = Object.keys(response.data.data).length
@@ -114,11 +112,11 @@ const loadSearchGoods = (search, page = 0) => {
         })
         .catch((error) => {
             console.log(error)
-                // this.errored = true;
+            // this.errored = true;
         })
 }
 
-const loadGood = async(good_id) => {
+const loadGood = async (good_id) => {
     goodData.value = []
     goodLoading.value = true
 
@@ -133,33 +131,64 @@ const loadGood = async(good_id) => {
             // data_filtered.value =
 
             goodData.value = response.data.data[0]
-                // localStorage.cats = JSON.stringify(response.data.data)
-                // cfg.value = response.data.cfg;
+            // localStorage.cats = JSON.stringify(response.data.data)
+            // cfg.value = response.data.cfg;
 
             goodLoading.value = false
-                // return response.data;
-                // items_loading.value = dfalse
+            // return response.data;
+            // items_loading.value = dfalse
 
             window.scrollTo(0, 0)
         })
         .catch((error) => {
             console.log(error)
-                // this.errored = true;
+            // this.errored = true;
+        })
+}
+
+
+const goodAnalogsData = ref([])
+const goodAnalogsLoading = ref([])
+
+const goodsAnalogsLoad = async (good_id) => {
+
+    goodAnalogsData.value = []
+    goodAnalogsLoading.value = true
+
+    // window.scrollTo(0,0)
+
+    await axios
+        .get('/api/goodAnalog/' + good_id)
+        .then((response) => {
+            // console.log("get_datar", response.data);
+            // items_loading_module.value = items_now_loading.value;
+
+            // data_filtered.value =
+
+            goodAnalogsData.value = response.data
+            // localStorage.cats = JSON.stringify(response.data.data)
+            // cfg.value = response.data.cfg;
+
+            goodAnalogsLoading.value = false
+            // return response.data;
+            // items_loading.value = dfalse
+
+            // window.scrollTo(0, 0)
+        })
+        .catch((error) => {
+            console.log(error)
+            // this.errored = true;
         })
 }
 
 export default function goods() {
     return {
-        loadGoods,
-        goodsLoading,
-        goodsData,
+        goodsAnalogsLoad, goodAnalogsData, goodAnalogsLoading,
 
-        loadGood,
-        goodLoading,
-        goodData,
+        loadGoods, goodsLoading, goodsData,
 
-        searchString,
-        searchStringNow,
-        loadSearchGoods,
+        loadGood, goodLoading, goodData,
+
+        searchString, searchStringNow, loadSearchGoods,
     }
 }

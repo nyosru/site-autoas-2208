@@ -9,18 +9,48 @@ use Illuminate\Http\Request;
 use App\Http\Resources\GoodCollection;
 use App\Models\Good;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Collection;
 
 class GoodController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     //
-    // }
+     /**
+      * Display a listing of the resource.
+      *
+      * @return \Illuminate\Http\Response
+      */
+     public function showAnalog(string $id)
+     {
+         $return = [ 'data' => [] ];
+//             $a = GoodAnalog::with('angood')
+         $return[ 'data' ] = DB::table('mod_021_items as i0')
+
+                 ->where( 'i0.a_id' , $id)
+
+                 ->join('mod_021_items_analogs as a1', 'a1.art_origin', '=', 'i0.a_catnumber')
+                 ->join('mod_021_items as i1', 'i1.a_catnumber', '=', 'a1.art_analog')
+                 ->select('i1.*')
+
+//                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
+//                ->where( 'a_catnumber' , 'mod_021_items_analogs.art_origin')
+                ->get()
+                 ->toArray()
+            ;
+
+//             dd($a);
+//
+//             $return = [ 'data' => [] ];
+//
+//         foreach( $a as $aa ) {
+//             // Работаем с элементом
+//             $return['data'][] = $aa['angood'];
+//         }
+
+         return response()->json($return);
+//         return response()->json([
+//             'data' => $a,
+//////            'ananlogs' => $analogs
+//         ]);
+     }
 
     // /**
     //  * Store a newly created resource in storage.
@@ -92,9 +122,13 @@ class GoodController extends Controller
 //            $good2 =
 //        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
 
-            $good2 =
+//            $good2 =
 //        $good = Good::with('good_analog')->where('a_id', $id)->where('status', 'show')->get();
-        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+//        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
+//        $good2 = Good::where('a_id', $id)->where('status', 'show')->get()->toArray();
+        $good2 = Good::where('a_id', $id)
+            ->with('analog')
+            ->where('status', 'show')->get();
 
 
 
@@ -104,7 +138,7 @@ class GoodController extends Controller
 //            $good2[0]['analog']
 //            if( empty($good[0]->analog->items) ){
 //            if( empty($good[0]['analog']) ){
-            if( 1 == 1 ){
+            if( 1 == 2 ){
 //                \Debugbar::error( 123 , __LINE__ );
 
 //                $good2[0]['analog1'] = GoodAnalog::with('angood')->take(5)->get();
@@ -124,24 +158,24 @@ class GoodController extends Controller
 //            ;
 //                \Debugbar::error( 1231 , $good2['analog'] );
 
-                $good2[0]['analog'][] = [
-                    'id' =>	9542,
-                    'head' =>"Стартер1",
-                    'a_id' =>	"ЦБ002382",
-                    'a_categoryid' =>	"ЦБ001926",
-                    'a_catnumber' => "LFB479Q-3708100A"
-                ];
+//                $good2[0]['analog'][] = [
+//                    'id' =>	9542,
+//                    'head' =>"Стартер1",
+//                    'a_id' =>	"ЦБ002382",
+//                    'a_categoryid' =>	"ЦБ001926",
+//                    'a_catnumber' => "LFB479Q-3708100A"
+//                ];
 
             }
 
 
-            $good2[0]['analog'][] = [
-                'id' =>	9542,
-                'head' =>"Стартер1",
-                'a_id' =>	"ЦБ002382",
-                'a_categoryid' =>	"ЦБ001926",
-                'a_catnumber' => "LFB479Q-3708100A"
-            ];
+//            $good2[0]['analog'][] = [
+//                'id' =>	9542,
+//                'head' =>"Стартер1",
+//                'a_id' =>	"ЦБ002382",
+//                'a_categoryid' =>	"ЦБ001926",
+//                'a_catnumber' => "LFB479Q-3708100A"
+//            ];
 
 //////        return new GoodCollection(Good::with('analog')->where('a_id', $id)->where('status', 'show')->get());
 ////
@@ -216,24 +250,38 @@ class GoodController extends Controller
 
 //        $good2->dump();
 
-        $g3 = $good2->toArray();
-
-        $good2 = $g3;
-//        dd($good2);
-
-//        $good2[0]['analog'][] = [
-//            'id' =>	9542,
-//            'head' =>"Стартер1",
-//            'a_id' =>	"ЦБ002382",
-//            'a_categoryid' =>	"ЦБ001926",
-//            'a_catnumber' => "LFB479Q-3708100A"
-//        ];
-
-//        $analogs = GoodAnalog::with('angood')->where('art_origin', 'LIKE', $good[0]->catnumber_search)
-////            ->take(5)
-//            ->get();
-
-//        $good2
+//        $g3 = $good2->toArray();
+//
+//        $good2 = $g3;
+//
+////        $good2[0]['analog'][] = [
+////            'id' =>	9542,
+////            'head' =>"Стартер1",
+////            'a_id' =>	"ЦБ002382",
+////            'a_categoryid' =>	"ЦБ001926",
+////            'a_catnumber' => "LFB479Q-3708100A"
+////        ];
+////
+////        dd($good2);
+//
+////
+////        $analogs = GoodAnalog::with('angood')->where('art_origin', 'LIKE', $good[0]->catnumber_search)
+//////            ->take(5)
+////            ->get()
+////            ->toArray()
+////        ;
+//////        dd($analogs);
+//////        $good2
+////
+//////        $collection->each(function ($item, $key) {
+//////            // Работаем с элементом
+//////        });
+////
+////        foreach( $analogs as $aa ) {
+////            $good2[0]['analog'][] = $aa['angood'];
+////            }
+////
+////        dd($good2);
 
         return response()->json([
             'data' => $good2,

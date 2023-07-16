@@ -71,6 +71,7 @@ function getStepCats(cat_id) {
       // console.log( 11 , c1 , c1.value );
 
       if (
+          typeof(c1.a_parentid) != 'undefined' &&
         c1.a_parentid &&
         c1.a_parentid.length &&
         c1.a_parentid != '00000126'
