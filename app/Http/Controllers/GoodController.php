@@ -32,6 +32,7 @@ class GoodController extends Controller
 
 //                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
 //                ->where( 'a_catnumber' , 'mod_021_items_analogs.art_origin')
+
                 ->get()
                  ->toArray()
             ;
