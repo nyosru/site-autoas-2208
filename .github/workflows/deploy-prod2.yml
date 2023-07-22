@@ -94,6 +94,9 @@ jobs:
 #            npm run prod
 #          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
 #
+    sms:
+      runs-on: ubuntu-latest
+      steps:
       - name: send telega
         uses: appleboy/telegram-action@master
         with:
