@@ -1,4 +1,4 @@
-name: Deploy prod avtoas
+name: Deploy prod2 avtoas
 
 on:
   push:
