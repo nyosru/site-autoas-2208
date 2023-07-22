@@ -10,7 +10,7 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-      - name: princ context
+      - name: print context
         run: echo "${{ toJSON(github) }}"
 
 #  print_secret:
@@ -29,9 +29,11 @@ jobs:
       - name: "Create Python Eviroment"
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.VPS_IP }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+#          host: ${{ env.VPS_IP }}
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+#          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
           script: |
             sudo ls -ls
 
