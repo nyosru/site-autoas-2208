@@ -7,10 +7,15 @@ on:
 
 jobs:
 
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: princ context
+        run: echo "${{ toJSON(github) }}"
+
   deploy:
     runs-on: ubuntu-latest
     steps:
-
       - name: start
         uses: actions/checkout@master
         run: ls -la
