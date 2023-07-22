@@ -13,27 +13,27 @@ jobs:
 #      - name: princ context
 #        run: echo "${{ toJSON(github) }}"
 
-  print_secret:
-    runs-on: ubuntu-latest
-    steps:
-      - name: princ context
-        run: echo "${{ toJSON(secret) }}"
-
-#  deploy:
+#  print_secret:
 #    runs-on: ubuntu-latest
-#    uses: appleboy/ssh-action@master
 #    steps:
-##      - name: start
-###        uses: actions/checkout@master
-##        run: ls -la
-#
-#      - name: "Create Python Eviroment"
-#        with:
-#          host: ${{ env.VPS_IP }}
-#          username: ${{ secrets.SSH_USER }}
-#          key: ${{ secrets.SSH_KEY }}
-#          script: |
-#            sudo rm /var/lib/dpkg/lock
+#      - name: princ context
+#        run: echo "${{ toJSON(secret) }}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    uses: appleboy/ssh-action@master
+    steps:
+#      - name: start
+##        uses: actions/checkout@master
+#        run: ls -la
+
+      - name: "Create Python Eviroment"
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo ls -ls
 
 
 #  deploy:
