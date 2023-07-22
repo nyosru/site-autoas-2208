@@ -46,7 +46,8 @@ jobs:
           #          key: ${{ secrets.SSH_KEY }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            sudo ls -ls
+            cd www
+            ls -ls
 
 
   #  deploy:
