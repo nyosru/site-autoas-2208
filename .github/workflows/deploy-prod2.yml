@@ -21,13 +21,13 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    uses: appleboy/ssh-action@master
     steps:
 #      - name: start
 ##        uses: actions/checkout@master
 #        run: ls -la
 
       - name: "Create Python Eviroment"
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ env.VPS_IP }}
           username: ${{ secrets.SSH_USER }}
