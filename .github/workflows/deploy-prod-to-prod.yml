@@ -1,0 +1,184 @@
+name: Deploy avtoas - to prod
+
+on:
+  push:
+    branches:
+      - prod
+
+env:
+  VPS_IP: 46.254.19.97
+  VPS_USERNAME: di4basa7
+  DIR: www/prod
+  GIT_BRANCH: origin/prod
+
+jobs:
+
+#  print:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: print context
+#        run: echo "${{ toJSON(github) }}"
+#
+#  print_env:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: print context
+#        run: echo "${{ toJSON(env) }}"
+
+  #  print_secret:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: princ context
+  #        run: echo "${{ toJSON(secret) }}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      #      - name: start
+      ##        uses: actions/checkout@master
+      #        run: ls -la
+
+      - name: "Create Python Eviroment"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SERVER_USERNAME }}
+          username: ${{ env.VPS_USERNAME }}
+          #          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR }}
+            git fetch --all
+            git reset --hard ${{ env.GIT_BRANCH }}
+
+#            git pull
+          #      /opt/php74/bin/php composer.phar i
+          #      npm run prod
+          # /opt/php74/bin/php composer.phar i --no-dev
+          #git fetch --all
+          #git reset --hard origin/main
+          #          ls -ls
+
+  deploy_composer:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ env.VPS_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR }}
+            /opt/php74/bin/php composer.phar i
+            /opt/php74/bin/php artisan migrate
+
+  deploy_npm:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      #      - name: start
+      ##        uses: actions/checkout@master
+      #        run: ls -la
+
+      - name: "deploy_npm"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SERVER_USERNAME }}
+          username: ${{ env.VPS_USERNAME }}
+          #          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR }}
+            npm run prod
+
+
+  #  deploy:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: start
+  ##        uses: actions/checkout@master
+  #        run: ls -la
+
+  #      # - name: lint
+  #      #   uses: StephaneBour/actions-php-lint@7.4
+  #
+  #      - name: git pull on server
+  #        uses: appleboy/ssh-action@master
+  #        with:
+  #          host: ${{ secrets.SERVER_IP }}
+  #          username: ${{ secrets.SERVER_USERNAME }}
+  #          password: ${{ secrets.SERVER_PASSWORD }}
+  #          # port: ${{ secrets.PORT }}
+  #          script: |
+  #            cd www
+  #            cd ${{ secrets.FOLDER_PROD }}
+  #            git config --global user.email "1@php-cat.com"
+  #            git config --global user.name "Sergey"
+  #            git fetch --all
+  #            git reset --hard origin/prod
+  #
+  #      # - name: laravel migrate
+  #      #   uses: appleboy/ssh-action@master
+  #      #   with:
+  #      #     host: ${{ secrets.SERVER_IP }}
+  #      #     username: ${{ secrets.SERVER_USERNAME }}
+  #      #     password: ${{ secrets.SERVER_PASSWORD }}
+  #      #     script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
+  #
+  #      - name: setup composer pacs on server + migrate
+  #        uses: appleboy/ssh-action@master
+  #        with:
+  #          host: ${{ secrets.SERVER_IP }}
+  #          username: ${{ secrets.SERVER_USERNAME }}
+  #          password: ${{ secrets.SERVER_PASSWORD }}
+  #          script: |
+  #            cd www
+  #            cd ${{ secrets.FOLDER_PROD }}
+  #            /opt/php74/bin/php ./composer.phar i
+  #            /opt/php74/bin/php artisan migrate
+  #
+  #      - name: setup npm
+  #        uses: appleboy/ssh-action@master
+  #        with:
+  #          host: ${{ secrets.SERVER_IP }}
+  #          username: ${{ secrets.SERVER_USERNAME }}
+  #          password: ${{ secrets.SERVER_PASSWORD }}
+  #          script: |
+  #            cd www
+  #            cd ${{ secrets.FOLDER_PROD }}
+  #            npm i
+  #            npm run prod
+  #          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
+  #
+  sms_start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telega
+        uses: appleboy/telegram-action@master
+        with:
+          # to: ${{ secrets.TELEGRAM_TO }}
+          to: 360209578, phpcat,
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            +++ старт пулл в репу +++ ${{ github.run_id }}
+            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+            сделал ${{ github.event_name }}. задание ${{github.job}}.
+
+  sms_end:
+    runs-on: ubuntu-latest
+    needs: [deploy_composer, deploy_npm]
+    steps:
+      - name: send telega
+        uses: appleboy/telegram-action@master
+        with:
+          # to: ${{ secrets.TELEGRAM_TO }}
+          to: 360209578, phpcat,
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            +++ пулл в репу +++ ${{ github.run_id }}
+            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+            сделал ${{ github.event_name }}. задание ${{github.job}}.
