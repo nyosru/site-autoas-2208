@@ -9,6 +9,8 @@ env:
   VPS_IP: 46.254.19.97
   VPS_USERNAME: di4basa7
   DIR: www/lara2
+  GIT_BRANCH: origin/main
+
 jobs:
 
 #  print:
@@ -48,7 +50,7 @@ jobs:
           script: |
             cd ${{ env.DIR }}
             git fetch --all
-            git reset --hard origin/main
+            git reset --hard ${{ env.GIT_BRANCH }}
 
 #            git pull
           #      /opt/php74/bin/php composer.phar i
