@@ -46,8 +46,9 @@ jobs:
           #          key: ${{ secrets.SSH_KEY }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd www
+            cd www/lara2
             ls -ls
+            git pull
 
 
   #  deploy:
