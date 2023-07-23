@@ -13,11 +13,11 @@ env:
 
 jobs:
 
-  print:
-    runs-on: ubuntu-latest
-    steps:
-      - name: print context
-        run: echo "${{ toJSON(github) }}"
+#  print:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: print context
+#        run: echo "${{ toJSON(github) }}"
 #
 #  print_env:
 #    runs-on: ubuntu-latest
@@ -164,9 +164,10 @@ jobs:
           to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            🐥🐥🐥 старт пулл в репу ${{ github.run_id }}
-            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
-            сделал ${{ github.event_name }}. задание ${{github.job}}.
+            🐥🐥🐥 ${{ github.event_name }} в ${{ github.repository }}
+            ${{ github.event.head_commit.message }}
+            ${{ github.run_id }}
+            👨🏻‍💻 ${{github.actor}}
 
   sms_end:
     runs-on: ubuntu-latest
@@ -179,6 +180,7 @@ jobs:
           to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            🍀🍀🍀 пулл в репу ${{ github.run_id }}
-            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
-            сделал ${{ github.event_name }}. задание ${{github.job}}.
+            🍀🍀🍀 ${{ github.event_name }} в ${{ github.repository }}
+            ${{ github.event.head_commit.message }}
+            ${{ github.run_id }}
+            👨🏻‍💻 ${{github.actor}}
