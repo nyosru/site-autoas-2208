@@ -11,17 +11,17 @@ env:
   DIR: www/lara2
 jobs:
 
-  print:
-    runs-on: ubuntu-latest
-    steps:
-      - name: print context
-        run: echo "${{ toJSON(github) }}"
-
-  print_env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: print context
-        run: echo "${{ toJSON(env) }}"
+#  print:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: print context
+#        run: echo "${{ toJSON(github) }}"
+#
+#  print_env:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: print context
+#        run: echo "${{ toJSON(env) }}"
 
   #  print_secret:
   #    runs-on: ubuntu-latest
@@ -70,6 +70,7 @@ jobs:
           script: |
             cd ${{ env.DIR }}
             /opt/php74/bin/php composer.phar i
+            /opt/php74/bin/php artisan migrate
 
   deploy_npm:
     runs-on: ubuntu-latest
