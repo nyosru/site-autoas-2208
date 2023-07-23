@@ -13,10 +13,10 @@
               </router-link>
             </div>
             <div class="language dropdown">
-              <span class="icon">
-                <i class="ion-ios-world-outline" aria-hidden="true"></i>
-              </span>
-              <span>Русский</span>
+<!--              <span class="icon">-->
+<!--                <i class="ion-ios-world-outline" aria-hidden="true"></i>-->
+<!--              </span>-->
+<!--              <span>Русский</span>-->
             </div>
           </div>
         </div>
