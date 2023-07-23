@@ -164,7 +164,7 @@ jobs:
           to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            +++ старт пулл в репу +++ ${{ github.run_id }}
+            🐥🐥🐥 старт пулл в репу ${{ github.run_id }}
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
 
@@ -179,6 +179,7 @@ jobs:
           to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            +++ пулл в репу +++ ${{ github.run_id }}
+            🍀🍀🍀 пулл в репу ${{ github.run_id }}
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
+
