@@ -13,11 +13,11 @@ env:
 
 jobs:
 
-#  print:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: print context
-#        run: echo "${{ toJSON(github) }}"
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print context
+        run: echo "${{ toJSON(github) }}"
 #
 #  print_env:
 #    runs-on: ubuntu-latest
