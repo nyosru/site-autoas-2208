@@ -8,7 +8,7 @@ on:
 env:
   VPS_IP: 46.254.19.97
   VPS_USERNAME: di4basa7
-
+  DIR: www/lara2
 jobs:
 
   print:
@@ -46,9 +46,46 @@ jobs:
           #          key: ${{ secrets.SSH_KEY }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd www/lara2
-            ls -ls
+            cd ${{ env.DIR }}
             git pull
+          #      /opt/php74/bin/php composer.phar i
+          #      npm run prod
+          # /opt/php74/bin/php composer.phar i --no-dev
+          #git fetch --all
+          #git reset --hard origin/main
+          #          ls -ls
+
+  deploy_composer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ env.VPS_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR }}
+            /opt/php74/bin/php composer.phar i
+
+  deploy_npm:
+    runs-on: ubuntu-latest
+    steps:
+      #      - name: start
+      ##        uses: actions/checkout@master
+      #        run: ls -la
+
+      - name: "deploy_npm"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SERVER_USERNAME }}
+          username: ${{ env.VPS_USERNAME }}
+          #          key: ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR }}
+            npm run prod
 
 
   #  deploy:
