@@ -23,7 +23,8 @@ class ImportAvtoAsController extends Controller
         if (!Storage::exists('import1c/' . $file))
             return 'файла данных не обнаружено';
 
-        $ee = self::parsingXml( $file, false);
+//        $ee = self::parsingXml( $file, false);
+        $ee = self::parsingXml( $file );
 
         $msg = '';
 

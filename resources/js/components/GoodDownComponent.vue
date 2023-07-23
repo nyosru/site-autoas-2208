@@ -1,11 +1,6 @@
 <template>
     <div>
-
-        <good-analogi-component :tab="tabs[0]" :analogi="good.analog"/>
-
-        <!-- <br clear="all" />
-        showOrdersOnSklad {{ showOrdersOnSklad }} -->
-
+        <good-analogi-component :tab="tabs[0]" :analogi="good.good_analog"/>
         <br clear="all"/>
 
         <good-down-tab-all-autoparts-component
@@ -13,18 +8,18 @@
             :tab="tabs[1]"
             :good_articul="good.catnumber_search"
         />
+        <!--555222-->
+        <!--        <br clear="all"/>-->
+        <!--        <br clear="all"/>-->
+        <!--        <br clear="all"/>-->
 
-        <br clear="all"/>
-        <br clear="all"/>
-        <br clear="all"/>
-
-        good-down-tab-analogi-component <br clear="all"/>
-        <good-down-tab-analogi-component v-if="tab1.mini == 'analogi'"/>
-        <br clear="all"/>
+        <!--        good-down-tab-analogi-component <br clear="all"/>-->
+        <!--        <good-down-tab-analogi-component v-if="tab1.mini == 'analogi'"/>-->
+        <!--        <br clear="all"/>-->
         <!-- <good-down-tab-analogi2-component v-if="tab1.mini == 'analogi2'" /> -->
-        good-down-tab-analogi3-component <br clear="all"/>
-        <good-down-tab-analogi3-component v-if="tab1.mini == 'analogi3'"/>
-        <br clear="all"/>
+        <!--        good-down-tab-analogi3-component <br clear="all"/>-->
+        <!--        <good-down-tab-analogi3-component v-if="tab1.mini == 'analogi3'"/>-->
+        <!--        <br clear="all"/>-->
     </div>
 </template>
 
