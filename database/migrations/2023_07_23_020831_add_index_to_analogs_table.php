@@ -15,7 +15,8 @@ class AddIndexToAnalogsTable extends Migration
     {
 
         Schema::table('mod_021_items_analogs', function (Blueprint $table) {
-            $table->index(['art_origin', 'art_analog']);
+            $table->index('art_origin');
+            $table->index( 'art_analog');
         });
     }
 
