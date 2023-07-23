@@ -59,9 +59,9 @@ class Good extends Model
     /**
      * Получить аналоги
      */
-    public function analog()
 //    public function analogi()
 //    public function good_analog()
+    public function analog()
     {
 
         // return $this->hasMany(Comment::class, 'foreign_key', 'local_key');
@@ -113,6 +113,25 @@ class Good extends Model
 
            'a_catnumber', // Локальный ключ в таблице `projects` good ...
 //            'a_catnumber_search', // Локальный ключ в таблице `projects` good ...
+           'art_origin' // Локальный ключ в таблице `environments` goodanalog ...
+
+       );
+
+
+    }
+
+    public function good_analog()
+    {
+
+       return $this->hasManyThrough(
+
+           Good::class,
+           GoodAnalog::class,
+
+           'art_analog', // Внешний ключ в таблице `environments` goodanalog ...
+            'a_catnumber', // Внешний ключ в таблице `deployments` good ...
+
+           'a_catnumber', // Локальный ключ в таблице `projects` good ...
            'art_origin' // Локальный ключ в таблице `environments` goodanalog ...
 
        );

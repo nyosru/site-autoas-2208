@@ -32,6 +32,7 @@ class GoodController extends Controller
 
 //                ->where( 'art_origin' , 'LIKE', $good2['a_catnumber'])
 //                ->where( 'a_catnumber' , 'mod_021_items_analogs.art_origin')
+
                 ->get()
                  ->toArray()
             ;
@@ -116,7 +117,7 @@ class GoodController extends Controller
         try{
 
             if( config('app.env') == 'dev' )
-            \Debugbar::error( __LINE__ , 'show' , 'try' );
+            \Debugbar::error( __LINE__ , 'try' );
 
 ////        $good = Good::where('a_id', $id)->where('status', 'show')->get();
 //            $good2 =
@@ -126,8 +127,9 @@ class GoodController extends Controller
 //        $good = Good::with('good_analog')->where('a_id', $id)->where('status', 'show')->get();
 //        $good = Good::with('analog')->where('a_id', $id)->where('status', 'show')->get();
 //        $good2 = Good::where('a_id', $id)->where('status', 'show')->get()->toArray();
-        $good2 = Good::where('a_id', $id)
-            ->with('analog')
+
+        $good2 = Good::with('good_analog')
+            ->where('a_id', $id)
             ->where('status', 'show')->get();
 
 

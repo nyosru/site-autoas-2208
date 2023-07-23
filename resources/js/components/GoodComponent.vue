@@ -140,12 +140,17 @@
                         </div>
                     </div>
 
-                    <!--                    аналоги-->
-                    <!--                    <good-down-component :good="goodData"-->
-                    <!--                                         :showOrdersOnSklad=" $route.params.dop == 'showOrdersOnSklad'"/>-->
+                    <!-- аналоги + форма заказа товаров со складов -->
+                    <good-down-component :good="goodData"
+                                         :showOrdersOnSklad=" $route.params.dop == 'showOrdersOnSklad'"/>
 
-                    <good-down-analogi-component/>
-
+                    <br/>
+                    <br/>
+                    <!--                    2222-->
+                    <!--                    <br/>-->
+                    <!--                    <br/>-->
+                    <!--                    загрузка аналогов дополнительно ajax-->
+                    <!--                    <good-down-analogi-component/>-->
 
                 </div>
 

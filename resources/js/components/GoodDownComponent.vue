@@ -1,44 +1,43 @@
 <template>
-  <div>
+    <div>
+        <good-analogi-component :tab="tabs[0]" :analogi="good.good_analog"/>
+        <br clear="all"/>
 
-    <good-analogi-component :tab="tabs[0]" :analogi="good.analog" />
+        <good-down-tab-all-autoparts-component
+            v-if="showOrdersOnSklad"
+            :tab="tabs[1]"
+            :good_articul="good.catnumber_search"
+        />
+        <!--555222-->
+        <!--        <br clear="all"/>-->
+        <!--        <br clear="all"/>-->
+        <!--        <br clear="all"/>-->
 
-    <!-- <br clear="all" />
-    showOrdersOnSklad {{ showOrdersOnSklad }} -->
-
-    <br clear="all" />
-
-    <good-down-tab-all-autoparts-component
-      v-if="showOrdersOnSklad"
-      :tab="tabs[1]"
-      :good_articul="good.catnumber_search"
-    />
-
-    <br clear="all" />
-    <br clear="all" />
-    <br clear="all" />
-
-    <!-- <good-down-tab-analogi-component v-if="tab1.mini == 'analogi'" /> -->
-    <!-- <good-down-tab-analogi2-component v-if="tab1.mini == 'analogi2'" /> -->
-    <!-- <good-down-tab-analogi3-component v-if="tab1.mini == 'analogi3'" /> -->
-  </div>
+        <!--        good-down-tab-analogi-component <br clear="all"/>-->
+        <!--        <good-down-tab-analogi-component v-if="tab1.mini == 'analogi'"/>-->
+        <!--        <br clear="all"/>-->
+        <!-- <good-down-tab-analogi2-component v-if="tab1.mini == 'analogi2'" /> -->
+        <!--        good-down-tab-analogi3-component <br clear="all"/>-->
+        <!--        <good-down-tab-analogi3-component v-if="tab1.mini == 'analogi3'"/>-->
+        <!--        <br clear="all"/>-->
+    </div>
 </template>
 
 <script setup>
-import { ref } from '@vue/reactivity'
+import {ref} from '@vue/reactivity'
 
 import GoodAnalogiComponent from './GoodDownTabAnalogi0Component.vue'
 
-// import GoodDownTabAnalogiComponent from './GoodDownTabAnalogiComponent.vue'
+import GoodDownTabAnalogiComponent from './GoodDownTabAnalogiComponent.vue'
 // import GoodDownTabAnalogi2Component from './GoodDownTabAnalogi2Component.vue'
-// import GoodDownTabAnalogi3Component from './GoodDownTabAnalogi3Component.vue'
+import GoodDownTabAnalogi3Component from './GoodDownTabAnalogi3Component.vue'
 
 import GoodDownTabAllAutopartsComponent from './GoodDownTabSellAuptopartsComponent.vue'
 
 const props = defineProps({
-  good: Object,
-  // показывать или нет заказ с удалённого склада
-  showOrdersOnSklad: Boolean,
+    good: Object,
+    // показывать или нет заказ с удалённого склада
+    showOrdersOnSklad: Boolean,
 })
 
 // const app = Vue.createApp({
@@ -46,26 +45,26 @@ const props = defineProps({
 //     return {
 const currentTab = ref('GoodDownTabAnalogiComponent')
 const tabs = ref([
-  { name: 'Аналоги', mini: 'analogi0', component: 'GoodAnalogiComponent' },
-  { name: 'Заказать с удалённых складов', mini: 'allAutoparts', component: '' },
-  // { name: 'Home', mini: 'analogi', component: 'GoodDownTabAnalogiComponent' },
-  // {
-  //   name: 'Home1',
-  //   mini: 'analogi2',
-  //   component: 'GoodDownTabAnalogi2Component',
-  // },
-  // {
-  //   name: 'Home2',
-  //   mini: 'analogi3',
-  //   component: 'GoodDownTabAnalogi3Component',
-  // },
-  // 'GoodAnalogiComponent', 'Posts', 'Archive'
+    {name: 'Аналоги', mini: 'analogi0', component: 'GoodAnalogiComponent'},
+    {name: 'Заказать с удалённых складов', mini: 'allAutoparts', component: ''},
+    // { name: 'Home', mini: 'analogi', component: 'GoodDownTabAnalogiComponent' },
+    // {
+    //   name: 'Home1',
+    //   mini: 'analogi2',
+    //   component: 'GoodDownTabAnalogi2Component',
+    // },
+    // {
+    //   name: 'Home2',
+    //   mini: 'analogi3',
+    //   component: 'GoodDownTabAnalogi3Component',
+    // },
+    // 'GoodAnalogiComponent', 'Posts', 'Archive'
 ])
 
 const currentTabComponent = (name) => {
-  currentTab.value = name
-  console.log(name)
-  // return 'tab-' + name
+    currentTab.value = name
+    console.log(name)
+    // return 'tab-' + name
 }
 
 // const scrollFix = (hash) => {
@@ -152,40 +151,44 @@ const currentTabComponent = (name) => {
 
 <style scoped>
 h2 {
-  color: rgb(40, 57, 118);
-  text-decoration: underline;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+    color: rgb(40, 57, 118);
+    text-decoration: underline;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
+
 .demo {
-  font-family: sans-serif;
-  border: 1px solid #eee;
-  border-radius: 2px;
-  padding: 20px 30px;
-  margin-top: 1em;
-  margin-bottom: 40px;
-  user-select: none;
-  overflow-x: auto;
+    font-family: sans-serif;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    padding: 20px 30px;
+    margin-top: 1em;
+    margin-bottom: 40px;
+    user-select: none;
+    overflow-x: auto;
 }
 
 .tab-button {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-bottom: -1px;
-  margin-right: -1px;
+    padding: 6px 10px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    background: #f0f0f0;
+    margin-bottom: -1px;
+    margin-right: -1px;
 }
+
 .tab-button:hover {
-  background: #e0e0e0;
+    background: #e0e0e0;
 }
+
 .tab-button.active {
-  background: #e0e0e0;
+    background: #e0e0e0;
 }
+
 .demo-tab {
-  border: 1px solid #ccc;
-  padding: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
 }
 </style>
