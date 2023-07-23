@@ -47,7 +47,10 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             cd ${{ env.DIR }}
-            git pull
+            git fetch --all
+            git reset --hard origin/main
+
+#            git pull
           #      /opt/php74/bin/php composer.phar i
           #      npm run prod
           # /opt/php74/bin/php composer.phar i --no-dev
