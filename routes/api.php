@@ -56,19 +56,32 @@ Route::get('/getTest', function (Request $request) {
     $output = null;
     $retval = null;
 
-    exec('php artisan test', $output, $retval);
+    if ($_SERVER['HTTP_HOST'] == '22.avto-as.ru') {
+        exec('/opt/php74/bin/php artisan test', $output, $retval);
+    } else {
+        exec('php artisan test', $output, $retval);
+    }
+    
     // echo "Вернёт статус $retval и значение:\n";
     echo '<pre>';
 
     $a1 = $a2 = [];
-    $a1[] = '[37;1m';    $a2[] = '';
-    $a1[] = '[39;22m';    $a2[] = '';
-    $a1[] = '[32;1m';    $a2[] = '';
-    $a1[] = '[39m';    $a2[] = '';
-    $a1[] = '[22m';    $a2[] = '';
-    $a1[] = '[2m';    $a2[] = '';
-    $a1[] = '[30;42;1m';    $a2[] = '';
-    $a1[] = '[39;49;22m';    $a2[] = '';
+    $a1[] = '[37;1m';
+    $a2[] = '';
+    $a1[] = '[39;22m';
+    $a2[] = '';
+    $a1[] = '[32;1m';
+    $a2[] = '';
+    $a1[] = '[39m';
+    $a2[] = '';
+    $a1[] = '[22m';
+    $a2[] = '';
+    $a1[] = '[2m';
+    $a2[] = '';
+    $a1[] = '[30;42;1m';
+    $a2[] = '';
+    $a1[] = '[39;49;22m';
+    $a2[] = '';
 
     $output2 = str_replace($a1, $a2, $output);
     print_r($output2);
@@ -79,8 +92,7 @@ Route::get('/getTest', function (Request $request) {
         if (strpos($str, 'Tests:') !== false) {
             echo $str . '<br/>';
             $next = true;
-        }
-        else if ($next) {
+        } else if ($next) {
             echo $str;
             $next = false;
         } else {
