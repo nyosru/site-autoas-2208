@@ -1,4 +1,4 @@
-name: Avto-as тестирование кода222
+name: Avto-as тестирование кода на avto-as.ru
 
 on:
   workflow_dispatch:
@@ -40,20 +40,20 @@ jobs:
 #             cd ${{ env.DIR }}
 #             php artisan test
 
-      - name: тест сайта разработки
-        if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
-        # run: pytest tests/test_button.py::test_button_exist
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ env.VPS_IP }}
-#          host: ${{ secrets.SERVER_IP }}
-#          username: ${{ secrets.SERVER_USERNAME }}
-          username: ${{ env.VPS_USERNAME }}
-#          key: ${{ secrets.SSH_KEY }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          script: |
-            cd ${{ env.DIR }}
-            /opt/php74/bin/php artisan test
+#       - name: тест сайта разработки
+#         if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
+#         # run: pytest tests/test_button.py::test_button_exist
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ env.VPS_IP }}
+# #          host: ${{ secrets.SERVER_IP }}
+# #          username: ${{ secrets.SERVER_USERNAME }}
+#           username: ${{ env.VPS_USERNAME }}
+# #          key: ${{ secrets.SSH_KEY }}
+#           key: ${{ secrets.DEPLOY_KEY }}
+#           script: |
+#             cd ${{ env.DIR }}
+#             /opt/php74/bin/php artisan test
 
       - name: тест боевого сайта
         if: "github.event.inputs.deployment_target == 'тест боевого сайта'"
@@ -66,20 +66,20 @@ jobs:
             cd ${{ env.DIR_PROD }}
             /opt/php74/bin/php artisan test
 
-      - name: second_test
-        if: "github.event.inputs.deployment_target == 'second_test'"
-        # run: pytest tests/test_button.py::test_button_exist_2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ env.VPS_IP }}
-#          host: ${{ secrets.SERVER_IP }}
-#          username: ${{ secrets.SERVER_USERNAME }}
-          username: ${{ env.VPS_USERNAME }}
-#          key: ${{ secrets.SSH_KEY }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          script: |
-            cd ${{ env.DIR }}
-            /opt/php74/bin/php artisan test --group=test
+#       - name: second_test
+#         if: "github.event.inputs.deployment_target == 'second_test'"
+#         # run: pytest tests/test_button.py::test_button_exist_2
+#         uses: appleboy/ssh-action@master
+#         with:
+#           host: ${{ env.VPS_IP }}
+# #          host: ${{ secrets.SERVER_IP }}
+# #          username: ${{ secrets.SERVER_USERNAME }}
+#           username: ${{ env.VPS_USERNAME }}
+# #          key: ${{ secrets.SSH_KEY }}
+#           key: ${{ secrets.DEPLOY_KEY }}
+#           script: |
+#             cd ${{ env.DIR }}
+#             /opt/php74/bin/php artisan test --group=test
 
 
 
