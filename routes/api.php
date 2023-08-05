@@ -59,9 +59,10 @@ Route::get('/getTest', function (Request $request) {
     if ($_SERVER['HTTP_HOST'] == '22.avto-as.ru') {
         exec('/opt/php74/bin/php artisan test', $output, $retval);
     } else {
-        exec('php artisan test', $output, $retval);
+        // exec('php artisan test', $output, $retval);
+        exec('vendor/bin/phpunit', $output, $retval);
     }
-    
+
     // echo "Вернёт статус $retval и значение:\n";
     echo '<pre>';
 
@@ -84,25 +85,28 @@ Route::get('/getTest', function (Request $request) {
     $a2[] = '';
 
     $output2 = str_replace($a1, $a2, $output);
-    print_r($output2);
+    // print_r($output2);
 
     $next = false;
 
+    echo '<pre>';
     foreach ($output2 as $str) {
-        if (strpos($str, 'Tests:') !== false) {
-            echo $str . '<br/>';
-            $next = true;
-        } else if ($next) {
-            echo $str;
-            $next = false;
-        } else {
-            $next = false;
-        }
-
+        echo $str . PHP_EOL;
     }
-
     echo '</pre>';
 
+    // foreach ($output2 as $str) {
+    //     if (strpos($str, 'Tests:') !== false) {
+    //         echo $str . '<br/>';
+    //         $next = true;
+    //     } else if ($next) {
+    //         echo $str;
+    //         $next = false;
+    //     } else {
+    //         $next = false;
+    //     }
+    // }
+    // echo '</pre>';
     // return $request->user();
 });
 
