@@ -87,8 +87,11 @@ class ShopGoodApiTest extends TestCase
         // dd($ga);
         $response = $this->getJson(route('good.show', $goods[0]->a_id));
         // dd($response);
-        $response->assertStatus(200)
-            ->assertSeeText($ga[0]->head);
+        $response->assertStatus(200);
+
+        // dd($response);
+
+        $response->assertSeeText($ga[0]->head);
 
     }
 
