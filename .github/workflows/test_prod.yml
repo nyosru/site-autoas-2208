@@ -1,4 +1,4 @@
-name: Avto-as тестирование кода на avto-as.ru
+name: test кода на avto-as.ru
 
 on:
   workflow_dispatch:
