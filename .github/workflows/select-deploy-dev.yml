@@ -1,4 +1,4 @@
-name: Avtoas Test's 
+name: Avto-as тестирование кода
 
 on:
   workflow_dispatch:
@@ -16,7 +16,9 @@ env:
   VPS_IP: 46.254.19.97
   VPS_USERNAME: di4basa7
   DIR: www/lara2
+  DIR_PROD: www/prod
   GIT_BRANCH: origin/main
+  GIT_BRANCH_PROD: origin/prod
 
 jobs:
 
@@ -38,7 +40,7 @@ jobs:
 #             cd ${{ env.DIR }}
 #             php artisan test
 
-      - name: first_test
+      - name: тест сайта разработки
         if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
         # run: pytest tests/test_button.py::test_button_exist
         uses: appleboy/ssh-action@master
@@ -51,6 +53,17 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
             cd ${{ env.DIR }}
+            /opt/php74/bin/php artisan test
+
+      - name: тест боевого сайта
+        if: "github.event.inputs.deployment_target == 'тест боевого сайта'"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ env.VPS_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd ${{ env.DIR_PROD }}
             /opt/php74/bin/php artisan test
 
       - name: second_test
