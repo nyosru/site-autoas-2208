@@ -1,4 +1,4 @@
-name: Deploy avtoas - to main
+name: Avtoas Test's 
 
 on:
   workflow_dispatch:
@@ -9,8 +9,8 @@ on:
         default: second_test
         type: choice
         options:
-          - first_test
-          - second_test
+          - тест боевого сайта
+          - тест сайта разработки
 
 env:
   VPS_IP: 46.254.19.97
@@ -39,7 +39,7 @@ jobs:
 #             php artisan test
 
       - name: first_test
-        if: "github.event.inputs.deployment_target == 'first_test'"
+        if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
         # run: pytest tests/test_button.py::test_button_exist
         uses: appleboy/ssh-action@master
         with:
