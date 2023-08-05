@@ -41,7 +41,7 @@ jobs:
 #             php artisan test
 
       - name: тест сайта разработки
-        if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
+        # if: "github.event.inputs.deployment_target == 'тест сайта разработки'"
         # run: pytest tests/test_button.py::test_button_exist
         uses: appleboy/ssh-action@master
         with:
