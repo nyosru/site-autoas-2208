@@ -65,7 +65,7 @@ class ShopGoodApiTest extends TestCase
 
     }
 
-    public function test_good_api_analogi_havent()
+    public function test_good_api_analogi_showed_in_page_1good()
     {
 
         $cats = Catalog::factory(2)->create();
@@ -79,18 +79,19 @@ class ShopGoodApiTest extends TestCase
         // // dd($goods[0]);
         // $goods = Good::limit(1)->get();
         // dd($goods[0]);
+
         $ga = GoodAnalog::factory(5)->create(
             [
                 'art_origin' => $goods[0]->a_id
             ]
         );
+
         // dd($ga);
         $response = $this->getJson(route('good.show', $goods[0]->a_id));
         // dd($response);
         $response->assertStatus(200);
 
         // dd($response);
-
         $response->assertSeeText($ga[0]->head);
 
     }
