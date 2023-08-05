@@ -1,4 +1,4 @@
-name: Deploy avtoas - to main
+name: Deploy main to 22.avto-as.ru
 
 on:
   push:
