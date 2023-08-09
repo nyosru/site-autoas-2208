@@ -242,14 +242,14 @@ jobs:
 
   sms_end:
     runs-on: ubuntu-latest
-    needs: [deploy_composer, deploy_npm]
+    needs: test
     steps:
       - name: send telega
         uses: appleboy/telegram-action@master
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
-           # я / Авто-АС / Денис Авто-СА
-           to: 360209578, 1022228978, 663501687 
+          # я / Авто-АС / Денис Авто-СА
+          to: 360209578, 1022228978, 663501687 
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             🍀🍀🍀 Тест проведён успешно
