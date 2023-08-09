@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Good;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 class GoodAnalogFactory extends Factory
 {
     /**
