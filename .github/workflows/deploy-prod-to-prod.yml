@@ -1,4 +1,4 @@
-name: Deploy avtoas - to prod
+name: Deploy prod to avto-as.ru
 
 on:
   push:

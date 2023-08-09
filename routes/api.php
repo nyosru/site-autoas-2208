@@ -34,6 +34,69 @@ use App\Http\Controllers\SendOrderController;
 //     return $request->user();
 // });
 
+Route::get('/getTest2', function (Request $request) {
+    echo '<pre>';
+
+    // Выводит весь результат команды оболочки "ls" и возвращает
+// последнюю строку вывода в переменной $last_line. Сохраняет код возврата
+// команды в $retval.
+    // $last_line = system('ls', $retval);
+    $last_line = system('php artisan test', $retval);
+
+    // Выводим дополнительную информацию
+    echo '
+        </pre>
+        <hr />Последняя строка вывода: ' . $last_line . '
+        <hr />Код возврата: ' . $retval;
+
+});
+
+Route::get('/getTest', function (Request $request) {
+
+    $output = null;
+    $retval = null;
+
+    if ($_SERVER['HTTP_HOST'] == '22.avto-as.ru') {
+        exec('/opt/php74/bin/php artisan test', $output, $retval);
+    } else {
+        // exec('php artisan test', $output, $retval);
+        exec('vendor/bin/phpunit', $output, $retval);
+    }
+
+    // echo "Вернёт статус $retval и значение:\n";
+    echo '<pre>';
+
+    $a1 = $a2 = [];
+    $a1[] = '[37;1m';
+    $a2[] = '';
+    $a1[] = '[39;22m';
+    $a2[] = '';
+    $a1[] = '[32;1m';
+    $a2[] = '';
+    $a1[] = '[39m';
+    $a2[] = '';
+    $a1[] = '[22m';
+    $a2[] = '';
+    $a1[] = '[2m';
+    $a2[] = '';
+    $a1[] = '[30;42;1m';
+    $a2[] = '';
+    $a1[] = '[39;49;22m';
+    $a2[] = '';
+
+    $output2 = str_replace($a1, $a2, $output);
+    // print_r($output2);
+
+    $next = false;
+
+    echo '<pre>';
+    foreach ($output2 as $str) {
+        echo $str . PHP_EOL;
+    }
+    echo '</pre>';
+
+});
+
 
 Route::apiResource('catalog', CatalogController::class);
 Route::apiResource('goodscat', GoodsCatController::class);
