@@ -17,24 +17,17 @@ class ShopCatApiTest extends TestCase
     use DatabaseMigrations;
     use RefreshDatabase;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        // Catalog::factory(10)->create();
-        $response = $this->get('/');
-        $response->assertStatus(200);
-    }
-
-    public function test_example_api()
-    {
-        // $response = $this->get(route('goodscat.show'));
-        $response = $this->getJson(route('goodscat.show', ['goodscat' => 'ЦБ002233']));
-        $response->assertStatus(200);
-    }
+    // /**
+    //  * A basic feature test example.
+    //  *
+    //  * @return void
+    //  */
+    // public function test_example()
+    // {
+    //     // Catalog::factory(10)->create();
+    //     $response = $this->get('/');
+    //     $response->assertStatus(200);
+    // }
 
 
     public function test_catalog_api_enable()
@@ -44,6 +37,15 @@ class ShopCatApiTest extends TestCase
         $response->assertStatus(200);
     }
 
+
+    public function test_catalog_api_get_info_1cat()
+    {
+        // $response = $this->get(route('goodscat.show'));
+        $response = $this->getJson(route('goodscat.show', ['goodscat' => 'ЦБ002233']));
+        $response->assertStatus(200);
+    }
+
+    
     /**
      * @group api1
      */
