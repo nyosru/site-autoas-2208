@@ -8,10 +8,10 @@ env:
   GIT_BRANCH: origin/main
   GIT_BRANCH_PROD: origin/prod
 
-
 on:
+  schedule:
+    - cron: "37 08 * * *"
   workflow_dispatch:
-    
 # inputs:
 #   deployment_target:
 #     description: Choose target
