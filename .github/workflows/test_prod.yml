@@ -1,17 +1,5 @@
 name: test кода на avto-as.ru
 
-on:
-  workflow_dispatch:
-    # inputs:
-    #   deployment_target:
-    #     description: Choose target
-    #     required: true
-        # default: second_test
-        # type: 
-        # options:
-        #   - тест боевого сайта
-        #   - тест сайта разработки
-
 env:
   VPS_IP: 46.254.19.97
   VPS_USERNAME: di4basa7
@@ -20,8 +8,21 @@ env:
   GIT_BRANCH: origin/main
   GIT_BRANCH_PROD: origin/prod
 
-jobs:
 
+on:
+  workflow_dispatch:
+    
+# inputs:
+#   deployment_target:
+#     description: Choose target
+#     required: true
+# default: second_test
+# type: 
+# options:
+#   - тест боевого сайта
+#   - тест сайта разработки
+
+jobs:
 
   test:
     runs-on: ubuntu-latest
@@ -38,8 +39,10 @@ jobs:
             /opt/php74/bin/php artisan test
 
   sms_start:
+
     runs-on: ubuntu-latest
     steps:
+
       - name: send telega
         uses: appleboy/telegram-action@master
         with:
