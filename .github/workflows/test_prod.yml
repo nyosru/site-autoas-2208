@@ -9,8 +9,8 @@ env:
   GIT_BRANCH_PROD: origin/prod
 
 on:
-  # schedule:
-  #   - cron: "37 08 * * *"
+  schedule:
+    - cron: "17 08 * * *"
   workflow_dispatch:
 # inputs:
 #   deployment_target:
