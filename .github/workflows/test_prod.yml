@@ -10,7 +10,7 @@ env:
 
 on:
   schedule:
-    - cron: "07 08 * * *"
+    - cron: "07 07 * * *"
   workflow_dispatch:
 # inputs:
 #   deployment_target:
