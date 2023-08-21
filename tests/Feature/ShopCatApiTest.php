@@ -14,8 +14,8 @@ use Illuminate\Testing\Fluent\AssertableJson;
  */
 class ShopCatApiTest extends TestCase
 {
-    // use DatabaseMigrations;
-    // use RefreshDatabase;
+    use DatabaseMigrations;
+    use RefreshDatabase;
 
     // /**
     //  * A basic feature test example.
@@ -51,7 +51,7 @@ class ShopCatApiTest extends TestCase
      */
     public function test_catalog_api_one_enable()
     {
-        // Catalog::factory(10)->create();
+        Catalog::factory(10)->create();
         $cat = Catalog::limit(1)->get();
         $response = $this->getJson(route('catalog.show', $cat[0]->id));
         $response->assertStatus(200);
