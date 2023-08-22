@@ -27,3 +27,4 @@ public/
 public/js/app.js
 .vscode/sftp.json
 .idea/
+.env.testing
