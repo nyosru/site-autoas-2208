@@ -11,7 +11,7 @@ env:
 on:
   
   schedule:
-    - cron: "27 07 * * *"
+    - cron: "31 07 * * *"
 
   workflow_dispatch:
 # inputs:
