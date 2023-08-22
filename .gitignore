@@ -17,7 +17,9 @@ public_html/hot
 
 storage/*.key
 .env
+/.env.testing
 .env.testing
+
 Homestead.yaml
 Homestead.json
 /.vagrant
@@ -27,4 +29,3 @@ public/
 public/js/app.js
 .vscode/sftp.json
 .idea/
-.env.testing
