@@ -13,6 +13,13 @@ use Nyos\Msg;
 
 class ImportAvtoAsController extends Controller
 {
+
+    // public function import2()
+    // {
+    //     $e = sizeof(Storage::files('public/photo'));
+    //     dd($e);
+    // }
+
     /**
      * импорт дата файла
      * @return \Illuminate\Http\Response
@@ -55,15 +62,16 @@ class ImportAvtoAsController extends Controller
 
         // 360209578, // я
 
+        $photos = 'Фото: '.sizeof(Storage::files('public/photo'));
+
         Msg::$admins_id = [
             1022228978, // AvtoAs
             663501687, //Денис Авто-СА
         ];
-        Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg, null, 2);
+        Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg.$photos, null, 2);
 
-        return '<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . '</pre>';
+        return '<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>';
     }
-
 
     /**
      *
