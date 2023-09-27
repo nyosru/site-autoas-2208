@@ -22,7 +22,9 @@ class ImportAvtoAsController extends Controller
 
     /**
      * импорт дата файла
-     * @return \Illuminate\Http\Response
+     * @param $file
+     * @return string
+     * @throws \Exception
      */
     public function import($file = 'AllCatalog.xml')
     {
@@ -64,13 +66,15 @@ class ImportAvtoAsController extends Controller
 
         $photos = 'Фото: '.sizeof(Storage::files('public/photo'));
 
+        if( !isset( $_GET['cancel_notification'] ) )
         Msg::$admins_id = [
             1022228978, // AvtoAs
             663501687, //Денис Авто-СА
         ];
         Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg.$photos, null, 2);
 
-        return '<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>';
+        die('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>');
+//        return response('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>',200);
     }
 
     /**
@@ -259,7 +263,7 @@ class ImportAvtoAsController extends Controller
         // if (!$reader->open($sc . $file))
         if (!$reader->open($fileImport)) {
             // throw new \Exception('Failed to open ' . $sc . $file);
-            throw new \Exception('Failed to open ' . $fileImport);
+            throw new \Exception('Failed to open ' . $fileImport , 422 );
         }
 
         $d = ['id' => 0, 'parentId' => 0, 'name' => 'head'];
