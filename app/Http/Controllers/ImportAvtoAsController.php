@@ -83,12 +83,13 @@ class ImportAvtoAsController extends Controller
 //        return response()->json( [ 'line' => __LINE__  , 'ee' => $ee , 'return' => $return ] );
 
         if (!empty($request->cancel_notification)) {
+            Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 1);
+        } //
+        else {
             Msg::$admins_id = [
                 1022228978, // AvtoAs
                 663501687, //Денис Авто-СА
             ];
-        } //
-        else {
             Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 2);
         }
 
