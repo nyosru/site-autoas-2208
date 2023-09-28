@@ -26,21 +26,32 @@ class ImportAvtoAsController extends Controller
      * @return string
      * @throws \Exception
      */
-    public function import($file = 'AllCatalog.xml')
+    public function import(Request $request, $file = 'AllCatalog.xml')
     {
+
+//        return response()->json( [ 'line' => __LINE__ ] );
+
+//        dd($request->return);
+//        dd($request->All());
+
+//        try {
 
         if (!Storage::exists('import1c/' . $file))
             return 'файла данных не обнаружено';
 
 //        $ee = self::parsingXml( $file, false);
-        $ee = self::parsingXml( $file );
+        $ee = self::parsingXml($file);
+
+//        return response()->json( [ 'line' => __LINE__  , 'ee' => $ee ] );
 
         $msg = '';
+        $return = [];
 
         if (!empty($ee['cats'])) {
             Catalog::truncate();
             Catalog::insert($ee['cats']);
             $msg .= 'Каталогов: ' . sizeof($ee['cats']) . PHP_EOL;
+            $return['cats'] = sizeof($ee['cats']);
         }
 
 
@@ -52,6 +63,7 @@ class ImportAvtoAsController extends Controller
             }
 
             $msg .= 'Товаров: ' . sizeof($ee['items']) . PHP_EOL;
+            $return['items'] = sizeof($ee['items']);
         }
 
         if (!empty($ee['analogs'])) {
@@ -60,21 +72,38 @@ class ImportAvtoAsController extends Controller
                 GoodAnalog::insert($t);
             }
             $msg .= 'и связей для Аналогов: ' . sizeof($ee['analogs']) . PHP_EOL;
+            $return['analogs'] = sizeof($ee['analogs']);
         }
 
         // 360209578, // я
 
-        $photos = 'Фото: '.sizeof(Storage::files('public/photo'));
+        $return['photo'] = sizeof(Storage::files('public/photo'));
+        $photos = 'Фото: ' . $return['photo'];
 
-        if( !isset( $_GET['cancel_notification'] ) )
-        Msg::$admins_id = [
-            1022228978, // AvtoAs
-            663501687, //Денис Авто-СА
-        ];
-        Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg.$photos, null, 2);
+//        return response()->json( [ 'line' => __LINE__  , 'ee' => $ee , 'return' => $return ] );
 
-        die('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>');
+        if (!empty($request->cancel_notification)) {
+            Msg::$admins_id = [
+                1022228978, // AvtoAs
+                663501687, //Денис Авто-СА
+            ];
+        } //
+        else {
+            Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 2);
+        }
+
+
+//        return response()->json([
+//            'line' => __LINE__,
+////            'ee' => $ee,
+//            'return' => $return]);
+
+        if ($request->return == 'json') {
+            return response()->json($return);
+        } else {
+            die('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos . '</pre>');
 //        return response('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>',200);
+        }
     }
 
     /**
@@ -249,7 +278,7 @@ class ImportAvtoAsController extends Controller
         }
     }
 
-    public static function parsingXml($file = 'AllCatalog.xml' , $dataFileDelete = false )
+    public static function parsingXml($file = 'AllCatalog.xml', $dataFileDelete = false)
     {
 
         $fileImport = Storage::path('import1c/' . $file);
@@ -263,7 +292,7 @@ class ImportAvtoAsController extends Controller
         // if (!$reader->open($sc . $file))
         if (!$reader->open($fileImport)) {
             // throw new \Exception('Failed to open ' . $sc . $file);
-            throw new \Exception('Failed to open ' . $fileImport , 422 );
+            throw new \Exception('Failed to open ' . $fileImport, 422);
         }
 
         $d = ['id' => 0, 'parentId' => 0, 'name' => 'head'];
@@ -280,7 +309,7 @@ class ImportAvtoAsController extends Controller
                     'a_id' => '',
                     'a_parentid' => '',
                 ];
-                $node = (array) new \SimpleXMLElement($reader->readOuterXML());
+                $node = (array)new \SimpleXMLElement($reader->readOuterXML());
 
                 if (!empty($node['@attributes']))
                     foreach ($node['@attributes'] as $k1 => $v1) {
@@ -295,8 +324,7 @@ class ImportAvtoAsController extends Controller
                         }
                     }
                 $cats[] = $d1;
-            }
-            //
+            } //
             elseif ($reader->nodeType == \XMLReader::ELEMENT && $reader->name == 'item') {
 
                 $d1 = [
@@ -313,7 +341,7 @@ class ImportAvtoAsController extends Controller
                     'comment' => '',
                 ];
 
-                $node = (array) new \SimpleXMLElement($reader->readOuterXML());
+                $node = (array)new \SimpleXMLElement($reader->readOuterXML());
 
                 if (!empty($node['name'])) {
 
@@ -366,7 +394,7 @@ class ImportAvtoAsController extends Controller
 
         $reader->close();
 
-        if( $dataFileDelete === true ) {
+        if ($dataFileDelete === true) {
             unlink($fileImport);
         }
 
