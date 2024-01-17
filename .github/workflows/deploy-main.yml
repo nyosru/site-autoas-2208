@@ -54,7 +54,13 @@ jobs:
 
           script: |
             cd ${{ env.DIR }}
-            make prod
+#            make prod
+#            docker composer i
+            docker exec 2302didrive composer i --no-dev
+            docker exec 2302didrive php artisan migrate
+            docker exec 2302didrive php artisan l5-swagger:generate
+            docker exec 2312auto_as npx update-browserslist-db@latest
+            docker exec 2312auto_as npm run prod
 
   sms_start:
     runs-on: ubuntu-latest
