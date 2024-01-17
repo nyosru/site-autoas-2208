@@ -58,6 +58,7 @@ jobs:
             docker exec 2312auto_as npm run prod
 
   sms_start:
+
     runs-on: ubuntu-latest
     steps:
       - name: send telega
