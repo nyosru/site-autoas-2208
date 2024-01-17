@@ -53,7 +53,9 @@ jobs:
           script: |
             docker exec 2312auto_as composer i --no-dev
             docker exec 2312auto_as php artisan migrate
-            docker exec 2312auto_as php artisan l5-swagger:generate
+            # docker exec 2312auto_as php artisan l5-swagger:generate
+            docker exec 2312auto_as npm i
+            docker exec 2312auto_as npm install -g npm
             docker exec 2312auto_as npx update-browserslist-db@latest
             docker exec 2312auto_as npm run prod
 
