@@ -1,15 +1,15 @@
-name: Deploy avto-as dev main
+name: Deploy avto-as prod
 
 on:
   push:
     branches:
-      - main
+      - prod
 
 env:
   VPS_IP: 45.12.72.4
   VPS_USERNAME: root
-  DIR: /home_as/site-autoas-2208
-  GIT_BRANCH: origin/main
+  DIR: /home_as/site-autoas-2208_prod
+  GIT_BRANCH: origin/prod
 
 jobs:
 
@@ -51,13 +51,13 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            docker exec 2312auto_as composer i
+            docker exec 2312auto_as composer i --no-dev
             docker exec 2312auto_as php artisan migrate
             # docker exec 2312auto_as php artisan l5-swagger:generate
             docker exec 2312auto_as npm i
             docker exec 2312auto_as npm install -g npm
             docker exec 2312auto_as npx update-browserslist-db@latest
-            docker exec 2312auto_as npm run dev
+            docker exec 2312auto_as npm run prod
 
   sms_start:
 
