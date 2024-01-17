@@ -2,7 +2,9 @@
   <div>
     <router-link :to="{ name: 'good', params: { good_id: i.a_id } }">
       <!-- i: {{ i }} -->
-      <img :src="'/storage/photo/' + i.a_arrayimage" loading="lazy" alt="" />
+      <img :src="'/storage/photo/' + i.a_arrayimage"
+           onerror="this.src='/storage/photo_no.jpg'"
+           loading="lazy" alt="" />
       <br />
       <strong>{{ i.head }}</strong>
       <br />
