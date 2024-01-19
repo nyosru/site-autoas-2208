@@ -2,7 +2,8 @@ name: test кода на avto-as.ru serv1
 
 env:
   VPS_IP: 46.254.19.97
-  VPS_USERNAME: di4basa7
+  xVPS_USERNAME: di4basa7
+  VPS_USERNAME: root
   DIR: www/lara2
   DIR_PROD: www/prod
   GIT_BRANCH: origin/main
