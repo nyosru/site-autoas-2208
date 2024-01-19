@@ -1,4 +1,4 @@
-name: test кода на 22.avto-as.ru
+name: test кода на 22.avto-as.ru serv1
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     #     description: Choose target
     #     required: true
         # default: second_test
-        # type: 
+        # type:
         # options:
         #   - тест боевого сайта
         #   - тест сайта разработки

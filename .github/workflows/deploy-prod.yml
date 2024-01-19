@@ -1,4 +1,4 @@
-name: Deploy avto-as prod
+name: Deploy avto-as prod serv2
 
 on:
   push:
