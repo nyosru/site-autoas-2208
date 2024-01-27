@@ -11,8 +11,8 @@ if (empty($_REQUEST['search']))
    // die($_SERVER['SERVER_NAME']);
 
 // if( $_SERVER['SERVER_NAME'] == 'localhost' ){
-if( isset($_REQUEST['ss']) && $_REQUEST['ss'] != 'da' ){
-
+if( $_REQUEST['ss'] != 'da' ){
+   
    die( file_get_contents('https://22.avto-as.ru/apiAllAutoparts/api.php?ss=da&search='.$_REQUEST['search'] ?? 'x' ) );
 
 }
@@ -24,18 +24,7 @@ require('./index_f.php');
 // echo '</pre>';
 
 // $cfgVar = parse_ini_file( $_SERVER['DOCUMENT_ROOT'].'/.env' , true );
-
-//if( file_exists('./../.env') ) {
-//    echo __LINE__;
-//}else{
-//    echo __LINE__;
-//}
-//echo '--';
-//$cfgVar = parse_ini_file('./../../.env');
-
-$cfgVar = parse_ini_file('./../.env');
-
-//$cfgVar = parse_ini_file('./../.env');
+$cfgVar = parse_ini_file('./../../.env');
 // echo '<pre>';echo print_r($cfgVar);echo '</pre>';
 // die();
 
@@ -95,7 +84,7 @@ if ($action !== FALSE) {
                Вот примерный порядок действий чтобы узнать имя параметра:
                1. Открываем WSDL схему документа броузером, например, Google Chrome
                Для этого открываем URL https://allautoparts.ru/WEBService/SearchService.svc/wsdl?wsdl
-               2. Находим строки
+               2. Находим строки 
                <xsd:schema targetNamespace="http://tempuri.org/Imports">
                   <xsd:import schemaLocation="https://allautoparts.ru/WEBService/SearchService.svc/wsdl?xsd=xsd0" namespace="http://tempuri.org/"/>
                   <xsd:import schemaLocation="https://allautoparts.ru/WEBService/SearchService.svc/wsdl?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
@@ -108,7 +97,7 @@ if ($action !== FALSE) {
                         <xs:element minOccurs="0" name="SearchParametersXml" nillable="true" type="xs:string"/>
                      </xs:sequence>
                   </xs:complexType>
-               </xs:element>
+               </xs:element>               
                */
 
 
@@ -135,10 +124,10 @@ if ($action !== FALSE) {
 //    [AnalogueManufacturerName] => KNECHT/MAHLE
 //    [AnalogueWeight] => 0.000
 //    [CodeAsIs] => OC47
-//    [DeliveryVariantPriceAKiloForClientDescription] =>
+//    [DeliveryVariantPriceAKiloForClientDescription] => 
 //    [DeliveryVariantPriceAKiloForClientPrice] => 0.00
-//    [DeliveryVariantPriceNote] =>
-//    [PriceListItemDescription] =>
+//    [DeliveryVariantPriceNote] => 
+//    [PriceListItemDescription] => 
 //    [PriceListItemNote] => [OC47]MAHLE/KNECHT
 //    [IsAvailability] => 1
 //    [IsCross] => 0
@@ -152,7 +141,7 @@ if ($action !== FALSE) {
 //    [ProductName] => Фильтр масляный (Mahle Фильтр масляный)
 //    [Quantity] => 22
 //    [SupplierID] => 1513
-//    [GroupTitle] =>
+//    [GroupTitle] => 
 //    [Price] => 303.00
 //    [Reference] => 901911655
 // )
