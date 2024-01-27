@@ -14,7 +14,7 @@
 
 import {ref} from '@vue/reactivity'
 import GoodAnalogiComponent from './GoodDownTabAnalogi0Component.vue'
-import GoodDownTabAnalogiComponent from './GoodDownTabAnalogiComponent.vue'
+// import GoodDownTabAnalogiComponent from './GoodDownTabAnalogiComponent.vue'
 import GoodDownTabAllAutopartsComponent from './GoodDownTabSellAuptopartsComponent.vue'
 
 const props = defineProps({
