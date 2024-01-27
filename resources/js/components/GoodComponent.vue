@@ -139,6 +139,8 @@ import {
 } from 'vue'
 import {useRoute} from 'vue-router'
 import GoodDownComponent from './GoodDownComponent.vue'
+import GoodDownAnalogiComponent from "./GoodDownAnalogiComponent";
+import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 
 const route = useRoute()
 const goodQuantity = ref(1)
