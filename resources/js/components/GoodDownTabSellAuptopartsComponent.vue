@@ -46,8 +46,10 @@
           </template>
         </tbody>
       </table>
+        {{ items }}
     </div>
   </div>
+    321321
   </div>
 </template>
 

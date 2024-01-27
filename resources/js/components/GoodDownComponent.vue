@@ -10,6 +10,7 @@
             :good_articul="good.catnumber_search"
         />
         5555
+
         <good-down-tab-sell-auptoparts-component
             xv-if="showOrdersOnSklad"
             :tab="tabs[1]"
