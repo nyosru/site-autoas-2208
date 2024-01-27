@@ -22,7 +22,8 @@ const props = defineProps({
     // показывать или нет заказ с удалённого склада
     showOrdersOnSklad: Boolean,
 })
-const currentTab = ref('GoodDownTabAnalogiComponent')
+// const currentTab = ref('GoodDownTabAnalogiComponent')
+const currentTab = ref('')
 const tabs = ref([
     {name: 'Аналоги', mini: 'analogi0', component: 'GoodAnalogiComponent'},
     {name: 'Заказать с удалённых складов', mini: 'allAutoparts', component: ''},
