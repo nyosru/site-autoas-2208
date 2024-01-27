@@ -3,11 +3,13 @@
         <good-analogi-component :tab="tabs[0]" :analogi="good.good_analog"/>
         <br clear="all"/>
 
+        123
         <good-down-tab-all-autoparts-component
             v-if="showOrdersOnSklad"
             :tab="tabs[1]"
             :good_articul="good.catnumber_search"
         />
+        123
         <!--555222-->
         <!--        <br clear="all"/>-->
         <!--        <br clear="all"/>-->
