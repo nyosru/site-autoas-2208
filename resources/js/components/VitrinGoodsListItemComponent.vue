@@ -3,18 +3,25 @@
     <div class="product-item-img">
       <!-- <a href="/show/i/9415/podkryilok_plastikovyiy_peredniy_levyiy/"> -->
       <router-link :to="{ name: 'good', params: { good_id: i.a_id } }">
+<!--        <img-->
+<!--          v-if="i.a_arrayimage == ''"-->
+<!--          src="/storage/photo_no.jpg"-->
+<!--          loading="lazy"-->
+<!--          alt=""-->
+<!--          class="img-responsive"-->
+<!--          style="opacity: 0.4;"-->
+<!--        />-->
+<!--        <img-->
+<!--          v-else-->
+<!--          :src="'/storage/photo/' + i.a_arrayimage"-->
+<!--          loading="lazy"-->
+<!--          alt=""-->
+<!--          class="img-responsive"-->
+<!--        />-->
         <img
-          v-if="i.a_arrayimage == ''"
-          src="/storage/photo_no.jpg"
+          :src="'/storage/photo/' + i.a_arrayimage ?? 'x'"
           loading="lazy"
-          alt=""
-          class="img-responsive"
-          style="opacity: 0.4;"
-        />
-        <img
-          v-else
-          :src="'/storage/photo/' + i.a_arrayimage"
-          loading="lazy"
+          onerror="this.src='/storage/photo_no.jpg'"
           alt=""
           class="img-responsive"
         />
@@ -99,7 +106,7 @@ const goodAdd = () => {
   }
 }
 
-// watch: { '$route': function (value) { } } 
+// watch: { '$route': function (value) { } }
 // watchEffect()
 
 </script>

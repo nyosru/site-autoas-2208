@@ -51,6 +51,11 @@ Route::get('/getTest2', function (Request $request) {
 
 });
 
+//Route::get('allautoparts/{search}', function (Request $request) {
+Route::get('allautoparts/{search}', function ($search) {
+    return file_get_contents('https://api74.php-cat.com/allautoparts/api.php?ss=da&search=' . $search);
+});
+
 Route::get('/getTest', function (Request $request) {
 
     $output = null;
@@ -101,7 +106,8 @@ Route::get('/getTest', function (Request $request) {
 Route::apiResource('catalog', CatalogController::class);
 Route::apiResource('goodscat', GoodsCatController::class);
 Route::apiResource('good', GoodController::class);
-Route::get('goodAnalog/{id}', [ GoodController::class , 'showAnalog' ]);
+Route::get('goodAnalog/{id}', [GoodController::class, 'showAnalog']);
+
 
 Route::apiResource('page', PageController::class);
 Route::apiResource('banner', BannerController::class);

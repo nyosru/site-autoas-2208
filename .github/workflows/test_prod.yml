@@ -1,17 +1,18 @@
-name: test кода на avto-as.ru
+name: test кода на avto-as.ru serv1
 
 env:
   VPS_IP: 46.254.19.97
   VPS_USERNAME: di4basa7
+  xVPS_USERNAME: root
   DIR: www/lara2
   DIR_PROD: www/prod
   GIT_BRANCH: origin/main
   GIT_BRANCH_PROD: origin/prod
 
 on:
-  
+
   schedule:
-    - cron: "07 07 * * *"
+    - cron: "03 07 * * *"
 
   workflow_dispatch:
 # inputs:
@@ -19,7 +20,7 @@ on:
 #     description: Choose target
 #     required: true
 # default: second_test
-# type: 
+# type:
 # options:
 #   - тест боевого сайта
 #   - тест сайта разработки
@@ -50,7 +51,7 @@ jobs:
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
           # я / Авто-АС / Денис Авто-СА
-          to: 360209578, 1022228978, 663501687 
+          to: 360209578, 1022228978, 663501687
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             🐥🐥🐥 старт теста кода avto-as.ru
@@ -65,7 +66,7 @@ jobs:
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
           # я / Авто-АС / Денис Авто-СА
-          to: 360209578, 1022228978, 663501687 
+          to: 360209578, 1022228978, 663501687
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             🍀🍀🍀 Тест проведён успешно

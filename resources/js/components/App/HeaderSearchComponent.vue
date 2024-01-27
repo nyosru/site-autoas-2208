@@ -5,7 +5,7 @@
       action="/index.php"
       class="search-form"
       method="GET"
-      style="display: inline-block;"
+      style="display: inline-block; width: 80%;"
       @submit.prevent="goSearch"
     >
       <input

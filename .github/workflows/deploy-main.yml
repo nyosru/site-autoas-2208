@@ -1,4 +1,4 @@
-name: Deploy avto-as dev main
+name: Deploy avto-as dev main serv2
 
 on:
   push:

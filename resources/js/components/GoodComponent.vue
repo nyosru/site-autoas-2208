@@ -1,18 +1,5 @@
 <template>
     <div>
-        <!-- good_id: {{$route.params.good_id }} -->
-
-        <!-- <open-graph-component /> -->
-
-        <!--        <div class="row">-->
-        <!--            <div class="col-12">-->
-        <!--                goodLoading: {{ goodLoading }}-->
-        <!--                <br/>-->
-        <!--                goodData: {{ goodData }}-->
-        <!--            </div>-->
-        <!--        </div>-->
-
-
         <div class="row" v-if="goodLoading">
             <div class="col-12 text-center p-20">
                 .. загрузка ..
@@ -20,7 +7,6 @@
                 <img src="/storage/site/img/loader.gif"/>
             </div>
         </div>
-
         <div class="row" v-else>
             <div class="col-12 col-xs-12 text-center">
                 <div class="container">
@@ -41,14 +27,6 @@
                                 alt=""
                                 xclass="img-responsive"
                             />
-
-                            <!-- <img
-                              xsrc="/di-img/min/800/photo/K0177173.jpg"
-                              :src="goodData.a_arrayimage"
-                              alt="Комплект ГРМ"
-                              class="  "
-                              style="width: 100%;"
-                            /> -->
                         </div>
                         <div
                             class="col-xs-12 col-sm-4 xbg-info"
@@ -70,9 +48,6 @@
                             <p v-else>Цена:&nbsp;{{ NumberFormat(goodData.a_price) }}</p>
                             <br/>
                             <br/>
-
-                            <!-- goodInCart: {{ goodInCart($route.params.good_id) }} -->
-
                             <template v-if="goodInCart($route.params.good_id) !== true">
                                 <br/>
                                 кол-во:
@@ -133,7 +108,6 @@
                                     </router-link>
                                 </div>
                             </template>
-
                             <br/>
                             <br/>
                             <br/>
@@ -143,21 +117,11 @@
                     <!-- аналоги + форма заказа товаров со складов -->
                     <good-down-component :good="goodData"
                                          :showOrdersOnSklad=" $route.params.dop == 'showOrdersOnSklad'"/>
-
                     <br/>
                     <br/>
-                    <!--                    2222-->
-                    <!--                    <br/>-->
-                    <!--                    <br/>-->
-                    <!--                    загрузка аналогов дополнительно ajax-->
-                    <!--                    <good-down-analogi-component/>-->
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -174,12 +138,9 @@ import {
     // onMounted
 } from 'vue'
 import {useRoute} from 'vue-router'
-
-import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
-// import GoodAnalogi from './GoodDownTabAnalogi0Component.vue'
-// import GoodSellAuptoparts from './GoodSellAuptopartsComponent.vue'
 import GoodDownComponent from './GoodDownComponent.vue'
 import GoodDownAnalogiComponent from "./GoodDownAnalogiComponent";
+import VitrinGoodsListItem from './VitrinGoodsListItemComponent.vue'
 
 const route = useRoute()
 const goodQuantity = ref(1)
