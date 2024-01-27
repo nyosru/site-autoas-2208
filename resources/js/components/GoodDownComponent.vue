@@ -9,6 +9,12 @@
             :tab="tabs[1]"
             :good_articul="good.catnumber_search"
         />
+        5555
+        <good-down-tab-sell-auptoparts-component
+            xv-if="showOrdersOnSklad"
+            :tab="tabs[1]"
+            :good_articul="good.catnumber_search"
+        />
         123
         <!--555222-->
         <!--        <br clear="all"/>-->
@@ -35,6 +41,7 @@ import GoodDownTabAnalogiComponent from './GoodDownTabAnalogiComponent.vue'
 import GoodDownTabAnalogi3Component from './GoodDownTabAnalogi3Component.vue'
 
 import GoodDownTabAllAutopartsComponent from './GoodDownTabSellAuptopartsComponent.vue'
+import GoodDownTabSellAuptopartsComponent from "./GoodDownTabSellAuptopartsComponent.vue";
 
 const props = defineProps({
     good: Object,
