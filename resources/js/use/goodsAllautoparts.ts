@@ -2,10 +2,8 @@ import { ref } from 'vue'
 
 import axios from 'axios'
 
-
 import use_var from './var.js'
 const{ findedOnPartner , findedOnPartnerLoading } = use_var()
-
 
 const items = ref({})
 const itemsCount = ref(0)
@@ -17,82 +15,21 @@ const sortByField = (field) => {
 
 const load = async (searchString = '') => {
 
-  // console.log('9879879 load')
-
   items.value = {}
   loading.value = true
   findedOnPartnerLoading.value = true
 
-  // let d = new Date()
-  // const now_d =
-  //     d.getFullYear() +
-  //     '-' +
-  //     d.getMonth() +
-  //     '-' +
-  //     d.getDate() +
-  //     '-' +
-  //     d.getHours()
-
-  // if (
-  //     localStorage.adver &&
-  //     localStorage.adver.length > 0 &&
-  //     localStorage.adver_date &&
-  //     localStorage.adver_date == now_d
-  // ) {
-  //     items.value = JSON.parse(localStorage.adver)
-  //     loading.value = false
-  //         // console.log('cash 77',localStorage.cats)
-  //         // console.log('cat', 'cash 77')
-  // } else {
-  //     localStorage.adver_date = now_d
-
-  // window.scrollTo(0,0)
-
   await axios
-    // .get('/api/adverIndex')
-    // .post('https://22.avto-as.ru/apiAllAutoparts/api.php', {
-    // .post('/apiAllAutoparts/api.php', {
-    //   search: searchString,
-    //   // ss: 222,
-    // })
-    // .get('/apiAllAutoparts/api.php?search=' + searchString.replaceAll(' ', ''))
     .get('/api/allautoparts/' + searchString.replaceAll(' ', ''))
-    // .get('https://api74.php-cat.com/a/api.php?ss=da&search=' + searchString.replaceAll(' ', ''))
-    // .get('https://api_php74/a/api.php?ss=da&search=' + searchString.replaceAll(' ', ''))
     .then((response) => {
-      //   console.log('response', response)
-      //   console.log('response', response.data.data)
-      //   console.log('response', response.data)
-
-      // console.log("get_datar", response.data);
-      // items_loading_module.value = items_now_loading.value;
-      // data_filtered.value =
 
       if (
         response.data[0]['AnalogueCode']
       ) {
         findedOnPartner.value =
         itemsCount.value = Object.keys(response.data).length
-        //   console.log('kolvo',itemsCount.value)
-        //   if ( itemsCount.value == 0) {
-        //     console.log('пуст')
-        //   } else {
         items.value = response.data
         items.value.sort(sortByField('Price'))
-
-
-        // let lastElem2 = items.value.pop()
-        // console.log(lastElem2)
-        // items.value.unshift(lastElem2)
-
-        //   localStorage.adver = JSON.stringify(response.data.data)
-        // localStorage.cats = JSON.stringify(response.data.data)
-        // cfg.value = response.data.cfg;
-
-        // return response.data;
-        // items_loading.value = dfalse
-
-        // window.scrollTo(0,0)
       }
 
       loading.value = false
@@ -102,9 +39,7 @@ const load = async (searchString = '') => {
       findedOnPartnerLoading.value = false
       console.log('error', error)
       loading.value = false
-      // this.errored = true;
     })
-  // }
 }
 
 export default function goodsAllautoparts() {
