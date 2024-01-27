@@ -55,7 +55,8 @@ const load = async (searchString = '') => {
     //   search: searchString,
     //   // ss: 222,
     // })
-    .get('/apiAllAutoparts/api.php?search=' + searchString.replaceAll(' ', ''))
+    // .get('/apiAllAutoparts/api.php?search=' + searchString.replaceAll(' ', ''))
+    .get('https://api74.php-cat.com/a/api.php?ss=da&search=' + searchString.replaceAll(' ', ''))
     .then((response) => {
       //   console.log('response', response)
       //   console.log('response', response.data.data)
@@ -66,7 +67,7 @@ const load = async (searchString = '') => {
       // data_filtered.value =
 
       if (
-        response.data[0]['AnalogueCode'] 
+        response.data[0]['AnalogueCode']
       ) {
         findedOnPartner.value =
         itemsCount.value = Object.keys(response.data).length

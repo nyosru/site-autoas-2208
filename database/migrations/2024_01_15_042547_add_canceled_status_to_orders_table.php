@@ -14,10 +14,8 @@ class AddCanceledStatusToOrdersTable extends Migration
      */
     public function up()
     {
-
-        DB::statement("
-            ALTER TABLE `orders` CHANGE `status` `status` ENUM('new','start','maked','sended','finish','canceled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new' COMMENT 'new22 новый /\r\n start принят в работу, собираем /\r\n maked собран /\r\n sended отправлен /\r\n finish заказ получен, выполнен, закрыт /\r\n canceled отменён';
-        ");
+        DB::statement(' ALTER TABLE `orders` DROP `status`; ');
+        DB::statement("ALTER TABLE `orders` ADD `status` ENUM('new','start','maked','sended','finish','canceled') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new' COMMENT 'new22 новый /\r\n start принят в работу, собираем /\r\n maked собран /\r\n sended отправлен /\r\n finish заказ получен, выполнен, закрыт /\r\n canceled отменён';");
 
 //        Schema::table('orders', function (Blueprint $table) {
 //            // Для отмены изменений, если это необходимо

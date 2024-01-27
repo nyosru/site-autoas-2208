@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class AddCanceledStatusToOrdersTable extends Migration
+class AddAacanceledStatusToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class AddCanceledStatusToOrdersTable extends Migration
      */
     public function up()
     {
-
+        DB::statement(' ALTER TABLE `orders` DROP `status`; ');
         DB::statement("
-            ALTER TABLE `orders` CHANGE `status` `status`
+            ALTER TABLE `orders` ADD `status`
             ENUM(
             'new',
             'job',

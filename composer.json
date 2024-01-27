@@ -11,7 +11,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "nyos/msg": "^1.12"
+        "nyos/msg": "^1.12",
+        "phpcatcom/laravel-api-allautoparts": "^0.0.7",
+      "ext-soap": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
