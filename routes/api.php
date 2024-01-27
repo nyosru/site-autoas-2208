@@ -53,7 +53,8 @@ Route::get('/getTest2', function (Request $request) {
 
 //Route::get('allautoparts/{search}', function (Request $request) {
 Route::get('allautoparts/{search}', function ( $search ) {
-    return file_get_contents('https://api74.php-cat.com/a/api.php?ss=da&search='.$search );
+//    return file_get_contents('https://api74.php-cat.com/allautoparts/api.php?ss=da&search='.$search );
+    return file_get_contents('https://api_php74/allautoparts/api.php?ss=da&search='.$search );
 //    return $search;
 });
 
