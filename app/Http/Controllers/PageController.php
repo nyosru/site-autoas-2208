@@ -200,7 +200,7 @@ class PageController extends Controller
 
     public function getApiAllAutoparts(string $search)
     {
-        return AllAutopartsService::get(1, '113354', 'x', $search);
+        return json_encode( [ 1, AllAutopartsService::get(1, '113354', 'x', $search) ] );
     }
 
     // /**

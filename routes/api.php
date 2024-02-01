@@ -57,6 +57,7 @@ Route::get('/getTest2', function (Request $request) {
 //});
 Route::get('allautoparts/{search}', [PageController::class, 'getApiAllAutoparts']);
 
+
 Route::get('/getTest', function (Request $request) {
 
     $output = null;
