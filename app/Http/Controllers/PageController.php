@@ -7,6 +7,8 @@ use App\Mail\OrderNew;
 use App\Models\MailStop;
 use App\Models\Order;
 use App\Models\OrderGood;
+use http\QueryString;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
@@ -17,11 +19,16 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService;
+
+
+//use Phpcatcom\Api\AllAutoParts\Controllers\AllAutoPartsController;
+//use Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService;
 
 class PageController extends Controller
 {
 
-    public static function mailVerifyGood(String $email)
+    public static function mailVerifyGood(string $email)
     {
         return redirect('/')->with('emailVerify', $email);
     }
@@ -63,7 +70,6 @@ class PageController extends Controller
     }
 
 
-
     /**
      * приводим телефон к строке, начинается с 7
      * return number | show | 8
@@ -78,8 +84,8 @@ class PageController extends Controller
         // dd( $sPhone[0] );
         // dd(substr($sPhone, 0, 1));
 
-        if (strlen($sPhone) == 10){
-            $sPhone = '8'.$sPhone;
+        if (strlen($sPhone) == 10) {
+            $sPhone = '8' . $sPhone;
         }
 
         if ($return == 'number') {
@@ -92,7 +98,7 @@ class PageController extends Controller
             $phone = '+' . $sPhone;
         } elseif ($sPhone[0] == 8) {
             $phone = '+7' . substr($sPhone, 1, 10);
-            // dD($ph);    
+            // dD($ph);
         }
 
 
@@ -153,43 +159,11 @@ class PageController extends Controller
     public function index()
     {
 
-        # Запуск события с передачей объекта события
-        // // $response = event('RegUserEvent', ['name' => 'привет буфет']);
-        // // $email = 'nyos@rambler.ru';
-        // // $email = 'support@php-cat.com';
-        // $email = 'boss@uralweb.info';
-        // echo $email;
-        // event('NewOrderEvent', [['name' => 'test '.rand(), 'email' => $email]]);
+        $in = [
+            'asd' => \Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр')
+        ];
 
-        // event(new Registered($user));
-
-
-        // $data = ['msg' => 'Привет буфет'];
-        // $data['email'] = 'nyos@rambler.ru';
-        // Mail::to($data['email'])
-        //     ->send(new OrderNew($data));
-
-
-
-        // ->queue(new OrderNew($data));
-        // ->later(now()->addMinutes(1), new OrderNew($data));
-
-        // Mail::send(
-        //     // $data['email'],
-        //     'emails.newOrder.confirm',
-        //     ['kod' => rand()]
-        // );
-
-        // file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
-        //     array(
-        //         's' => '1',
-        //         // 'id' => $to, // id кому пишем
-        //         // 'msg' => 'пример handle(RegUserEvent $event) '. ( $event->aa ?? 'x' ) // текст сообщения
-        //         'msg' => '11 пример handle(RegUserEvent $event) ' . serialize($data) // текст сообщения
-        //     )
-        // ));
-
-        return view('welcome');
+        return view('welcome', $in);
     }
 
     // /**
@@ -206,7 +180,7 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($page)
@@ -224,17 +198,10 @@ class PageController extends Controller
         }
     }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    public function getApiAllAutoparts(string $search)
+    {
+        return AllAutopartsService::get(1, '113354', 'x', $search);
+    }
 
     // /**
     //  * Remove the specified resource from storage.

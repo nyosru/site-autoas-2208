@@ -52,9 +52,10 @@ Route::get('/getTest2', function (Request $request) {
 });
 
 //Route::get('allautoparts/{search}', function (Request $request) {
-Route::get('allautoparts/{search}', function ($search) {
-    return file_get_contents('https://api74.php-cat.com/allautoparts/api.php?ss=da&search=' . $search);
-});
+//Route::get('allautoparts/{search}', function ($search) {
+//    return file_get_contents('https://api74.php-cat.com/allautoparts/api.php?ss=da&search=' . $search);
+//});
+Route::get('allautoparts/{search}', [PageController::class, 'getApiAllAutoparts']);
 
 Route::get('/getTest', function (Request $request) {
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46b80cf6472ee856ed400d0cfb093730",
+    "content-hash": "1d3437a7008385f9f24d5ec90d9d1edc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2254,6 +2254,60 @@
                 "source": "https://github.com/opis/closure/tree/3.6.3"
             },
             "time": "2022-01-27T09:35:39+00:00"
+        },
+        {
+            "name": "phpcatcom/laravel-api-allautoparts",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nyosru/composer_laravel_api_allautoparts.git",
+                "reference": "f2e8bc7be838e018291eda2f744e78001585b86f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nyosru/composer_laravel_api_allautoparts/zipball/f2e8bc7be838e018291eda2f744e78001585b86f",
+                "reference": "f2e8bc7be838e018291eda2f744e78001585b86f",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Phpcatcom\\Api\\AllAutoParts\\AllautopartsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phpcatcom\\Api\\AllAutoParts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Baklanov php-cat.com",
+                    "email": "1@php-cat.com",
+                    "homepage": "https://php-cat.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "api for allautoparts",
+            "keywords": [
+                "allautoparts",
+                "api",
+                "laravel",
+                "php-cat.com",
+                "sergey baklanov"
+            ],
+            "support": {
+                "docs": "https://php-cat.com",
+                "issues": "https://github.com/nyosru/composer-laravel-user-permission/issues",
+                "source": "https://packagist.org/packages/phpcatcom/laravel-permission"
+            },
+            "time": "2024-01-25T09:44:28+00:00"
         },
         {
             "name": "phpoption/phpoption",
