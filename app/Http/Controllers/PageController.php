@@ -20,6 +20,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService;
+use Illuminate\Support\Facades\App;
 
 
 //use Phpcatcom\Api\AllAutoParts\Controllers\AllAutoPartsController;
@@ -160,8 +161,19 @@ class PageController extends Controller
     {
 
         $in = [
-            'asd' => \Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр')
+//            'asd' => \Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
+//            'asd' => \Phpcatcom\Api\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
+            'asd' => \Phpcatcom\Api\AllAutopartsService::get(1, '113354', 'asd', '1154'),
+            'aa' => ''
         ];
+
+
+//        $classes = App::getClasses();
+//
+//        foreach ($classes as $class) {
+////            echo $class . '<br>';
+//            $in['aa'] .= $class . '<br>';
+//        }
 
         return view('welcome', $in);
     }

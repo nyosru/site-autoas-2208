@@ -24,6 +24,16 @@
 </head>
 
 <body>
+
+
+asd: {{ $asd ?? 'x' }}
+<br/>
+<br/>
+
+aa: {{ $aa ?? 'x' }}
+<br/>
+<br/>
+
     <div id="app"></div>
 
     <!-- Yandex.Metrika counter -->
