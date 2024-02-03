@@ -23989,7 +23989,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" О компании ")];
     }),
     _: 1 /* STABLE */
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"\">\n                  <router-link :to=\"{ name: 'page', params: { id: 'posted' } }\">\n                    Доставка\n                  </router-link>\n                </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li class=\"\">\n                                  <router-link :to=\"{ name: 'page', params: { id: 'posted' } }\">\n                                    Доставка\n                                  </router-link>\n                                </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: {
       name: 'page',
       params: {
@@ -28519,7 +28519,7 @@ var goodsAnalogsLoad = /*#__PURE__*/function () {
 
             // data_filtered.value =
 
-            goodAnalogsData.value = response.data;
+            goodAnalogsData.value = response.data.data;
             // localStorage.cats = JSON.stringify(response.data.data)
             // cfg.value = response.data.cfg;
 
