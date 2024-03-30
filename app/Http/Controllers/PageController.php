@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService;
+use Phpcatcom\Api\AllAutopartsService;
 use Illuminate\Support\Facades\App;
 
 
@@ -212,7 +212,10 @@ class PageController extends Controller
 
     public function getApiAllAutoparts(string $search)
     {
-        return json_encode( [ 1, AllAutopartsService::get(1, '113354', 'x', $search) ] );
+//        return json_encode( [ 1, AllAutopartsService::get(1, '113354', 'x', $search) ] );
+//        return AllAutopartsService::get(1, '113354', 'x', $search);
+//        return json_decode(AllAutopartsService::get(1, '113354', 'x', '1154'))['data'];
+        return AllAutopartsService::get(1, '113354', 'x', '1154');
     }
 
     // /**

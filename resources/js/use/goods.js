@@ -165,7 +165,10 @@ const goodsAnalogsLoad = async (good_id) => {
 
             // data_filtered.value =
 
+            console.log(response);
+
             goodAnalogsData.value = response.data.data
+            // goodAnalogsData.value = response.data
             // localStorage.cats = JSON.stringify(response.data.data)
             // cfg.value = response.data.cfg;
 
