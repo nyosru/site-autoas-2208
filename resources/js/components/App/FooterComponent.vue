@@ -79,19 +79,19 @@
 
         <div class="col-md-2 col-xs-12 text-center">
           <ul class="social">
-            <a href="https://vk.com/avto_as" target="_blank" title="VK">
+            <a href="https://vk.com/detali.auto" target="_blank" title="VK">
               <img
-                src="/storage/site/img/icon/vk04.png"
+                src="/storage/site/img/icon/vk.png"
                 style="width: 46px; margin-right: 7px;"
               />
             </a>
             <a
-              href=" https://www.instagram.com/avto.as.shop/"
+              href=" https://t.me/detali_auto72"
               target="_blank"
-              title="insta"
+              title="Tg"
             >
               <img
-                src="/storage/site/img/icon/instagram.png"
+                src="/storage/site/img/icon/tg.png"
                 style="width: 40px; margin-right: 5px;"
               />
             </a>
