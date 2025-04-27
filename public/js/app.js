@@ -23722,7 +23722,7 @@ var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-2 col-xs-12 text-center\" data-v-c6ceb50e><ul class=\"social\" data-v-c6ceb50e><a href=\"https://vk.com/avto_as\" target=\"_blank\" title=\"VK\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/vk04.png\" style=\"width:46px;margin-right:7px;\" data-v-c6ceb50e></a><a href=\" https://www.instagram.com/avto.as.shop/\" target=\"_blank\" title=\"insta\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/instagram.png\" style=\"width:40px;margin-right:5px;\" data-v-c6ceb50e></a><a href=\"https://wa.me/79292696191\" target=\"_blank\" title=\"WhatsApp\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/wa.png\" style=\"width:42px;margin-right:5px;\" data-v-c6ceb50e></a></ul></div>", 1);
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-2 col-xs-12 text-center\" data-v-c6ceb50e><ul class=\"social\" data-v-c6ceb50e><a href=\"https://vk.com/detali.auto\" target=\"_blank\" title=\"VK\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/vk.png\" style=\"width:46px;margin-right:7px;\" data-v-c6ceb50e></a><a href=\" https://https://t.me/detali_auto72/\" target=\"_blank\" title=\"tg\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/tg.png\" style=\"width:40px;margin-right:5px;\" data-v-c6ceb50e></a><a href=\"https://wa.me/79292696191\" target=\"_blank\" title=\"WhatsApp\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/wa.png\" style=\"width:42px;margin-right:5px;\" data-v-c6ceb50e></a></ul></div>", 1);
 var _hoisted_23 = {
   "class": "copyright"
 };
@@ -23892,7 +23892,7 @@ var _hoisted_17 = {
   "class": "col-md-3 col-sm-8 col-xs-7 logo text-center"
 };
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/storage/site/img/logo2112.png",
+  src: "/storage/site/img/logo1.png",
   alt: "Авто-АС",
   style: {
     "max-width": "100%",
@@ -24109,7 +24109,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-          src: v.icon && v.icon !== null && v.icon.icon && v.icon.icon !== null && v.icon.icon.length > 0 ? '/storage/site/module_items_image/' + v.icon.icon : '/storage/site/img/icon/vk04.png',
+          src: v.icon && v.icon !== null && v.icon.icon && v.icon.icon !== null && v.icon.icon.length > 0 ? '/storage/site/module_items_image/' + v.icon.icon : '/storage/site/img/icon/vk.png',
           style: {
             "float": "left",
             "max-width": "60px",
