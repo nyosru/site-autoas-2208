@@ -50,7 +50,7 @@
                         <!-- <img src="/sites/kl2009asavto/download/logo_new.svg" alt="Авто-АС" style="max-width:100%; max-height: 200px; margin: 0 auto;" > -->
                         <!-- <img src="/sites/kl2009asavto/download/img/logo7.jpg" alt="Авто-АС" style="max-width:100%; max-height: 100px; margin: 0 auto;" > -->
                         <img
-                            src="/storage/site/img/logo2112.png"
+                            src="/storage/site/img/logo1.png"
                             alt="Авто-АС"
                             style="max-width: 100%; max-height: 100px; margin: 0 auto;"
                         />
