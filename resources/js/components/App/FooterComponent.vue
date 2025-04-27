@@ -116,9 +116,9 @@
         <div class="col-xs-12 col-sm-4 text-center">
           <span>
             <a href="/" title="" style="color: #6c6c6c;">
-              Авто-АС © 2008 - {{ currentYear }}
+              Детали Авто © 2008 - {{ currentYear }}
               <br />
-              Внимательность к деталям!
+              
             </a>
           </span>
         </div>
