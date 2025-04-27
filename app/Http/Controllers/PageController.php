@@ -163,7 +163,7 @@ class PageController extends Controller
         $in = [
 //            'asd' => \Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
 //            'asd' => \Phpcatcom\Api\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
-            'asd' => \Phpcatcom\Api\AllAutopartsService::get(1, '113354', 'asd', '1154'),
+//            'asd' => \Phpcatcom\Api\AllAutopartsService::get(1, '113354', 'asd', '1154'),
             'aa' => ''
         ];
 
