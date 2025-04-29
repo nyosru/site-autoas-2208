@@ -5,6 +5,15 @@ on:
     branches:
       - prod
 
+
+env:
+  VPS_IP: 46.254.19.97
+  VPS_USERNAME: di4basa7
+  DIR: www/prod
+  GIT_BRANCH: origin/prod
+  TELEGRAM_TO: 360209578, 1022228978, 663501687   # я / Авто-АС / Денис Авто-СА
+
+
 jobs:
 
   deploy:
@@ -17,18 +26,19 @@ jobs:
       - name: git pull on server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
+          host: ${{ env.SERVER_IP }}
+          username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
+          # username: ${{ secrets.SERVER_USERNAME }}
           # port: ${{ secrets.PORT }}
           script: |
             cd www
-            cd ${{ secrets.FOLDER_PROD }}
+            cd ${{ env.DIR }}
             git config --global user.email "1@php-cat.com"
             git config --global user.name "Sergey"
             git fetch --all
             git reset --hard origin/prod
-          
+
       # - name: laravel migrate
       #   uses: appleboy/ssh-action@master
       #   with:
@@ -40,24 +50,24 @@ jobs:
       - name: setup composer pacs on server + migrate
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
+          host: ${{ env.SERVER_IP }}
+          username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd www 
-            cd ${{ secrets.FOLDER_PROD }} 
-            /opt/php74/bin/php ./composer.phar i 
-            /opt/php74/bin/php artisan migrate
+            cd www
+            cd ${{ env.DIR }}
+            /opt/php80/bin/php ./composer.phar i
+            /opt/php80/bin/php artisan migrate
 
       - name: setup npm
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
+          host: ${{ env.SERVER_IP }}
+          username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd www
-            cd ${{ secrets.FOLDER_PROD }}
+            cd ${{ env.DIR }}
             npm i
             npm run prod
           # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
@@ -66,10 +76,10 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
-          to: 360209578, phpcat,
+          to: ${{ env.TELEGRAM_TO }}
+#          to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
             +++ пулл в репу +++
             👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
             сделал ${{ github.event_name }}. задание ${{github.job}}.
-            
