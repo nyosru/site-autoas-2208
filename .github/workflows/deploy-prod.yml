@@ -26,7 +26,7 @@ jobs:
       - name: git pull on server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SERVER_IP }}
+          host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           # username: ${{ secrets.SERVER_USERNAME }}
@@ -42,7 +42,7 @@ jobs:
       # - name: laravel migrate
       #   uses: appleboy/ssh-action@master
       #   with:
-      #     host: ${{ secrets.SERVER_IP }}
+      #     host: ${{ secrets.VPS_IP }}
       #     username: ${{ secrets.SERVER_USERNAME }}
       #     password: ${{ secrets.SERVER_PASSWORD }}
       #     script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
@@ -50,7 +50,7 @@ jobs:
       - name: setup composer pacs on server + migrate
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SERVER_IP }}
+          host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
@@ -62,7 +62,7 @@ jobs:
       - name: setup npm
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.SERVER_IP }}
+          host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
