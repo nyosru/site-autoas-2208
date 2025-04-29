@@ -7,7 +7,7 @@
             <router-link :to="{ name: 'index' }">
               <img
                 src="/storage/site/img/logo2.png"
-                alt="Авто-АС"
+                alt="Детали Авто"
                 class="img-responsive"
                 style="max-height: 100px;"
               />
