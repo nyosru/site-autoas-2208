@@ -57,21 +57,21 @@ jobs:
           script: |
             cd www
             cd ${{ env.DIR }}
-            /opt/php80/bin/php ./composer.phar i
+            /opt/php80/bin/php ./composer.phar i --no-dev
             /opt/php80/bin/php artisan migrate
 
-      - name: setup npm
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ env.VPS_IP }}
-          username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            cd www
-            cd ${{ env.DIR }}
-            npm i
-            npm run prod
-          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
+#      - name: setup npm
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ env.VPS_IP }}
+#          username: ${{ env.VPS_USERNAME }}
+#          password: ${{ secrets.SERVER_PASSWORD }}
+#          script: |
+#            cd www
+#            cd ${{ env.DIR }}
+#            npm i
+#            npm run prod
+#          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
 
       - name: send telega
         uses: appleboy/telegram-action@master
@@ -97,6 +97,6 @@ jobs:
 #          to: 360209578, phpcat,
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            🤓🤓🤓 старт обновлений
-            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
-            сделал ${{ github.event_name }}. задание ${{github.job}}.
+            🤓🤓🤓 ${{ github.event.head_commit.message }}
+            👨🏻‍💻 ${{github.actor}} (сделал ${{ github.event_name }})
+            в репозиторий ${{ github.repository }}
