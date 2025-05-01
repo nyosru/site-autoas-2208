@@ -79,19 +79,19 @@
 
         <div class="col-md-2 col-xs-12 text-center">
           <ul class="social">
-            <a href="https://vk.com/detali.auto" target="_blank" title="VK">
+            <a href="https://vk.com/detali.aut" target="_blank" title="V">
               <img
-                src="/storage/site/img/icon/vk.png"
+                src="/storage/site/img/icon/v.png"
                 style="width: 46px; margin-right: 7px;"
               />
             </a>
             <a
-              href=" https://t.me/detali_auto72"
+              href=" https://t.me/detali_auto"
               target="_blank"
-              title="Tg"
+              title="wg"
             >
               <img
-                src="/storage/site/img/icon/tg.png"
+                src="/storage/site/img/icon/t.png"
                 style="width: 40px; margin-right: 5px;"
               />
             </a>
