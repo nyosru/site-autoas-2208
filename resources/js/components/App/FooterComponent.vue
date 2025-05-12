@@ -79,20 +79,20 @@
 
         <div class="col-md-2 col-xs-12 text-center">
           <ul class="social">
-            <a href="https://vk.com/detali.aut" target="_blank" title="V">
+            <a href="https://vk.com/detali.auto" target="_blank" title="VK">
               <img
-                src="/storage/site/img/icon/v.png"
-                style="width: 46px; margin-right: 7px;"
+                src="/storage/site/img/icon/vk.png"
+                style="width: 46px; margin-right: 5px;"
               />
             </a>
             <a
               href=" https://t.me/detali_auto"
               target="_blank"
-              title="wg"
+              title="tg"
             >
               <img
-                src="/storage/site/img/icon/t.png"
-                style="width: 40px; margin-right: 5px;"
+                src="/storage/site/img/icon/tg.png"
+                style="width: 46px; margin-right: 5px;"
               />
             </a>
             <a
@@ -102,7 +102,7 @@
             >
               <img
                 src="/storage/site/img/icon/wa.png"
-                style="width: 42px; margin-right: 5px;"
+                style="width: 46px; margin-right: 5px;"
               />
             </a>
           </ul>
