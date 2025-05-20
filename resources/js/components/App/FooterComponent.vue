@@ -128,9 +128,16 @@
             alt="images"
             xclass="img-responsive"
             style="margin-right: 10px;"
+            
           />
           <img
             src="/storage/site/img/mastercard.png"
+            alt="images"
+            xclass="img-responsive"
+
+            />
+          <img
+            src="/storage/site/img/mir.svg"
             alt="images"
             xclass="img-responsive"
           />
