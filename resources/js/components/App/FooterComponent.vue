@@ -82,7 +82,7 @@
             <a href="https://vk.com/detali.auto" target="_blank" title="VK">
               <img
                 src="/storage/site/img/icon/vk.png"
-                style="width: 46px; margin-right: 5px;"
+                style="width: 50px; margin-right: 5px;"
               />
             </a>
             <a
@@ -92,7 +92,7 @@
             >
               <img
                 src="/storage/site/img/icon/tg.png"
-                style="width: 46px; margin-right: 5px;"
+                style="width: 50px; margin-right: 5px;"
               />
             </a>
             <a
@@ -102,7 +102,7 @@
             >
               <img
                 src="/storage/site/img/icon/wa.png"
-                style="width: 46px; margin-right: 5px;"
+                style="width: 50px; margin-right: 5px;"
               />
             </a>
           </ul>
@@ -152,7 +152,7 @@
             >
               PHP-CAT.com
               <br />
-              создание сайтов для работы с данными
+             
             </a>
           </span>
         </div>
