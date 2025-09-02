@@ -52,6 +52,7 @@
                         <img
                             src="/storage/site/img/logo1.png"
                             alt="Детали Авто"
+                            class="img-responsive"
                             style="max-width: 100%; max-height: 100px; margin: 0 auto;"
                         />
                         <!-- </a> -->
