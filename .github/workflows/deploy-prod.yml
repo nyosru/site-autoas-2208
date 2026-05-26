@@ -8,7 +8,8 @@ on:
 
 env:
   VPS_IP: 46.254.19.97
-  VPS_USERNAME: di4basa7
+  xVPS_USERNAME: di4basa7
+  VPS_USERNAME: root
   xDIR: www/prod
   DIR: /var/www/di4basa7/data/www/prod
   GIT_BRANCH: origin/prod
