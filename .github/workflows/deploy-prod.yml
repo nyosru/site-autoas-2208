@@ -33,7 +33,6 @@ jobs:
           # username: ${{ secrets.SERVER_USERNAME }}
           # port: ${{ secrets.PORT }}
           script: |
-            cd www
             cd ${{ env.DIR }}
             git config --global user.email "1@php-cat.com"
             git config --global user.name "Sergey"
