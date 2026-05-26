@@ -13,6 +13,25 @@ env:
 
 jobs:
 
+
+  deploy0:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: git pull on server00
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ env.VPS_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            cd ${{ env.DIR }}
+            git config --global user.email "nyos@rambler.ru"
+            git config --global user.name "Sergey"
+            git fetch --all
+            git reset --hard origin/prod
+
+
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +43,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.VPS_IP }}
-#          username: ${{ env.VPS_USERNAME }}
+          username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             chown -R di4basa7:di4basa7 ${{ env.DIR }}
