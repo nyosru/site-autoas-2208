@@ -127,7 +127,7 @@
 
 //   // добавляем серхио тест
 //   // sendTo.value.push(5152088168)
-//   // first_name: Авто-АС
+//   // first_name: Детали Авто
 //   sendTo.value.push(1022228978)
 //   // Денис Авто-СА
 //   sendTo.value.push(663501687)

@@ -168,7 +168,7 @@ class SendOrderController extends Controller
                 
 
                     
-                    // first_name: Авто-АС
+                    // first_name: Детали Авто
                     1022228978,
                     // Денис Авто-СА
                     663501687 ]

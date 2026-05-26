@@ -12,7 +12,7 @@ env:
   xDIR: www/prod
   DIR: /var/www/di4basa7/data/www/prod
   GIT_BRANCH: origin/prod
-  TELEGRAM_TO: 360209578, 1022228978, 663501687   # я / Авто-АС / Денис Авто-СА
+  TELEGRAM_TO: 360209578, 1022228978, 663501687   # я / Детали Авто / Денис Авто-СА
 
 
 jobs:

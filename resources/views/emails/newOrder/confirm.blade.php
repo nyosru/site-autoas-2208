@@ -98,7 +98,7 @@
                                                                                 src="https://avto-as.ru/storage/site/img/logo2112.png"
                                                                                 style="display:block;height:auto;border:0;width:155px;max-width:100%"
                                                                                 moz-do-not-send="true" width="155"
-                                                                                alt="Авто-АС" /></a>
+                                                                                alt="Детали Авто" /></a>
                                                                     </div>
 
                                                                 </td>
@@ -211,7 +211,7 @@
                                                                                     при оформлении заказа <nobr>на <a
                                                                                         href="https://avto-as.ru/"
                                                                                         target="_blank">сайте магазина
-                                                                                        "Авто-АС"</a></nobr>
+                                                                                        "Детали Авто"</a></nobr>
                                                                                         <br/>
                                                                                         <br/>
                                                                                         <br/>

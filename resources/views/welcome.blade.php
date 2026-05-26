@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Авто-АС (Магазин автозапчастей в Тюмени!)</title>
+    <title>Детали Авто (Магазин автозапчастей в Тюмени!)</title>
 
     <link href="{{ asset('css/app.css') }}?s=2208120328" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('storage/css/ionicons.min.css') }}" />
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('storage/css/style.css') }}?s=2208120328" />
     <link rel="icon" type="image/png" href="/storage/site/img/logo47.png" />
 
-    <meta property="og:title" content="Авто-АС запчасти">
+    <meta property="og:title" content="Детали Авто запчасти">
     <meta property="og:site_name" content="avto-as.ru">
     <meta property="og:url" content="https://avto-as.ru">
 
