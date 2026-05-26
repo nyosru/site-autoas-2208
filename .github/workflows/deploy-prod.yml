@@ -8,7 +8,7 @@ on:
 
 env:
   VPS_IP: 46.254.19.97
-  VPS_USERNAME: www-data
+  VPS_USERNAME: di4basa7
   xDIR: www/prod
   DIR: /var/www/di4basa7/data/www/prod
   GIT_BRANCH: origin/prod
@@ -63,10 +63,11 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.VPS_IP }}
-#          username: ${{ env.VPS_USERNAME }}
-#          password: ${{ secrets.SERVER_PASSWORD }}
+          username: ${{ env.VPS_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd ${{ env.DIR }}
+            rm -f public/mix-manifest.json
             npm i
             npm run prod
 
