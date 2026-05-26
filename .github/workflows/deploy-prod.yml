@@ -63,8 +63,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.VPS_IP }}
-          username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+#          username: ${{ env.VPS_USERNAME }}
+#          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd ${{ env.DIR }}
             npm i
