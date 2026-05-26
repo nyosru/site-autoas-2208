@@ -6,7 +6,7 @@
           <div class="photo" xstyle="padding-top: 3rem;">
             <router-link :to="{ name: 'index' }">
               <img
-                src="/storage/site/img/logo2.png"
+                src="/img/logo2.png"
                 alt="Детали Авто"
                 class="img-responsive"
                 style="max-height: 100px;"
@@ -118,7 +118,7 @@
             <a href="/" title="" style="color: #6c6c6c;">
               Детали Авто © 2008 - {{ currentYear }}
               <br />
-              
+
             </a>
           </span>
         </div>
@@ -128,7 +128,7 @@
             alt="images"
             xclass="img-responsive"
             style="margin-right: 10px;"
-            
+
           />
           <img
             src="/storage/site/img/mastercard.png"
@@ -152,7 +152,7 @@
             >
               PHP-CAT.com
               <br />
-             
+
             </a>
           </span>
         </div>

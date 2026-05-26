@@ -60,6 +60,17 @@ jobs:
             /opt/php80/bin/php ./composer.phar i --no-dev
             /opt/php80/bin/php artisan migrate
 
+      - name: setup npm
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+          username: ${{ env.VPS_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            cd www
+            cd ${{ env.DIR }}
+            npm run prod
+
 #      - name: setup npm
 #        uses: appleboy/ssh-action@master
 #        with:
