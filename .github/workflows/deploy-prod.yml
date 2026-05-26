@@ -67,7 +67,8 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd ${{ env.DIR }}
-            chown -R di4basa7:di4basa7 public/
+#            chown -R di4basa7:di4basa7 public/
+            chown -R www-data:www-data ./
             npm i
             npm run prod
 
