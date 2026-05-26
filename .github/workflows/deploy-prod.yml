@@ -19,6 +19,29 @@ jobs:
 
       - uses: actions/checkout@v3
 
+
+      - name: git pull on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.VPS_IP }}
+#          username: ${{ env.VPS_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            chown -R di4basa7:di4basa7 ${{ env.DIR }}
+            cd ${{ env.DIR }}
+            git config --global user.email "1@php-cat.com"
+            git config --global user.name "Sergey"
+            git fetch --all
+            git reset --hard origin/prod
+
+
+
+  deploy2:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -28,19 +51,10 @@ jobs:
           npm ci
           npm run prod
 
-      - name: git pull on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ env.VPS_IP }}
-          username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          script: |
-            chown -R di4basa7:di4basa7 ${{ env.DIR }}
-            cd ${{ env.DIR }}
-            git config --global user.email "1@php-cat.com"
-            git config --global user.name "Sergey"
-            git fetch --all
-            git reset --hard origin/prod
+
+  deploy3:
+    runs-on: ubuntu-latest
+    steps:
 
       - name: composer + migrate
         uses: appleboy/ssh-action@master
