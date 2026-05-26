@@ -1,0 +1,125 @@
+name: Deploy prod avtoas
+
+on:
+  push:
+    branches:
+      - prod
+
+
+env:
+  VPS_IP: 46.254.19.97
+  VPS_USERNAME: di4basa7
+  xVPS_USERNAME: root
+  xDIR: www/prod
+  DIR: /var/www/di4basa7/data/www/prod
+  GIT_BRANCH: origin/prod
+  TELEGRAM_TO: 360209578, 1022228978, 663501687   # я / Авто-АС / Денис Авто-СА
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ env.VPS_IP }} >> ~/.ssh/known_hosts
+
+      - name: git pull on server
+#        uses: appleboy/ssh-action@master
+        run: |
+          cd www
+          cd ${{ env.DIR }}
+          git config --global user.email "1@php-cat.com"
+          git config --global user.name "Sergey"
+          git fetch --all
+          git reset --hard origin/prod
+
+#jobs:
+#
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#      # - name: lint
+#      #   uses: StephaneBour/actions-php-lint@7.4
+#
+#      - name: git pull on server
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ env.VPS_IP }}
+#          username: ${{ env.VPS_USERNAME }}
+#          password: ${{ secrets.SERVER_PASSWORD }}
+#          # username: ${{ secrets.SERVER_USERNAME }}
+#          # port: ${{ secrets.PORT }}
+#          script: |
+#            cd www
+#            cd ${{ env.DIR }}
+#            git config --global user.email "1@php-cat.com"
+#            git config --global user.name "Sergey"
+#            git fetch --all
+#            git reset --hard origin/prod
+#
+#      # - name: laravel migrate
+#      #   uses: appleboy/ssh-action@master
+#      #   with:
+#      #     host: ${{ secrets.VPS_IP }}
+#      #     username: ${{ secrets.SERVER_USERNAME }}
+#      #     password: ${{ secrets.SERVER_PASSWORD }}
+#      #     script: cd www && cd ${{ secrets.FOLDER }} && /opt/php74/bin/php artisan migrate
+#
+#      - name: setup composer pacs on server + migrate
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ env.VPS_IP }}
+#          username: ${{ env.VPS_USERNAME }}
+#          password: ${{ secrets.SERVER_PASSWORD }}
+#          script: |
+#            cd www
+#            cd ${{ env.DIR }}
+#            /opt/php80/bin/php ./composer.phar i --no-dev
+#            /opt/php80/bin/php artisan migrate
+#
+##      - name: setup npm
+##        uses: appleboy/ssh-action@master
+##        with:
+##          host: ${{ env.VPS_IP }}
+##          username: ${{ env.VPS_USERNAME }}
+##          password: ${{ secrets.SERVER_PASSWORD }}
+##          script: |
+##            cd www
+##            cd ${{ env.DIR }}
+##            npm i
+##            npm run prod
+##          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
+#
+#      - name: send telega
+#        uses: appleboy/telegram-action@master
+#        with:
+#          # to: ${{ secrets.TELEGRAM_TO }}
+#          to: ${{ env.TELEGRAM_TO }}
+##          to: 360209578, phpcat,
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            🍀🍀🍀 обновления заведены, установлены, сайт обновлён
+#            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+#            сделал ${{ github.event_name }}. задание ${{github.job}}.
+#
+#  send_start:
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#      - name: send telega
+#        uses: appleboy/telegram-action@master
+#        with:
+#          # to: ${{ secrets.TELEGRAM_TO }}
+#          to: ${{ env.TELEGRAM_TO }}
+##          to: 360209578, phpcat,
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            🤓🤓🤓 ${{ github.event.head_commit.message }}
+#            👨🏻‍💻 ${{github.actor}} (сделал ${{ github.event_name }})
+#            в репозиторий ${{ github.repository }}
