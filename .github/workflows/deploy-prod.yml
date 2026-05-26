@@ -7,7 +7,7 @@ on:
 
 env:
   VPS_IP: 46.254.19.97
-  VPS_USERNAME: di4basa7
+  VPS_USERNAME: root
   DIR: /var/www/di4basa7/data/www/prod
   TELEGRAM_TO: 360209578, 1022228978, 663501687
 
@@ -39,8 +39,6 @@ jobs:
   deploy2:
     runs-on: ubuntu-latest
     steps:
-
-      - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
