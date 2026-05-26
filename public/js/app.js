@@ -23668,7 +23668,7 @@ var _hoisted_5 = {
 var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: "/storage/site/img/logo2.png",
-    alt: "Авто-АС",
+    alt: "Детали Авто",
     "class": "img-responsive",
     style: {
       "max-height": "100px"
@@ -23722,7 +23722,7 @@ var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
 });
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-2 col-xs-12 text-center\" data-v-c6ceb50e><ul class=\"social\" data-v-c6ceb50e><a href=\"https://vk.com/avto_as\" target=\"_blank\" title=\"VK\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/vk04.png\" style=\"width:46px;margin-right:7px;\" data-v-c6ceb50e></a><a href=\" https://www.instagram.com/avto.as.shop/\" target=\"_blank\" title=\"insta\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/instagram.png\" style=\"width:40px;margin-right:5px;\" data-v-c6ceb50e></a><a href=\"https://wa.me/79292696191\" target=\"_blank\" title=\"WhatsApp\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/wa.png\" style=\"width:42px;margin-right:5px;\" data-v-c6ceb50e></a></ul></div>", 1);
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-2 col-xs-12 text-center\" data-v-c6ceb50e><ul class=\"social\" data-v-c6ceb50e><a href=\"https://vk.com/detali.auto\" target=\"_blank\" title=\"VK\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/vk.png\" style=\"width:50px;margin-right:5px;\" data-v-c6ceb50e></a><a href=\" https://t.me/detali_auto\" target=\"_blank\" title=\"tg\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/tg.png\" style=\"width:50px;margin-right:5px;\" data-v-c6ceb50e></a><a href=\"https://wa.me/79292696191\" target=\"_blank\" title=\"WhatsApp\" data-v-c6ceb50e><img src=\"/storage/site/img/icon/wa.png\" style=\"width:50px;margin-right:5px;\" data-v-c6ceb50e></a></ul></div>", 1);
 var _hoisted_23 = {
   "class": "copyright"
 };
@@ -23759,6 +23759,10 @@ var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
     src: "/storage/site/img/mastercard.png",
     alt: "images",
     xclass: "img-responsive"
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: "/storage/site/img/mir.svg",
+    alt: "images",
+    xclass: "img-responsive"
   })], -1 /* HOISTED */);
 });
 var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
@@ -23771,7 +23775,7 @@ var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
     style: {
       "color": "#6c6c6c"
     }
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" PHP-CAT.com "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" создание сайтов для работы с данными ")])])], -1 /* HOISTED */);
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" PHP-CAT.com "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br")])])], -1 /* HOISTED */);
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23813,7 +23817,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       _: 2 /* DYNAMIC */
     }, 1032 /* PROPS, DYNAMIC_SLOTS */, ["to"]);
-  }), 64 /* STABLE_FRAGMENT */))])]),  false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_22])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Авто-АС © 2008 - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentYear) + " ", 1 /* TEXT */), _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Внимательность к деталям! ")])])]), _hoisted_29, _hoisted_30])])])], 64 /* STABLE_FRAGMENT */);
+  }), 64 /* STABLE_FRAGMENT */))])]),  false ? (0) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_22])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Детали Авто © 2008 - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentYear) + " ", 1 /* TEXT */), _hoisted_28])])]), _hoisted_29, _hoisted_30])])])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -23892,8 +23896,9 @@ var _hoisted_17 = {
   "class": "col-md-3 col-sm-8 col-xs-7 logo text-center"
 };
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "/storage/site/img/logo2112.png",
-  alt: "Авто-АС",
+  src: "/img/logo1.png",
+  alt: "Детали Авто",
+  "class": "img-responsive",
   style: {
     "max-width": "100%",
     "max-height": "100px",
@@ -23967,8 +23972,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" г.Тюмень, ул.Пархоменко, 54 ")];
     }),
     _: 1 /* STABLE */
-  })])]), _hoisted_13])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"/\" title=\"Авто-АС\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    title: "Авто-АС",
+  })])]), _hoisted_13])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"/\" title=\"Детали Авто\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    title: "Детали Авто",
     to: {
       name: 'index'
     }

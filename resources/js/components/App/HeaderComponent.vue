@@ -50,7 +50,7 @@
                         <!-- <img src="/sites/kl2009asavto/download/logo_new.svg" alt="Авто-АС" style="max-width:100%; max-height: 200px; margin: 0 auto;" > -->
                         <!-- <img src="/sites/kl2009asavto/download/img/logo7.jpg" alt="Авто-АС" style="max-width:100%; max-height: 100px; margin: 0 auto;" > -->
                         <img
-                            src="/storage/site/img/logo1.png"
+                            src="/img/logo1.png"
                             alt="Детали Авто"
                             class="img-responsive"
                             style="max-width: 100%; max-height: 100px; margin: 0 auto;"
@@ -59,8 +59,7 @@
                     </router-link>
                 </div>
                 <div
-                    class="col-md-6 hidden-sm col-xs-5 hidden-xs xnextlogo text-center"
-                    xstyle="border: 1px solid gray;"
+                    class="col-md-6 hidden-sm col-xs-5 hidden-xs text-center"
                 >
                     <header-search-component/>
                 </div>
