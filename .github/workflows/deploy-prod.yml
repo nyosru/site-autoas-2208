@@ -35,6 +35,7 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
+            chown -R di4basa7:di4basa7 ${{ env.DIR }}
             cd ${{ env.DIR }}
             git config --global user.email "1@php-cat.com"
             git config --global user.name "Sergey"
