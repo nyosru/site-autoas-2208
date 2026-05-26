@@ -13,19 +13,11 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-8">
                             <img
-                                v-if="goodData.a_arrayimage == ''"
-                                src="/storage/photo_no.jpg"
+                                :src="'/storage/photo/mini/' + goodData.a_arrayimage"
                                 loading="lazy"
                                 alt=""
                                 xclass="img-responsive"
-                                style="opacity: 0.2;"
-                            />
-                            <img
-                                v-else
-                                :src="'/storage/photo/' + goodData.a_arrayimage"
-                                loading="lazy"
-                                alt=""
-                                xclass="img-responsive"
+                                onerror="if(this.src.includes('/mini/')){this.src=this.src.replace('/mini/','')}else if(!this.src.includes('photo_no')){this.src='/storage/photo_no.jpg'}"
                             />
                         </div>
                         <div

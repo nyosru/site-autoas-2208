@@ -2,8 +2,8 @@
   <div>
     <router-link :to="{ name: 'good', params: { good_id: i.a_id } }">
       <!-- i: {{ i }} -->
-      <img :src="'/storage/photo/' + i.a_arrayimage"
-           onerror="this.src='/storage/photo_no.jpg'"
+      <img :src="'/storage/photo/mini/' + i.a_arrayimage"
+           onerror="if(this.src.includes('/mini/')){this.src=this.src.replace('/mini/','')}else if(!this.src.includes('photo_no')){this.src='/storage/photo_no.jpg'}"
            loading="lazy" alt="" />
       <br />
       <strong>{{ i.head }}</strong>
