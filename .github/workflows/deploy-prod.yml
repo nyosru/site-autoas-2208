@@ -55,7 +55,6 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd www
             cd ${{ env.DIR }}
             /opt/php80/bin/php ./composer.phar i --no-dev
             /opt/php80/bin/php artisan migrate
@@ -67,8 +66,9 @@ jobs:
           username: ${{ env.VPS_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd www
             cd ${{ env.DIR }}
+            chown -R di4basa7:di4basa7 public/
+            npm i
             npm run prod
 
 #      - name: setup npm
@@ -84,30 +84,69 @@ jobs:
 #            npm run prod
 #          # script: cd www && cd ${{ secrets.FOLDER }} && npm i && npm run dev
 
-      - name: send telega
-        uses: appleboy/telegram-action@master
-        with:
-          # to: ${{ secrets.TELEGRAM_TO }}
-          to: ${{ env.TELEGRAM_TO }}
-#          to: 360209578, phpcat,
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            🍀🍀🍀 обновления заведены, установлены, сайт обновлён
-            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
-            сделал ${{ github.event_name }}. задание ${{github.job}}.
+#      - name: send telega
+#        uses: appleboy/telegram-action@master
+#        with:
+#          # to: ${{ secrets.TELEGRAM_TO }}
+#          to: ${{ env.TELEGRAM_TO }}
+##          to: 360209578, phpcat,
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            🍀🍀🍀 обновления заведены, установлены, сайт обновлён
+#            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+#            сделал ${{ github.event_name }}. задание ${{github.job}}.
 
-  send_start:
+#  send_start:
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#      - name: send telega
+#        uses: appleboy/telegram-action@master
+#        with:
+#          # to: ${{ secrets.TELEGRAM_TO }}
+#          to: ${{ env.TELEGRAM_TO }}
+##          to: 360209578, phpcat,
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            🤓🤓🤓 ${{ github.event.head_commit.message }}
+#            👨🏻‍💻 ${{github.actor}} (сделал ${{ github.event_name }})
+#            в репозиторий ${{ github.repository }}
+
+
+  sms_start:
     runs-on: ubuntu-latest
     steps:
+      - name: sms_vk_start
+        run: |
+          curl -X POST "https://api.php-cat.com/api/vk/send" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "group_name": "tech",
+              "user_id": 5903492,
+              "message": "🚀🚀🚀 ${{ github.repository }} Старт деплоя \n 💻 ${{ github.actor }} (${{ github.run_id }}) \n 📝 ${{ github.event.head_commit.message }} "
+            }'
+  sms_end:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: sms_vk
+        run: |
+          curl -X POST "https://api.php-cat.com/api/vk/send" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "group_name": "tech",
+              "user_id": 5903492,
+              "message": "🍀🍀🍀 ${{ github.repository }} Deployment finished \n ‍💻 ${{ github.ref_name }} ++ ${{ github.actor }} (${{ github.run_id }}) "
+            }'
+        if: success()
 
-      - name: send telega
+      - name: Send Telegram notification (failure)
         uses: appleboy/telegram-action@master
         with:
-          # to: ${{ secrets.TELEGRAM_TO }}
-          to: ${{ env.TELEGRAM_TO }}
-#          to: 360209578, phpcat,
+          to: 360209578, phpcat
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            🤓🤓🤓 ${{ github.event.head_commit.message }}
-            👨🏻‍💻 ${{github.actor}} (сделал ${{ github.event_name }})
-            в репозиторий ${{ github.repository }}
+            🚨🚨🚨 ${{ github.repository }} 👨🏻‍💻 ${{ github.actor }} > ${{ github.run_id }}
+            ${{ github.event_name }} > ${{ github.event.head_commit.message }}
+            Ошибка деплоя! Проверьте логи.
+        if: failure()
