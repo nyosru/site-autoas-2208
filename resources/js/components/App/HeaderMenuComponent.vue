@@ -37,7 +37,7 @@
                   <tr>
                     <td>
                       <img
-                        :src="( v.icon && v.icon !== null && v.icon.icon && v.icon.icon !== null && v.icon.icon.length > 0 ? '/storage/site/module_items_image/' + v.icon.icon : '/storage/site/img/icon/vk04.png' )"
+                        :src="( v.icon && v.icon !== null && v.icon.icon && v.icon.icon !== null && v.icon.icon.length > 0 ? '/site/module_items_image/' + v.icon.icon : '/site/img/icon/vk04.png' )"
                         style="
                           float: left;
                           max-width: 60px;

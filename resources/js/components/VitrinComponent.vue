@@ -35,7 +35,7 @@
         <h2>.. загрузка предложений ..</h2>
         <br/>
         <br/>
-        <img src="/storage/site/img/loader.gif" alt="" style="width:120px;" />
+        <img src="/site/img/loader.gif" alt="" style="width:120px;" />
       </div>
       <template v-else>
         <!-- goodsData: {{ goodsData }} -->

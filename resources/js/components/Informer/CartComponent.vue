@@ -9,7 +9,7 @@
               >
                 <div class="photo photo-cart">
                   <img
-                    src="/storage/site/img/cart.png"
+                    src="/site/img/cart.png"
                     alt=""
                     class="img-reponsive"
                   />

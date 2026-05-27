@@ -4,7 +4,7 @@
             <div class="col-12 text-center p-20">
                 .. загрузка ..
                 <br/>
-                <img src="/storage/site/img/loader.gif"/>
+                <img src="/site/img/loader.gif"/>
             </div>
         </div>
         <div class="row" v-else>
@@ -14,7 +14,7 @@
                         <div class="col-xs-12 col-sm-8">
                             <img
                                 v-if="goodData.a_arrayimage == ''"
-                                src="/storage/photo_no.jpg"
+                                src="/photo_no.jpg"
                                 loading="lazy"
                                 alt=""
                                 xclass="img-responsive"
@@ -22,7 +22,7 @@
                             />
                             <img
                                 v-else
-                                :src="'/storage/photo/' + goodData.a_arrayimage"
+                                :src="'/photo/' + goodData.a_arrayimage"
                                 loading="lazy"
                                 alt=""
                                 xclass="img-responsive"

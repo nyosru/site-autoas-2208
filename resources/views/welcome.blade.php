@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}"/>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}?s=2208120328"/>
-    <link rel="icon" type="image/png" href="/storage/site/img/logo47.png"/>
+    <link rel="icon" type="image/png" href="/site/img/logo47.png"/>
 
     <meta property="og:title" content="Детали Авто запчасти">
     <meta property="og:site_name" content="avto-as.ru">
     <meta property="og:url" content="https://avto-as.ru">
 
     <meta property="og:description" content="Запчасти для автомобилей">
-    <meta property="og:image" content="https://22.avto-as.ru/storage/site/img/logo2112.png">
+    <meta property="og:image" content="https://22.avto-as.ru/site/img/logo2112.png">
     <meta property="og:image:width" content="968">
     <meta property="og:image:height" content="504">
 </head>

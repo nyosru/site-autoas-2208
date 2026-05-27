@@ -95,7 +95,7 @@
                                                                     <div style="line-height:10px">
                                                                         <a href="https://avto-as.ru"
                                                                             target="_blank"><img xsrc="user-files"
-                                                                                src="https://avto-as.ru/storage/site/img/logo2112.png"
+                                                                                src="https://avto-as.ru/site/img/logo2112.png"
                                                                                 style="display:block;height:auto;border:0;width:155px;max-width:100%"
                                                                                 moz-do-not-send="true" width="155"
                                                                                 alt="Детали Авто" /></a>

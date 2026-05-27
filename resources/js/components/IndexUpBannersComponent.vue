@@ -27,7 +27,7 @@
         <div
           class="carusel-item"
           :style="
-            'background-image:url(\'/storage/module_items_image/' +
+            'background-image:url(\'/site/module_items_image/' +
             i.img +
             '\');'
           "

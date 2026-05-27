@@ -50,7 +50,7 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
-          # я / Авто-АС / Денис Авто-СА
+          # я / Детали Авто / Денис Авто-СА
           to: 360209578, 1022228978, 663501687
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
@@ -65,7 +65,7 @@ jobs:
         uses: appleboy/telegram-action@master
         with:
           # to: ${{ secrets.TELEGRAM_TO }}
-          # я / Авто-АС / Денис Авто-СА
+          # я / Детали Авто / Денис Авто-СА
           to: 360209578, 1022228978, 663501687
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |

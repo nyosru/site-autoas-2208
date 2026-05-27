@@ -25,7 +25,6 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
-public/
 public/js/app.js
 .vscode/sftp.json
 .idea/

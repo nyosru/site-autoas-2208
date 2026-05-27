@@ -184,7 +184,7 @@
             </div>
 
             <div v-if="loadingForm1 == true" class="text-center">
-              <img src="/storage/img/admin-loader.gif" />
+              <img src="/img/admin-loader.gif" />
             </div>
             <div v-else>
               <button class="btn-checkout" type="submit">

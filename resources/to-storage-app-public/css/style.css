@@ -2921,7 +2921,7 @@ div.brand {
 .sub-form-li {
     padding: 45px 30px 60px 30px;
     text-align: center;
-    background: url("/storage/site/img/menubg.jpg") no-repeat center;
+    background: url("/site/img/menubg.jpg") no-repeat center;
     background-size: cover;
 }
 
@@ -5565,7 +5565,7 @@ form.v2.search-form-2 {
 
 .site .footer {
     /* background: url("../img/footer.jpg") no-repeat; */
-    background: url("/storage/site/img/footer.jpg") no-repeat;
+    background: url("/site/img/footer.jpg") no-repeat;
     background-position: 100% 100%;
     font-size: 40px;
     height: 120px;
@@ -6328,8 +6328,8 @@ form.v2.search-form-2 {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     bottom: -15px;
-    /* content: url(/storage/site/img/arrow.png); */
-    content: url(/storage/site/img/arrow.png);
+    /* content: url(/site/img/arrow.png); */
+    content: url(/site/img/arrow.png);
     position: absolute;
     z-index: 1;
 }
@@ -6695,8 +6695,8 @@ form.v2.search-form-2 {
     content: "";
     height: 15px;
     display: inline-block;
-    /* background: url(/storage/site/img/products/cart.png) no-repeat center; */
-    background: url(/storage/site/img/products/cart.png) no-repeat center;
+    /* background: url(/site/img/products/cart.png) no-repeat center; */
+    background: url(/site/img/products/cart.png) no-repeat center;
     width: 20px;
     background-size: cover;
     margin-right: 5px;
@@ -6728,8 +6728,8 @@ form.v2.search-form-2 {
 }
 
 .title.v3:after {
-    /* content: url(/storage/site/img/arrow-3.png); */
-    content: url(/storage/site/img/arrow-3.png);
+    /* content: url(/site/img/arrow-3.png); */
+    content: url(/site/img/arrow-3.png);
 }
 
 .best-deals {
@@ -6762,8 +6762,8 @@ form.v2.search-form-2 {
 }
 
 .onsale {
-    /* background: url(/storage/site/img/banner_4_1.jpg) no-repeat center; */
-    background: url(/storage/site/img/banner_4_1.jpg) no-repeat center;
+    /* background: url(/site/img/banner_4_1.jpg) no-repeat center; */
+    background: url(/site/img/banner_4_1.jpg) no-repeat center;
     padding: 100px 0;
 }
 
@@ -7458,8 +7458,8 @@ form.v2.search-form-2 {
     content: "";
     height: 15px;
     display: inline-block;
-    /* background: url(/storage/site/img/product/cart.png) no-repeat center; */
-    background: url(/storage/site/img/product/cart.png) no-repeat center;
+    /* background: url(/site/img/product/cart.png) no-repeat center; */
+    background: url(/site/img/product/cart.png) no-repeat center;
     width: 20px;
     background-size: cover;
     margin-right: 5px;
@@ -7533,8 +7533,8 @@ form.v2.search-form-2 {
     content: "";
     height: 15px;
     display: inline-block;
-    /* background: url(/storage/site/img/product/cart.png) no-repeat center; */
-    background: url(/storage/site/img/product/cart.png) no-repeat center;
+    /* background: url(/site/img/product/cart.png) no-repeat center; */
+    background: url(/site/img/product/cart.png) no-repeat center;
     width: 20px;
     background-size: cover;
     margin-right: 5px;
@@ -7610,8 +7610,8 @@ form.v2.search-form-2 {
     content: "";
     height: 14px;
     display: inline-block;
-    /* background: url(/storage/site/img/products/grid-4.png) no-repeat center; */
-    background: url(/storage/site/img/products/grid-4.png) no-repeat center;
+    /* background: url(/site/img/products/grid-4.png) no-repeat center; */
+    background: url(/site/img/products/grid-4.png) no-repeat center;
     width: 14px;
     background-size: cover;
     margin: 0 10px;
@@ -7621,7 +7621,7 @@ form.v2.search-form-2 {
     content: "";
     height: 12px;
     display: inline-block;
-    background: url(/storage/site/img/product/grid-one.png) no-repeat center;
+    background: url(/site/img/product/grid-one.png) no-repeat center;
     width: 12px;
     background-size: cover;
 }
@@ -7815,7 +7815,7 @@ form.v2.search-form-2 {
     content: "";
     height: 15px;
     display: inline-block;
-    background: url(/storage/site/img/product/cart.png) no-repeat center;
+    background: url(/site/img/product/cart.png) no-repeat center;
     width: 20px;
     background-size: cover;
     margin-right: 5px;
@@ -8571,7 +8571,7 @@ form.cart .quantity .quantity-right-plus {
 
 .icon-coupon {
     /* background: url("../img/coupon.svg") no-repeat center; */
-    background: url("/storage/site/img/coupon.svg") no-repeat center;
+    background: url("/site/img/coupon.svg") no-repeat center;
 }
 
 .btn-submit {
@@ -9447,7 +9447,7 @@ textarea#message {
 }
 
 .quote:before {
-    content: url(/storage/site/img/blog/quote-icon.png);
+    content: url(/site/img/blog/quote-icon.png);
     margin-right: 20px;
     width: 50px;
     height: 50px;

@@ -18,7 +18,7 @@
         <div v-if="smsSendResCode == ''" class="text-center">
           Загружаем возможность подтверждения
           <br />
-          <img src="/storage/img/admin-loader.gif" width="32" />
+          <img src="/img/admin-loader.gif" width="32" />
         </div>
         <div v-else>
           <div v-if="smsResLoading">

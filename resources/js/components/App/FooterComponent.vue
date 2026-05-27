@@ -81,7 +81,7 @@
           <ul class="social">
             <a href="https://vk.com/detali.auto" target="_blank" title="VK">
               <img
-                src="/storage/site/img/icon/vk.png"
+                src="/site/img/icon/vk.png"
                 style="width: 50px; margin-right: 5px;"
               />
             </a>
@@ -91,7 +91,7 @@
               title="tg"
             >
               <img
-                src="/storage/site/img/icon/tg.png"
+                src="/site/img/icon/tg.png"
                 style="width: 50px; margin-right: 5px;"
               />
             </a>
@@ -101,7 +101,7 @@
               title="WhatsApp"
             >
               <img
-                src="/storage/site/img/icon/wa.png"
+                src="/site/img/icon/wa.png"
                 style="width: 50px; margin-right: 5px;"
               />
             </a>
@@ -124,20 +124,20 @@
         </div>
         <div class="col-xs-12 col-sm-4 text-center">
           <img
-            src="/storage/site/img/visa.png"
+            src="/site/img/visa.png"
             alt="images"
             xclass="img-responsive"
             style="margin-right: 10px;"
 
           />
           <img
-            src="/storage/site/img/mastercard.png"
+            src="/site/img/mastercard.png"
             alt="images"
             xclass="img-responsive"
 
             />
           <img
-            src="/storage/site/img/mir.svg"
+            src="/site/img/mir.svg"
             alt="images"
             xclass="img-responsive"
           />

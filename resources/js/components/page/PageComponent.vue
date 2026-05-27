@@ -12,7 +12,7 @@
           .. загружаю данные ..
           <br />
           <img
-            src="/storage/site/img/loader.gif"
+            src="/site/img/loader.gif"
             alt=""
             style="width: 120px;"
           />

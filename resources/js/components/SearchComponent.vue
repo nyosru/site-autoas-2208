@@ -34,16 +34,16 @@
         <h2>.. ищем доступные варианты ..</h2>
         <br />
         <br />
-        <!-- <img src="/storage/site/img/loader.gif" alt="" style="width: 120px;" /> -->
-        <img src="/storage/img/12.gif" alt="" style="width: 120px;" />
+        <!-- <img src="/site/img/loader.gif" alt="" style="width: 120px;" /> -->
+        <img src="/img/12.gif" alt="" style="width: 120px;" />
       </div>
 
       <div class="col-4 text-center" v-if="goodsLoading">
         <!-- <h2>.. ищем доступные варианты ..</h2>
         <br />
         <br /> -->
-        <!-- <img src="/storage/site/img/loader.gif" alt="" style="width: 120px;" /> -->
-        <!-- <img src="/storage/img/12.gif" alt="" style="width: 120px;" /> -->
+        <!-- <img src="/site/img/loader.gif" alt="" style="width: 120px;" /> -->
+        <!-- <img src="/img/12.gif" alt="" style="width: 120px;" /> -->
       </div>
       <template v-else>
         <!-- goodsData: {{ goodsData }} -->
@@ -85,8 +85,8 @@
 
         <!-- <div class="col-4 text-center" v-if="findedOnPartnerLoading"> -->
           <!-- <h2>.. ищем доступные варианты ..</h2>          <br />          <br /> -->
-          <!-- <img src="/storage/site/img/loader.gif" alt="" style="width: 120px;" /> -->
-          <!-- <img src="/storage/img/12.gif" alt="" style="width: 120px;" /> -->
+          <!-- <img src="/site/img/loader.gif" alt="" style="width: 120px;" /> -->
+          <!-- <img src="/img/12.gif" alt="" style="width: 120px;" /> -->
         <!-- </div> -->
 
         <!-- 111 -->
