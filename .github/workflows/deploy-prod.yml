@@ -42,6 +42,11 @@ jobs:
             git fetch --all
             git reset --hard origin/prod
 
+  deploy2:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+
       - name: composer + migrate
         uses: appleboy/ssh-action@master
         with:
@@ -53,24 +58,24 @@ jobs:
             /opt/php80/bin/php ./composer.phar i --no-dev
             /opt/php80/bin/php artisan migrate
 
-      - name: Deploy built assets
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ env.VPS_IP }}
-          username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
-          source: "public/js/app.js,public/js/app.js.LICENSE.txt,public/css/app.css,public/mix-manifest.json"
-          target: ${{ env.DIR }}
+#      - name: Deploy built assets
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ env.VPS_IP }}
+#          username: ${{ env.VPS_USERNAME }}
+#          password: ${{ secrets.SERVER_PASSWORD }}
+#          source: "public/js/app.js,public/js/app.js.LICENSE.txt,public/css/app.css,public/mix-manifest.json"
+#          target: ${{ env.DIR }}
 
-      - name: send telega
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ env.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            🍀🍀🍀 обновления заведены, установлены, сайт обновлён
-            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
-            сделал ${{ github.event_name }}. задание ${{github.job}}.
+#      - name: send telega
+#        uses: appleboy/telegram-action@master
+#        with:
+#          to: ${{ env.TELEGRAM_TO }}
+#          token: ${{ secrets.TELEGRAM_TOKEN }}
+#          message: |
+#            🍀🍀🍀 обновления заведены, установлены, сайт обновлён
+#            👨🏻‍💻 ${{github.actor}} в репозиторий ${{ github.repository }}
+#            сделал ${{ github.event_name }}. задание ${{github.job}}.
 
   sms_start:
     runs-on: ubuntu-latest
@@ -87,7 +92,7 @@ jobs:
 
   sms_end:
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: deploy2
     steps:
       - name: sms_vk
         run: |
