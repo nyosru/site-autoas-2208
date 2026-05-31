@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/admin.css": "/css/admin.css",
     "/storage/app/public/css/ajax-loader.gif": "/storage/app/public/css/ajax-loader.gif",
     "/storage/app/public/css/bootstrap-slider.css": "/storage/app/public/css/bootstrap-slider.css",
     "/storage/app/public/css/bootstrap-slider.css.map": "/storage/app/public/css/bootstrap-slider.css.map",

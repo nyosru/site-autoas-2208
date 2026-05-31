@@ -13,6 +13,7 @@ composer install
 ```
 - CI builds assets on GitHub runner (`npm ci && npm run prod`), then SCPs `public/js/app.js`, `public/css/app.css`, `public/mix-manifest.json` to the VPS.
 - Server runs PHP 8.0 — composer installs with `--no-dev`.
+- Docker контейнер для локальной разработки "2312auto_as"
 
 ## Testing
 ```sh

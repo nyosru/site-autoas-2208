@@ -55,7 +55,8 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd ${{ env.DIR }}
-            /opt/php80/bin/php ./composer.phar i --no-dev
+            /opt/php80/bin/php composer.phar i --no-dev
+            /opt/php80/bin/php composer.phar update --no-dev
             /opt/php80/bin/php artisan migrate
 
 #      - name: Deploy built assets

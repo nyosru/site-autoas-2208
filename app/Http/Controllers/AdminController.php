@@ -20,6 +20,12 @@ class AdminController extends Controller
         return view('admin.page-edit', compact('page'));
     }
 
+    public function pageEditCkeditor($id)
+    {
+        $page = Page::findOrFail($id);
+        return view('admin.page-edit-ckeditor', compact('page'));
+    }
+
     public function pageUpdate(Request $request, $id)
     {
         $page = Page::findOrFail($id);
@@ -51,11 +57,17 @@ class AdminController extends Controller
         $file = $request->file('upload');
         $name = time() . '_' . $file->getClientOriginalName();
         $path = $file->storeAs('uploads', $name, 'public');
+        $url = '/storage/' . $path;
+
+        if ($request->has('CKEditorFuncNum')) {
+            $funcNum = $request->input('CKEditorFuncNum');
+            return '<script>window.parent.CKEDITOR.tools.callFunction(' . $funcNum . ', "' . $url . '");</script>';
+        }
 
         return response()->json([
             'uploaded' => 1,
             'fileName' => $name,
-            'url' => '/storage/' . $path,
+            'url' => $url,
         ]);
     }
 }

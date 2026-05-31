@@ -41,6 +41,8 @@ Route::prefix('admin')->group(function () {
         Route::get('pages', [\App\Http\Controllers\AdminController::class, 'pages']);
         Route::get('pages/{id}/edit', [\App\Http\Controllers\AdminController::class, 'pageEdit'])
             ->middleware('role:owner');
+        Route::get('pages/{id}/edit-ck', [\App\Http\Controllers\AdminController::class, 'pageEditCkeditor'])
+            ->middleware('role:owner');
         Route::put('pages/{id}', [\App\Http\Controllers\AdminController::class, 'pageUpdate'])
             ->middleware('role:owner');
         Route::post('upload-image', [\App\Http\Controllers\AdminController::class, 'uploadImage'])

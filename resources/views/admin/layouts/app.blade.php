@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Админ-панель')</title>
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/admin.css') }}?v={{ filemtime(public_path('/css/admin.css')) }}" rel="stylesheet"/>
     @stack('styles')
 </head>
 <body class="bg-gray-100 min-h-screen">

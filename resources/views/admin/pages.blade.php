@@ -19,18 +19,24 @@
             <tbody class="divide-y divide-gray-200">
                 @foreach ($pages as $p)
                 <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-3">{{ $p->id }}</td>
+                    <td class="px-4 py-3">
+                        @if (Auth::user()->role === 'owner'){{ $p->id }}@endif
+                    </td>
                     <td class="px-4 py-3">{{ $p->module }}</td>
                     <td class="px-4 py-3 font-medium">{{ $p->name }}</td>
                     <td class="px-4 py-3 text-gray-500">{{ $p->opis }}</td>
                     <td class="px-4 py-3">
                         @if (Auth::user()->role === 'owner')
-                            <a href="/admin/pages/{{ $p->id }}/edit"
-                               class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded transition">
-                                Редактировать
+{{--                            <a href="/admin/pages/{{ $p->id }}/edit"--}}
+{{--                               class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded transition">--}}
+{{--                                Редактировать--}}
+{{--                            </a>--}}
+                            <a href="/admin/pages/{{ $p->id }}/edit-ck"
+                               class="inline-block bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium px-3 py-1.5 rounded transition ml-1">
+                                CK Editor 3
                             </a>
                         @else
-                            <span class="text-gray-400 text-xs bg-gray-100 px-2 py-1 rounded">нет доступа</span>
+{{--                            <span class="text-gray-400 text-xs bg-gray-100 px-2 py-1 rounded">нет доступа</span>--}}
                         @endif
                     </td>
                 </tr>
