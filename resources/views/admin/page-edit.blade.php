@@ -37,7 +37,7 @@
         background: #ddd;
         margin: 2px 4px;
     }
-    #editor {
+    #editor, #codeEditor {
         min-height: 450px;
         max-height: 650px;
         overflow-y: auto;
@@ -58,6 +58,75 @@
     #editor img.selected {
         outline: 3px solid #0d6efd;
         outline-offset: 2px;
+    }
+    #codeEditor {
+        display: none;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        tab-size: 4;
+        resize: vertical;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    #codeEditor:focus {
+        outline: none;
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+    }
+    .editor-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        user-select: none;
+        font-size: 13px;
+    }
+    .editor-toggle input {
+        display: none;
+    }
+    .editor-toggle .toggle-track {
+        width: 44px;
+        height: 24px;
+        background: #ccc;
+        border-radius: 12px;
+        position: relative;
+        transition: background .2s;
+        flex-shrink: 0;
+    }
+    .editor-toggle .toggle-track::after {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: transform .2s;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    .editor-toggle input:checked + .toggle-track {
+        background: #0d6efd;
+    }
+    .editor-toggle input:checked + .toggle-track::after {
+        transform: translateX(20px);
+    }
+    .editor-toggle .toggle-label {
+        color: #555;
+        white-space: nowrap;
+    }
+    .editor-toggle input:checked ~ .toggle-label .code-label {
+        font-weight: 600;
+        color: #0d6efd;
+    }
+    .editor-toggle .toggle-label .visual-label {
+        font-weight: 600;
+        color: #0d6efd;
+    }
+    .editor-toggle input:checked ~ .toggle-label .visual-label {
+        font-weight: 400;
+        color: #555;
     }
 
     .modal-overlay {
@@ -207,10 +276,17 @@
                 <button type="button" onclick="insertTable()" title="Таблица">⊞</button>
                 <button type="button" onclick="exec('insertHorizontalRule')" title="Горизонтальная линия">—</button>
                 <span class="sep"></span>
-                <button type="button" onclick="toggleHtml()" title="Режим HTML">&lt;/&gt;</button>
+                <label class="editor-toggle" title="Переключить между визуальным и HTML-режимом">
+                    <input type="checkbox" id="modeToggle" onchange="toggleMode(this.checked)">
+                    <span class="toggle-track"></span>
+                    <span class="toggle-label">
+                        <span class="visual-label">Визуально</span> / <span class="code-label">Код</span>
+                    </span>
+                </label>
                 <button type="button" onclick="document.getElementById('editor').innerHTML = ''" title="Очистить">🗑</button>
             </div>
             <div id="editor" contenteditable="true">{!! $page->html !!}</div>
+            <textarea id="codeEditor">{{ $page->html }}</textarea>
             <textarea name="html" id="htmlInput" style="display:none"></textarea>
         </div>
 
@@ -376,24 +452,28 @@
         }
     }
 
-    // ---------- HTML режим ----------
-    var htmlMode = false;
-    function toggleHtml() {
+    // ---------- режим: визуальный / код ----------
+    function toggleMode(isCode) {
         var editor = document.getElementById('editor');
-        var input = document.getElementById('htmlInput');
-        if (htmlMode) {
-            editor.innerHTML = input.value;
-            editor.contentEditable = 'true';
-            htmlMode = false;
-        } else {
-            input.value = editor.innerHTML;
+        var codeEditor = document.getElementById('codeEditor');
+        var toolbar = document.getElementById('toolbar');
+        if (isCode) {
+            codeEditor.value = editor.innerHTML;
+            editor.style.display = 'none';
+            codeEditor.style.display = 'block';
             editor.contentEditable = 'false';
-            htmlMode = true;
+            toolbar.querySelectorAll('button, select, input[type="color"]').forEach(function (el) {
+                el.disabled = true;
+            });
+        } else {
+            editor.innerHTML = codeEditor.value;
+            editor.style.display = 'block';
+            codeEditor.style.display = 'none';
+            editor.contentEditable = 'true';
+            toolbar.querySelectorAll('button, select, input[type="color"]').forEach(function (el) {
+                el.disabled = false;
+            });
         }
-        document.querySelector('#toolbar').querySelectorAll('button, select, input').forEach(function (el) {
-            if (el.onclick && el.onclick.toString().indexOf('toggleHtml') !== -1) return;
-            el.disabled = htmlMode;
-        });
     }
 
     // ---------- Модальное окно изображения ----------
@@ -629,7 +709,14 @@
     // ---------- форма ----------
     var form = document.querySelector('form');
     form.onsubmit = function () {
-        document.getElementById('htmlInput').value = document.getElementById('editor').innerHTML;
+        var editor = document.getElementById('editor');
+        var codeEditor = document.getElementById('codeEditor');
+        var htmlInput = document.getElementById('htmlInput');
+        if (document.getElementById('modeToggle').checked) {
+            htmlInput.value = codeEditor.value;
+        } else {
+            htmlInput.value = editor.innerHTML;
+        }
     };
 
     document.addEventListener('keydown', function (e) {
