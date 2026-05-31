@@ -111,6 +111,7 @@ Route::apiResource('good', GoodController::class);
 Route::get('goodAnalog/{id}', [GoodController::class, 'showAnalog']);
 
 
+Route::get('pages', [PageController::class, 'apiIndex']);
 Route::apiResource('page', PageController::class);
 Route::apiResource('banner', BannerController::class);
 Route::get('adverIndex', [BannerController::class, 'adverIndex']);

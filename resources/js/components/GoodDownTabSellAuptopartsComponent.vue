@@ -13,17 +13,11 @@
                     <thead>
                     <tr>
                         <th>Название</th>
-                        <th>
-                            <p class="text-center">
-                                <div class="nobr">На складе</div>
-                            </p>
+                        <th class="text-center nobr">
+                            На складе
                         </th>
-                        <th>
-                            <p class="text-center">
-                                Дней
-                                <br/>
-                                <div class="nobr">на доставку</div>
-                            </p>
+                        <th class="text-center nobr">
+                            Дней<br/>на доставку
                         </th>
                         <th><p class="text-center">Цена</p></th>
                         <th><p class="text-center">Кол-во</p></th>

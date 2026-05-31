@@ -51,6 +51,7 @@ mix
     .postCss('resources/css/app.css', 'public/css', [])
     // .postCss('storage/app/public/css/bootstrap.css', 'public/css/app.css', [])
     .postCss('storage/app/public/css/font-awesome.css', 'public/css/app.css', [])
+    .postCss('resources/css/admin.css', 'public/css/admin.css')
     // .postCss('storage/app/public/css/ionicons.min.css', 'public/css/app.css', [])
     // .postCss('storage/app/public/css/style.css', 'public/css/app.css', [])
     // .css('storage/app/public/css/style.css', 'public/css/app.css', [])

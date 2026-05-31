@@ -47,7 +47,7 @@ import {
   Autoplay,
   // Pagination,
   // Navigation
-} from 'swiper'
+} from 'swiper/modules'
 
 import IndexLineAdverGoodsItemComponent from './IndexLineAdverGoodsItemComponent.vue'
 const props = defineProps({

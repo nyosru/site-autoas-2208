@@ -8,31 +8,23 @@
     <title>Детали Авто (Магазин автозапчастей в Тюмени!)</title>
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('css/app.css') }}?s=2208120328" rel="stylesheet"/>
+    <link href="{{ asset('css/app.css') }}?s=260528" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}"/>
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}?s=2208120328"/>
-    <link rel="icon" type="image/png" href="/site/img/logo47.png"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?s=260528"/>
+    <link rel="icon" type="image/png" href="/img/logo1.png"/>
 
     <meta property="og:title" content="Детали Авто запчасти">
-    <meta property="og:site_name" content="avto-as.ru">
-    <meta property="og:url" content="https://avto-as.ru">
+    <meta property="og:site_name" content="детали-авто.рф">
+    <meta property="og:url" content="https://детали-авто.рф">
 
     <meta property="og:description" content="Запчасти для автомобилей">
-    <meta property="og:image" content="https://22.avto-as.ru/site/img/logo2112.png">
-    <meta property="og:image:width" content="968">
-    <meta property="og:image:height" content="504">
+    <meta property="og:image" content="https://детали-авто.рф/img/logo1.png">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="121">
 </head>
 
 <body>
-
-
-{{--asd: {{ $asd ?? 'x' }}--}}
-{{--<br/>--}}
-{{--<br/>--}}
-{{--aa: {{ $aa ?? 'x' }}--}}
-{{--<br/>--}}
-{{--<br/>--}}
 
 <div id="app"></div>
 

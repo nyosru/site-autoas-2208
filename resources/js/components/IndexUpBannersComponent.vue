@@ -59,7 +59,7 @@ import {
   Autoplay,
   // Pagination,
   // Navigation
-} from 'swiper'
+} from 'swiper/modules'
 
 import banner from './../use/banner.ts'
 import { onMounted } from 'vue'

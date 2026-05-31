@@ -22,10 +22,6 @@ use Illuminate\Support\Facades\Validator;
 use Phpcatcom\Api\AllAutopartsService;
 use Illuminate\Support\Facades\App;
 
-
-//use Phpcatcom\Api\AllAutoParts\Controllers\AllAutoPartsController;
-//use Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService;
-
 class PageController extends Controller
 {
 
@@ -45,9 +41,6 @@ class PageController extends Controller
             // 'password' => 'required|min:6',
         ]);
 
-        // $data = $request->all();
-        // $check = $this->create($data);
-        // $check = self::createUser($data);
         $check = self::createUser($dataVal);
 
         return redirect("dashboard")->withSuccess('You have signed-in');
@@ -77,13 +70,7 @@ class PageController extends Controller
      */
     public static function phoneNormalize($str, $return = 'number')
     {
-        // function phone_number($sPhone)
-        // {
         $sPhone = preg_replace("[^0-9]", '', $str);
-        // dd($sPhone);
-
-        // dd( $sPhone[0] );
-        // dd(substr($sPhone, 0, 1));
 
         if (strlen($sPhone) == 10) {
             $sPhone = '8' . $sPhone;
@@ -99,7 +86,6 @@ class PageController extends Controller
             $phone = '+' . $sPhone;
         } elseif ($sPhone[0] == 8) {
             $phone = '+7' . substr($sPhone, 1, 10);
-            // dD($ph);
         }
 
 
@@ -107,12 +93,6 @@ class PageController extends Controller
             return False;
 
         return $phone;
-
-        // $sArea = substr($sPhone, 0, 3);
-        // $sPrefix = substr($sPhone, 3, 3);
-        // $sNumber = substr($sPhone, 6, 4);
-        // $sPhone = "(" . $sArea . ")" . $sPrefix . "-" . $sNumber;
-        // return $sPhone;
     }
 
     /**
@@ -125,9 +105,10 @@ class PageController extends Controller
     }
 
     /**
-     *  при выхове этой функции номер делаем подтверждённым
+     * при выхове этой функции номер делаем подтверждённым
+     * @param $phone
+     * @return JsonResponse
      */
-    // public function smsConfirmSend( $orderId )
     public function smsConfirmSend($phone)
     {
         $phone1 = self::phoneNormalize($phone, 8);
@@ -141,53 +122,48 @@ class PageController extends Controller
     }
 
 
-
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * @param $email
+     * @return void
+     */
     public function mailVerify($email)
     {
     }
 
-
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
 
         $in = [
-//            'asd' => \Phpcatcom\Api\AllAutoParts\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
-//            'asd' => \Phpcatcom\Api\Services\AllAutopartsService::get(1, 'as', 'asd', 'фильтр'),
-//            'asd' => \Phpcatcom\Api\AllAutopartsService::get(1, '113354', 'asd', '1154'),
             'aa' => ''
         ];
-
-
-//        $classes = App::getClasses();
-//
-//        foreach ($classes as $class) {
-////            echo $class . '<br>';
-//            $in['aa'] .= $class . '<br>';
-//        }
 
         return view('welcome', $in);
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    /**
+     * Display a listing of the resource.
+     */
+    public function apiIndex()
+    {
+        return response()->json(['data' => Page::all()]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $page = Page::findOrFail($id);
+        $page->name = $request->input('name', $page->name);
+        $page->opis = $request->input('opis', $page->opis);
+        $page->html = $request->input('html', $page->html);
+        $page->save();
+
+        return response()->json(['data' => $page]);
+    }
 
     /**
      * Display the specified resource.
@@ -197,35 +173,18 @@ class PageController extends Controller
      */
     public function show($page)
     {
-
-        // dd($page);
         $res = Page::where('module', $page)->get();
 
         if (!empty($res[0])) {
             return response()->json(['data' => $res[0]]);
         } else {
-            // return response(view('view_name'), 404);
-            // new Exception('error', 404);
             abort(404);
         }
     }
 
     public function getApiAllAutoparts(string $search)
     {
-//        return json_encode( [ 1, AllAutopartsService::get(1, '113354', 'x', $search) ] );
-//        return AllAutopartsService::get(1, '113354', 'x', $search);
-//        return json_decode(AllAutopartsService::get(1, '113354', 'x', '1154'))['data'];
         return AllAutopartsService::get(1, '113354', 'x', '1154');
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
 }

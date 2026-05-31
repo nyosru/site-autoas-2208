@@ -26,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         // 'RegUserEvent' => [ RegUserListener::class, 'handle' ],        
         // 'Illuminate\Auth\Events\Login' => [ 'App\Listeners\UserEventListener' ]
         // 'Illuminate\Auth\Events\Registered' => [ RegUserListener::class ]
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class . '@handle',
+        ],
     ];
 
     /**
