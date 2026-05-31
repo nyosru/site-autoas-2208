@@ -14,6 +14,7 @@ env:
 jobs:
 
   deploy:
+
     runs-on: ubuntu-latest
     steps:
 
@@ -33,7 +34,7 @@ jobs:
         with:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ env.DIR }}
             find . -not -user $(whoami) -not -path './.git/*' -delete 2>/dev/null || true
@@ -52,7 +53,7 @@ jobs:
         with:
           host: ${{ env.VPS_IP }}
           username: ${{ env.VPS_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ env.DIR }}
             /opt/php80/bin/php composer.phar i --no-dev
