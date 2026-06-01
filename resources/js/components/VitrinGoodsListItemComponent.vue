@@ -5,7 +5,7 @@
                 <img
                     :src="'/photo/mini/' + (i.a_arrayimage ?? 'x')"
                     loading="lazy"
-                    onerror="if(this.src.includes('/mini/')){this.src=this.src.replace('/mini/','')}else if(!this.src.includes('photo_no')){this.src='/photo_no.jpg'}"
+                    onerror="if(this.src.includes('/mini/')){this.src=this.src.replace('/mini/','')}else if(!this.src.includes('photo_no')){this.src='/storage/photo_no.jpg'}"
                     alt=""
                     class="img-responsive"
                 />
