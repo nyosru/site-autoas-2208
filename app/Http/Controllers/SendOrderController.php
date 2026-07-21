@@ -8,6 +8,7 @@ use App\Models\MailStop;
 use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Nyos\Msg;
 
 class SendOrderController extends Controller
 {
@@ -25,7 +26,7 @@ class SendOrderController extends Controller
             'file' => __FILE__,
             'line' => __LINE__
         ];
-   
+
         $return['request'] = $request->all();
 
         $return['validated'] =
@@ -46,7 +47,7 @@ class SendOrderController extends Controller
 
         if (!empty($request->email)) {
             $data['email'] =
-                // $email = 
+                // $email =
                 $request->email;
         }
 
@@ -120,6 +121,7 @@ class SendOrderController extends Controller
         }
 
         self::sendTelega($return, $request);
+
         return response()->json($return);
     }
 
@@ -151,29 +153,37 @@ class SendOrderController extends Controller
 
         $msg .= 'Сумма: ' . $summa . $addEndSumma;
 
-        // file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
-        file_get_contents('https://api.php-cat.com/telegram.php?' . http_build_query(
-            array(
-                // 's' => '1',
-                's' => md5($_SERVER['HTTP_HOST']),
-                'domain' => $_SERVER['HTTP_HOST'],
-                // 'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
-                'msg' => $msg,
-                // OrderUraBot @order_ura_bot:
-                'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx'),
-                'id' => [   // 1368605419, // я тест
-                    // серхио тест
-                    // 5152088168,
-                    // 2037908418 // ваш метролог
-                
+        $vkId = 5903492;
+        Msg::sendVkFromGroup($msg, $vkId, 'notification');
 
-                    
-                    // first_name: Детали Авто
-                    1022228978,
-                    // Денис Авто-СА
-                    663501687 ]
-            )
-        ));
+        // отключил телеграм оповещения
+        if( 1 == 2 ) {
+
+            // file_get_contents('https://api.uralweb.info/telegram.php?' . http_build_query(
+            file_get_contents('https://api.php-cat.com/telegram.php?' . http_build_query(
+                    array(
+                        // 's' => '1',
+                        's' => md5($_SERVER['HTTP_HOST']),
+                        'domain' => $_SERVER['HTTP_HOST'],
+                        // 'msg' => $_SERVER['HTTP_HOST'] . PHP_EOL . $msg,
+                        'msg' => $msg,
+                        // OrderUraBot @order_ura_bot:
+                        'token' => env('TELEGA_ORDERBOT_TOKEN', 'xx'),
+                        'id' => [   // 1368605419, // я тест
+                            // серхио тест
+                            // 5152088168,
+                            // 2037908418 // ваш метролог
+
+
+                            // first_name: Детали Авто
+                            1022228978,
+                            // Денис Авто-СА
+                            663501687
+                        ]
+                    )
+                ));
+        }
+
 
     }
 
