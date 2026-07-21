@@ -192,9 +192,13 @@ const sendOrder = async() => {
             cartArBauyed.value = orderGoodsInOrder()
         })
         .catch((error) => {
-            // console.log('error', error)
-            // console.log('error response', error.response)
-            // console.log('error status', error.status)
+            console.error('sendOrder error', error)
+            if (error.response) {
+                console.error('error response', error.response.data)
+                if (error.response.status === 422 && error.response.data.errors) {
+                    errorToHtml.value = error.response.data.errors
+                }
+            }
             loadingForm1.value = false
         })
 

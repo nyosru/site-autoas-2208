@@ -46,9 +46,9 @@ class SendOrderController extends Controller
         }
 
         if (!empty($request->email)) {
-            $data['email'] =
-                // $email =
-                $request->email;
+            $data['email'] = $request->email;
+        } else {
+            $data['email'] = 'noemail_' . time() . '@' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
         }
 
         if (!empty($request->phone)) {
@@ -107,12 +107,10 @@ class SendOrderController extends Controller
             // если ранее уже НЕ подтверждали
             else {
 
-                // новый или не подтвердил ещё почту ... то шлём ему почту
-                // if ( 1 == 1 || ( !empty($user->email) && empty($user->email_verified_at) ) ) {
+                // new or unverified email — send verification
                 if ( ( !empty($user->email) && empty($user->email_verified_at) ) ) {
                     $return['send_mail_verified'] = true;
-                    // PageController::sendMailVerify($user);
-                    MailController::sendMailVerify($user);
+                    // MailController::sendMailVerify($user);
                 } else {
                     $return['send_mail_verified'] = false;
                 }

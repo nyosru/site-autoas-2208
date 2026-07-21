@@ -42,7 +42,7 @@
                 <input
                   type="text"
                   class="form-contol"
-                  style="max-width: 100%;"
+                  style=" border-radius: 5px; max-width: 100%;"
                   v-model="form_name"
                   required=""
                 />
@@ -100,7 +100,6 @@
                   class="form-contol"
                   style="max-width: 100%;"
                   v-model="email"
-                  required=""
                 />
               </label>
               <cart-order-show-error-component
@@ -173,11 +172,11 @@
           <!-- loadingForm1: {{ loadingForm1 }} -->
 
           <div class="process">
-            <div class="text-xs">
-              Перейти к&nbsp;завершающему этапу
-              <br />
-              оформления заказа
-            </div>
+<!--            <div class="text-xs">-->
+<!--              Перейти к&nbsp;завершающему этапу-->
+<!--              <br />-->
+<!--              оформления заказа-->
+<!--            </div>-->
 
             <div v-if="loadingForm1 == true" class="text-center">
               <img src="/img/admin-loader.gif" />
@@ -207,12 +206,13 @@
       <u>{{ email }}</u><br/>
       отправили ссылку подтверждения -->
 
-          <cart-order-email-component
-            :email="email"
-            :mail_send="mail_send ?? false"
-          />
-          <br />
-          <br />
+<!--          <cart-order-email-component-->
+<!--            :email="email"-->
+<!--            :mail_send="mail_send ?? false"-->
+<!--          />-->
+<!--          <br />-->
+<!--          <br />-->
+
           <cart-order-sms-component
             :phone="phone"
             :phone_veritify="res2.phone.phone_confirm ?? ''"

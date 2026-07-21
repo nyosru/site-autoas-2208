@@ -89,7 +89,7 @@ class SendOrderRequest extends FormRequest
         return [
             'name' => 'required',
             'city' => 'required',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             // 'phone' => 'required|numeric|min:9|max:11',
             'phone' => 'required|min:9',
         ];

@@ -46,7 +46,7 @@
                 <input
                   type="text"
                   class="form-contol"
-                  style="max-width: 100%;"
+                  style="border-radius:10px; padding: 5px; max-width: 100%;"
                   v-model="form_name"
                   required=""
                 />
@@ -66,7 +66,7 @@
                 <input
                   type="text"
                   class="form-contol"
-                  style="max-width: 100%;"
+                  style="border-radius:10px; padding: 5px; max-width: 100%;"
                   v-model="form_city"
                   required=""
                 />
@@ -84,7 +84,7 @@
                 <input
                   type="text"
                   class="form-contol"
-                  style="max-width: 100%;"
+                  style="border-radius:10px; padding: 5px; max-width: 100%;"
                   v-model="phone"
                   required=""
                 />
@@ -102,9 +102,8 @@
                 <input
                   type="email"
                   class="form-contol"
-                  style="max-width: 100%;"
+                  style="border-radius:10px; padding: 5px; max-width: 100%;"
                   v-model="email"
-                  required=""
                 />
               </label>
               <cart-order-show-error-component
@@ -164,7 +163,7 @@
                   <input
                     type="text"
                     class="form-contol"
-                    style="max-width: 100%;"
+                    style="border-radius:10px; padding: 5px; max-width: 100%;"
                     v-model="form_postedAddress"
                   />
                   <br />
