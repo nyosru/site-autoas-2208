@@ -43,7 +43,7 @@ class VkGroupMessageService
      */
     public function sendToUserWithResult(int|string $vkId, string $message): array
     {
-        $token = (string) config('services.vk.service_token');
+        $token = (string) config('services.vk.order_token');
 
         if ($token === '') {
             Log::warning('VK service token is missing');
@@ -58,7 +58,7 @@ class VkGroupMessageService
                 'access_token' => $token,
                 'user_id' => (int) $vkId,
                 'message' => trim($message),
-                'random_id' => random_int(1, 2_147_483_647),
+                'random_id' => random_int(1, 2147483647),
                 'v' => '5.131',
             ]);
 

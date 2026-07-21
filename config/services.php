@@ -36,4 +36,13 @@ return [
         'redirect' => env('VK_REDIRECT_URI'),
     ],
 
+    'vk' => [
+        'service_token' => env('VK_SERVICE_TOKEN'),
+        'group_id' => env('VK_GROUP_ID'),
+
+        'order_token' => env('VK_GROUP_ORDER_TOKEN'),
+        'order_group_id' => env('VK_GROUP_ORDER_ID'),
+
+    ],
+
 ];

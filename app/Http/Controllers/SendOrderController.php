@@ -8,7 +8,6 @@ use App\Models\MailStop;
 use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Nyos\Msg;
 
 class SendOrderController extends Controller
 {
@@ -51,8 +50,8 @@ class SendOrderController extends Controller
             $data['email'] = 'noemail_' . time() . '@' . ($_SERVER['HTTP_HOST'] ?? 'localhost');
         }
 
-        if (!empty($request->phone)) {
-        }
+//        if (!empty($request->phone)) {
+//        }
 
         $userIn['name'] = $request->name ?? 'x';
         $userIn['password'] = md5(rand());
@@ -120,6 +119,8 @@ class SendOrderController extends Controller
 
         self::sendTelega($return, $request);
 
+
+
         return response()->json($return);
     }
 
@@ -151,8 +152,13 @@ class SendOrderController extends Controller
 
         $msg .= 'Сумма: ' . $summa . $addEndSumma;
 
-        $vkId = 5903492;
-        Msg::sendVkFromGroup($msg, $vkId, 'notification');
+//        $vkId = 5903492;
+//        Msg::sendVkFromGroup($msg, $vkId, 'notification');
+
+        try {
+            app(\App\Services\VkGroupMessageService::class)->sendToUser(5903492, $msg);
+        } catch (\Throwable $e) {
+        }
 
         // отключил телеграм оповещения
         if( 1 == 2 ) {
@@ -191,7 +197,7 @@ class SendOrderController extends Controller
     public static function addStringGoodToTelegas($v)
     {
 
-        $return = $v['head'] . ' (' . $v['a_id'] . ')' . PHP_EOL
+        $return = $v['head']  . PHP_EOL . '( https://детали-авто.рф/good/' . $v['a_id'] . ' )' . PHP_EOL
             . '       ' . $v['kolvo'] . 'шт ';
 
         if (!empty($v['a_price'])) {

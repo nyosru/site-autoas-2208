@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\GoodController;
+use App\Services\VkMessageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoodsCatController;
 use App\Http\Controllers\PageController;
@@ -125,6 +127,8 @@ Route::get('import/1c', [ImportAvtoAsController::class, 'import']);
 Route::apiResource('order', SendOrderController::class)
     ->only(['store']);
 
+
+
 // Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
 Route::any('smsConfirmSend/{phone}/{code?}', [PhoneController::class, 'smsConfirmSend']);
 // Route::post('smsConfirm/{phone}', [PageController::class, 'smsConfirm']);
@@ -132,3 +136,66 @@ Route::post('smsConfirm/{phone}', [PhoneController::class, 'smsConfirm']);
 
 Route::apiResource('emailStop', MailStopController::class);
 // Route::resource('emailStop', MailStopController::class);
+
+Route::get('test-vk', function () {
+
+    $msg = 'Тестовое сообщение из '.($_SERVER['HTTP_HOST'] ?? 'сайта').'. Время: '.now();
+    $vkId = 5903492;
+
+    $log = [];
+
+    // === 1. Проверка конфигов ===
+    $log['config'] = [
+        'env_VK_SERVICE_TOKEN' => env('VK_SERVICE_TOKEN') ? '***'.substr(env('VK_SERVICE_TOKEN'), -10) : 'NOT SET',
+        'env_VK_GROUP_ORDER_TOKEN' => env('VK_GROUP_ORDER_TOKEN') ? '***'.substr(env('VK_GROUP_ORDER_TOKEN'), -10) : 'NOT SET',
+        'env_VK_GROUP_ID' => env('VK_GROUP_ID'),
+        'env_VK_GROUP_ORDER_ID' => env('VK_GROUP_ORDER_ID'),
+        'config_services_vk_service_token' => config('services.vk.service_token') ? '***'.substr(config('services.vk.service_token'), -10) : 'NOT SET',
+        'config_order_vk_service_token' => config('services.vk.order_token') ? '***'.substr(config('services.vk.order_token'), -10) : 'NOT SET',
+        'config_services_vk_group_id' => config('services.vk.group_id'),
+        'config_щ order_vk_group_id' => config('services.vk.order_group_id'),
+    ];
+    Log::info('TEST-VK: config check', $log['config']);
+
+    // === 2. VkGroupMessageService ===
+    $log['vkGroupService'] = ['attempted' => true];
+    try {
+        $vkService = app(\App\Services\VkGroupMessageService::class);
+        $log['vkGroupService']['canSendFromGroup'] = $vkService->canSendFromGroup($vkId);
+        $result = $vkService->sendToUserWithResult($vkId, $msg);
+        $log['vkGroupService']['sendResult'] = $result;
+        Log::info('TEST-VK: sendToUserWithResult', $result);
+    } catch (\Throwable $e) {
+        $log['vkGroupService']['exception'] = $e->getMessage();
+        Log::error('TEST-VK: VkGroupMessageService exception', ['message' => $e->getMessage()]);
+    }
+
+    // === 3. Прямой запрос к VK API ===
+    $log['directVkApi'] = ['attempted' => true];
+    try {
+        $token = env('VK_SERVICE_TOKEN');
+        if ($token) {
+            $response = \Illuminate\Support\Facades\Http::asForm()->timeout(30)->post('https://api.vk.com/method/messages.send', [
+                'access_token' => $token,
+                'user_id' => $vkId,
+                'message' => $msg,
+                'random_id' => random_int(1, 2147483647),
+                'v' => '5.131',
+            ]);
+            $log['directVkApi']['http_status'] = $response->status();
+            $log['directVkApi']['body'] = $response->json();
+            Log::info('TEST-VK: direct VK API', [
+                'http_status' => $response->status(),
+                'body' => $response->json(),
+            ]);
+        } else {
+            $log['directVkApi']['error'] = 'VK_SERVICE_TOKEN not set in env';
+            Log::error('TEST-VK: direct VK API - token missing');
+        }
+    } catch (\Throwable $e) {
+        $log['directVkApi']['exception'] = $e->getMessage();
+        Log::error('TEST-VK: direct VK API exception', ['message' => $e->getMessage()]);
+    }
+
+    return response()->json($log);
+});
