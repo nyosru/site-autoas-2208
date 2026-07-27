@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-namespace App\Services;
+//namespace App\Services;
 
-use App\Repositories\Contracts\VkSentMessageRepositoryInterface;
-use Exception;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
+//use App\Repositories\Contracts\VkSentMessageRepositoryInterface;
+//use Exception;
+//use Illuminate\Support\Facades\Http;
+//use Illuminate\Support\Facades\Log;
+//use Illuminate\Support\Str;
 
 class VkMessageService
 {
