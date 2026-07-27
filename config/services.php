@@ -42,7 +42,16 @@ return [
 
         'order_token' => env('VK_GROUP_ORDER_TOKEN'),
         'order_group_id' => env('VK_GROUP_ORDER_ID'),
-
+        'send_to_id1' => env('SENDVK_TO1',0),
+        'send_to_id2' => env('SENDVK_TO2',0),
+        'send_to_id3' => env('SENDVK_TO3',0),
+        'send_to_id4' => env('SENDVK_TO4',0),
+        'send_to_id5' => env('SENDVK_TO5',0),
+        'send_to_id6' => env('SENDVK_TO6',0),
+        'send_to_id7' => env('SENDVK_TO7',0),
+        'send_to_id8' => env('SENDVK_TO8',0),
+        'send_to_id9' => env('SENDVK_TO9',0),
+        'send_to_id10' => env('SENDVK_TO10',0),
     ],
 
 ];

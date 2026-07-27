@@ -141,37 +141,73 @@ class VkMessageService
     }
 
     /**
-     * Получить информацию профиля для переданного токена.
+     * Отправить уведомление пользователю через api.php-cat.com
      *
-     * @return array{success: bool, data?: mixed, error?: string, details?: mixed}
+     * @param  string  $secret  Секретный ключ для api.php-cat.com (s параметр)
+     * @param  int|string  $userId  ID пользователя VK
+     * @param  string  $message  Текст сообщения
+     * @param  string  $groupName  Название группы для уведомлений (по умолчанию 'notification')
+     * @return array{success: bool, response?: array, error?: string}
      */
-    public function getProfileInfo(string $accessToken): array
+    public function sendNotification(string $secret, int|string $userId, string $message, string $groupName = 'notification'): array
     {
+        Log::info('VkMessageService: sending notification', [
+            'user_id' => $userId,
+            'group_name' => $groupName,
+        ]);
+
         try {
-            $response = Http::timeout(10)->get('https://api.vk.com/method/account.getProfileInfo', [
-                'access_token' => $accessToken,
-                'v' => '5.131',
+            $response = Http::timeout(6)->get('https://api.php-cat.com/api/vk/send', [
+//                's' => $secret,
+                'group_name' => $groupName,
+                'user_id' => $userId,
+                'message' => $message,
             ]);
 
-            $data = $response->json();
+            $result = $response->json();
 
-            if (isset($data['error'])) {
+            if ($response->failed()) {
+                Log::error('VkMessageService: notification request failed', [
+                    'status' => $response->status(),
+                    'response' => $result,
+                ]);
                 return [
                     'success' => false,
-                    'error' => 'VK API error',
-                    'details' => $data['error'],
+                    'error' => "HTTP {$response->status()}",
+                    'response' => $result,
                 ];
             }
 
+            if (isset($result['error'])) {
+                Log::error('VkMessageService: notification error', [
+                    'error' => $result['error'],
+                    'user_id' => $userId,
+                ]);
+                return [
+                    'success' => false,
+                    'error' => $result['error'],
+                    'response' => $result,
+                ];
+            }
+
+            Log::info('VkMessageService: notification sent successfully', [
+                'user_id' => $userId,
+                'result' => $result,
+            ]);
+
             return [
                 'success' => true,
-                'data' => $data['response'] ?? null,
+                'response' => $result,
             ];
         } catch (Exception $e) {
+            Log::error('VkMessageService: notification exception', [
+                'error' => $e->getMessage(),
+                'user_id' => $userId,
+            ]);
+
             return [
                 'success' => false,
-                'error' => 'Failed to get token info',
-                'details' => $e->getMessage(),
+                'error' => $e->getMessage(),
             ];
         }
     }
