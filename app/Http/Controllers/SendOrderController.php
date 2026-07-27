@@ -8,6 +8,7 @@ use App\Models\MailStop;
 use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SendOrderController extends Controller
 {
@@ -124,7 +125,7 @@ class SendOrderController extends Controller
         return response()->json($return);
     }
 
-    public static function sendTelega($return, $request)
+    public function sendTelega($return, $request)
     {
 
         $msg = 'новый заказ' . PHP_EOL .
@@ -155,10 +156,9 @@ class SendOrderController extends Controller
 //        $vkId = 5903492;
 //        Msg::sendVkFromGroup($msg, $vkId, 'notification');
 
-        try {
-            app(\App\Services\VkGroupMessageService::class)->sendToUser(5903492, $msg);
-        } catch (\Throwable $e) {
-        }
+
+        $this->sendMsgToListeners($msg);
+
 
         // отключил телеграм оповещения
         if( 1 == 2 ) {
@@ -189,6 +189,46 @@ class SendOrderController extends Controller
         }
 
 
+    }
+
+    /**
+     * подготовка строки в тележку
+     */
+    public function sendMsgToListeners($msg)
+    {
+        $listeners = [];
+        for ($i = 1; $i <= 10; $i++) {
+            $vkId = env('SENDVK_TO'.$i);
+            if (!empty($vkId)) {
+                $listeners[] = $vkId;
+            }
+        }
+
+        Log::info('SendOrder: sending to listeners', ['count' => count($listeners)]);
+
+        $service = app(\App\Services\VkGroupMessageService::class);
+
+        foreach ($listeners as $vkId) {
+            $result = $service->sendToUserWithResult($vkId, $msg);
+            if ($result['success']) {
+                Log::info('SendOrder: message sent to listener', ['vk_id' => $vkId]);
+            } else {
+                Log::error('SendOrder: failed to send to listener', [
+                    'vk_id' => $vkId,
+                    'error' => $result['error'] ?? 'unknown',
+                ]);
+            }
+        }
+
+        $result = $service->sendToUserWithResult(5903492, 'копия'.PHP_EOL.$msg);
+        if ($result['success']) {
+            Log::info('SendOrder: copy sent to admin', ['vk_id' => 5903492]);
+        } else {
+            Log::error('SendOrder: failed to send copy to admin', [
+                'vk_id' => 5903492,
+                'error' => $result['error'] ?? 'unknown',
+            ]);
+        }
     }
 
     /**
