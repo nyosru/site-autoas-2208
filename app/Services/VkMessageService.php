@@ -8,12 +8,25 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
+namespace App\Services;
+
+use App\Repositories\Contracts\VkSentMessageRepositoryInterface;
+use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
 class VkMessageService
 {
+    private VkGroupMessageService $vkGroupMessageService;
+    private VkSentMessageRepositoryInterface $vkSentMessageRepository;
+
     public function __construct(
-        private  VkGroupMessageService $vkGroupMessageService,
-        private  VkSentMessageRepositoryInterface $vkSentMessageRepository
+        VkGroupMessageService $vkGroupMessageService,
+        VkSentMessageRepositoryInterface $vkSentMessageRepository
     ) {
+        $this->vkGroupMessageService = $vkGroupMessageService;
+        $this->vkSentMessageRepository = $vkSentMessageRepository;
     }
 
     /**
