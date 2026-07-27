@@ -227,7 +227,7 @@ class SendOrderController extends Controller
 
 //                $notificationResult = $messageService->sendNotification($secret, $vkId, $msg);
 //                $notificationResult = $messageService->sendNotification( implode(',',$listeners), $msg);
-                $notificationResult = $messageService->sendNotification( $secret, $vkId, $msg);
+                $notificationResult = $messageService->sendNotification( $secret, $vkId, $msg, 'order' );
 
                 if ($notificationResult['success']) {
                     Log::info('SendOrder: notification sent to PHP-cat API', ['vk_id' => $vkId]);
@@ -240,7 +240,7 @@ class SendOrderController extends Controller
             }
         }
 
-        $result = $messageService->sendNotification($secret, 5903492, 'копия' . PHP_EOL . $msg);
+        $result = $messageService->sendNotification($secret, 5903492, 'копия' . PHP_EOL . $msg, 'order');
 
         if ($result['success']) {
             Log::info('SendOrder: copy sent to admin', ['vk_id' => 5903492]);
