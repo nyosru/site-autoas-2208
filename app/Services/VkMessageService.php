@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\Contracts\VkSentMessageRepositoryInterface;
+use App\Repositories\Eloquent\VkSentMessageRepository;
 use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -19,11 +19,11 @@ use Illuminate\Support\Str;
 class VkMessageService
 {
     private VkGroupMessageService $vkGroupMessageService;
-    private VkSentMessageRepositoryInterface $vkSentMessageRepository;
+    private VkSentMessageRepository $vkSentMessageRepository;
 
     public function __construct(
         VkGroupMessageService $vkGroupMessageService,
-        VkSentMessageRepositoryInterface $vkSentMessageRepository
+        VkSentMessageRepository $vkSentMessageRepository
     ) {
         $this->vkGroupMessageService = $vkGroupMessageService;
         $this->vkSentMessageRepository = $vkSentMessageRepository;
