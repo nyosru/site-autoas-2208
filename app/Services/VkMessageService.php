@@ -158,7 +158,7 @@ class VkMessageService
 
         try {
             $response = Http::timeout(6)->get('https://api.php-cat.com/api/vk/send', [
-//                's' => $secret,
+                's' => $secret,
                 'group_name' => $groupName,
                 'user_id' => $userId,
                 'message' => $message,
