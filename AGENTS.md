@@ -1,5 +1,3 @@
-# AGENTS.md
-
 ## Branch discipline
 - **`prod` is the deploy branch** — CI/CD (GitHub Actions) deploys to VPS on push to `prod`. Never commit directly to `prod` without user instruction.
 - Two branches: `main` and `prod`.
@@ -45,6 +43,23 @@ php artisan list:classes                            # list container bindings
 |---|---|
 | `routes/web.php` | Admin pages, VK auth, catch-all SPA route |
 | `routes/api.php` | Catalog, goods, orders, banners, pages, import |
+
+## Error messaging and notifications
+### Оповещения об успешной/неуспешной отправке
+- **`SendOrderController::sendMsgToListeners()`** теперь отправляет сообщения одновременно по двум каналам:
+  - VK с помощью `$vkService->sendToUserWithResult()` (с детальным логированием ошибок)
+  - API `php-cat.com` с помощью `$messageService->sendNotification()` для достав_EXTRA канала
+- **Улучшенное логирование**:
+  - Отдельные записи для успешной/неудачной отправки каждого пользователя
+  - Заголовок `SendOrder` с количеством получателей
+  - Логирование всех типов ошибок (HTTP-статусы, API-ошибки, exceptions)
+- **PHP 7 совместимость**: Переключен на старый синтаксис конструктора для проджект undelivered
+
+### Технические детали
+- Используется `VkMessageService.sendNotification()` для отправки через api.php-cat.com
+- Поддерживается индивидуальная конфигурация $`PHP_CAT_API_SECRET` и $`PHP_CAT_API_URL`
+- Логирование обогащено кастомным форматом для лучшего трейсинга
+- Отдельное логирование для копий сообщений (админу)
 
 ## Auth & roles
 - Admin login via **VK OAuth** (Socialite). Routes under `/admin/`.

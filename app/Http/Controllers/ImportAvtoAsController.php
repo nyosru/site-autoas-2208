@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\Catalog;
@@ -29,20 +30,10 @@ class ImportAvtoAsController extends Controller
     public function import(Request $request, $file = 'AllCatalog.xml')
     {
 
-//        return response()->json( [ 'line' => __LINE__ ] );
-
-//        dd($request->return);
-//        dd($request->All());
-
-//        try {
-
         if (!Storage::exists('import1c/' . $file))
             return 'файла данных не обнаружено';
 
-//        $ee = self::parsingXml( $file, false);
         $ee = self::parsingXml($file);
-
-//        return response()->json( [ 'line' => __LINE__  , 'ee' => $ee ] );
 
         $msg = '';
         $return = [];
@@ -54,7 +45,6 @@ class ImportAvtoAsController extends Controller
             $return['cats'] = sizeof($ee['cats']);
         }
 
-
         if (!empty($ee['items'])) {
 
             Good::truncate();
@@ -64,6 +54,7 @@ class ImportAvtoAsController extends Controller
 
             $msg .= 'Товаров: ' . sizeof($ee['items']) . PHP_EOL;
             $return['items'] = sizeof($ee['items']);
+
         }
 
         if (!empty($ee['analogs'])) {
@@ -76,34 +67,60 @@ class ImportAvtoAsController extends Controller
         }
 
         // 360209578, // я
-
         $return['photo'] = sizeof(Storage::files('public/photo'));
         $photos = 'Фото: ' . $return['photo'];
 
-//        return response()->json( [ 'line' => __LINE__  , 'ee' => $ee , 'return' => $return ] );
-
+        // отмена оповещений
         if (!empty($request->cancel_notification)) {
             Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 1);
-        } //
+        } // если нет "отмены оповещений"
         else {
-            Msg::$admins_id = [
-                1022228978, // AvtoAs
-                663501687, //Денис Авто-СА
-            ];
-            Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 2);
+//            Msg::$admins_id = [
+//                1022228978, // AvtoAs
+//                663501687, //Денис Авто-СА
+//            ];
+//            Msg::sendTelegramm('Обработан импорт данных' . PHP_EOL . $msg . $photos, null, 2);
+
+            $messageService = app(\App\Services\VkMessageService::class);
+            $listeners = $messageService->getListListeners();
+            Log::info('ImportXml: sending to listeners', ['count' => count($listeners)]);
+            $secret = env('PHP_CAT_API_SECRET');
+
+            $messageService = app(\App\Services\VkMessageService::class);
+
+            if (!empty($secret)) {
+
+                foreach ($listeners as $vkId) {
+                    $notificationResult = $messageService->sendNotification($secret, $vkId, $msg);
+
+                    if ($notificationResult['success']) {
+                        Log::info('SendOrder: notification sent to PHP-cat API', ['vk_id' => $vkId]);
+                    } else {
+                        Log::error('SendOrder: failed to send notification to PHP-cat API', [
+                            'vk_id' => $vkId,
+                            'error' => $notificationResult['error'] ?? 'unknown',
+                        ]);
+                    }
+                }
+
+                $result = $messageService->sendNotification($secret, 5903492, 'копия' . PHP_EOL . $msg);
+
+                if ($result['success']) {
+                    Log::info('SendOrder: copy sent to admin', ['vk_id' => 5903492]);
+                } else {
+                    Log::error('SendOrder: failed to send copy to admin', [
+                        'vk_id' => 5903492,
+                        'error' => $result['error'] ?? 'unknown',
+                    ]);
+                }
+            }
+
         }
-
-
-//        return response()->json([
-//            'line' => __LINE__,
-////            'ee' => $ee,
-//            'return' => $return]);
 
         if ($request->return == 'json') {
             return response()->json($return);
         } else {
             die('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos . '</pre>');
-//        return response('<pre>' . 'Обработан импорт данных' . PHP_EOL . $msg . $photos .'</pre>',200);
         }
     }
 
@@ -168,32 +185,6 @@ class ImportAvtoAsController extends Controller
                 '|' => '',
                 '.' => '_',
                 '”' => '',
-                //'q' => 'q',
-                //'a' => 'a',
-                //'z' => 'z',
-                //'w' => 'w',
-                //'s' => 's',
-                //'x' => 'x',
-                //'e' => 'e',
-                //'d' => 'd',
-                //'c' => 'c',
-                //'r' => 'r',
-                //'f' => 'f',
-                //'v' => 'v',
-                //'t' => 't',
-                //'g' => 'g',
-                //'b' => 'b',
-                //'y' => 'y',
-                //'h' => 'h',
-                //'n' => 'n',
-                //'u' => 'u',
-                //'j' => 'j',
-                //'m' => 'm',
-                //'i' => 'i',
-                //'k' => 'k',
-                //'o' => 'o',
-                //'l' => 'l',
-                //'p' => 'p',
                 "а" => "a", "б" => "b", "в" => "v", "г" => "g",
                 "д" => "d", "е" => "e", "ж" => "zh",
                 "з" => "z", "и" => "i", "й" => "y", "к" => "k", "л" => "l",
@@ -202,8 +193,6 @@ class ImportAvtoAsController extends Controller
                 "ц" => "ts", "ч" => "ch", "ш" => "sh", "щ" => "sch", "ъ" => "",
                 "ы" => "yi", "ь" => "", "э" => "e", "ю" => "yu", "я" => "ya"
             );
-            //echo $cyr.' == ';
-            //echo strtr($cyr,$tr).'<br/>';
 
             $c = preg_replace('/[^a-zA-Z0-9_]/', '', mb_strtolower(strtr($cyr, $tr)));
 
@@ -213,7 +202,6 @@ class ImportAvtoAsController extends Controller
 
             return $c;
         } elseif ($type == 'cifr') {
-            //echo $cyr_str.' -- ';
 
             if (isset($_SESSION['status1']) && $_SESSION['status1'] === true) {
                 $status .= '</fieldset>';
@@ -221,7 +209,6 @@ class ImportAvtoAsController extends Controller
 
             return preg_replace('/[^0-9]/', '', $cyr_str);
         } elseif ($type == 'cifr2') {
-            //echo $cyr_str.' -- ';
             $e = preg_replace('/[^0-9,.]/', '', $cyr_str);
 
             if (isset($_SESSION['status1']) && $_SESSION['status1'] === true) {
@@ -230,7 +217,6 @@ class ImportAvtoAsController extends Controller
 
             return str_replace(",", ".", $e);
         } elseif ($type == 'cifr21') {
-            //echo $cyr_str.' -- ';
             $e = preg_replace('/[^0-9,.]/', '', $cyr_str);
 
             if (isset($_SESSION['status1']) && $_SESSION['status1'] === true) {
@@ -290,9 +276,7 @@ class ImportAvtoAsController extends Controller
 
         $reader = new \XMLReader();
 
-        // if (!$reader->open($sc . $file))
         if (!$reader->open($fileImport)) {
-            // throw new \Exception('Failed to open ' . $sc . $file);
             throw new \Exception('Failed to open ' . $fileImport, 422);
         }
 

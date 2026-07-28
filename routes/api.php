@@ -15,27 +15,6 @@ use App\Http\Controllers\MailStopController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\SendOrderController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-// Route::get('/11/{domain}', function (Request $request,$domain) {
-//     $dns = dns_get_record($domain);
-//     // print_r($dns);
-//     dd($dns);
-// });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::get('/getTest2', function (Request $request) {
     echo '<pre>';
 
@@ -52,13 +31,7 @@ Route::get('/getTest2', function (Request $request) {
         <hr />Код возврата: ' . $retval;
 
 });
-
-//Route::get('allautoparts/{search}', function (Request $request) {
-//Route::get('allautoparts/{search}', function ($search) {
-//    return file_get_contents('https://api74.php-cat.com/allautoparts/api.php?ss=da&search=' . $search);
-//});
 Route::get('allautoparts/{search}', [PageController::class, 'getApiAllAutoparts']);
-
 
 Route::get('/getTest', function (Request $request) {
 
@@ -106,12 +79,10 @@ Route::get('/getTest', function (Request $request) {
 
 });
 
-
 Route::apiResource('catalog', CatalogController::class);
 Route::apiResource('goodscat', GoodsCatController::class);
 Route::apiResource('good', GoodController::class);
 Route::get('goodAnalog/{id}', [GoodController::class, 'showAnalog']);
-
 
 Route::get('pages', [PageController::class, 'apiIndex']);
 Route::apiResource('page', PageController::class);
@@ -119,83 +90,12 @@ Route::apiResource('banner', BannerController::class);
 Route::get('adverIndex', [BannerController::class, 'adverIndex']);
 
 Route::get('import/1c', [ImportAvtoAsController::class, 'import']);
-// Route::get('import/1c2', [ImportAvtoAsController::class, 'import2']);
 
 // отправить заказ
-// Route::post('orger', [ PageController::class , 'sendOrder' ] );
-// Route::any('orger', [PageController::class, 'sendOrder']);
 Route::apiResource('order', SendOrderController::class)
     ->only(['store']);
 
-
-
-// Route::post('smsConfirmSend/{phone}/{code}', [PageController::class, 'smsConfirmSend']);
 Route::any('smsConfirmSend/{phone}/{code?}', [PhoneController::class, 'smsConfirmSend']);
-// Route::post('smsConfirm/{phone}', [PageController::class, 'smsConfirm']);
 Route::post('smsConfirm/{phone}', [PhoneController::class, 'smsConfirm']);
 
 Route::apiResource('emailStop', MailStopController::class);
-// Route::resource('emailStop', MailStopController::class);
-
-Route::get('test-vk', function () {
-
-    $msg = 'Тестовое сообщение из '.($_SERVER['HTTP_HOST'] ?? 'сайта').'. Время: '.now();
-    $vkId = 5903492;
-
-    $log = [];
-
-    // === 1. Проверка конфигов ===
-    $log['config'] = [
-        'env_VK_SERVICE_TOKEN' => env('VK_SERVICE_TOKEN') ? '***'.substr(env('VK_SERVICE_TOKEN'), -10) : 'NOT SET',
-        'env_VK_GROUP_ORDER_TOKEN' => env('VK_GROUP_ORDER_TOKEN') ? '***'.substr(env('VK_GROUP_ORDER_TOKEN'), -10) : 'NOT SET',
-        'env_VK_GROUP_ID' => env('VK_GROUP_ID'),
-        'env_VK_GROUP_ORDER_ID' => env('VK_GROUP_ORDER_ID'),
-        'config_services_vk_service_token' => config('services.vk.service_token') ? '***'.substr(config('services.vk.service_token'), -10) : 'NOT SET',
-        'config_order_vk_service_token' => config('services.vk.order_token') ? '***'.substr(config('services.vk.order_token'), -10) : 'NOT SET',
-        'config_services_vk_group_id' => config('services.vk.group_id'),
-        'config_щ order_vk_group_id' => config('services.vk.order_group_id'),
-    ];
-    Log::info('TEST-VK: config check', $log['config']);
-
-    // === 2. VkGroupMessageService ===
-    $log['vkGroupService'] = ['attempted' => true];
-    try {
-        $vkService = app(\App\Services\VkGroupMessageService::class);
-        $log['vkGroupService']['canSendFromGroup'] = $vkService->canSendFromGroup($vkId);
-        $result = $vkService->sendToUserWithResult($vkId, $msg);
-        $log['vkGroupService']['sendResult'] = $result;
-        Log::info('TEST-VK: sendToUserWithResult', $result);
-    } catch (\Throwable $e) {
-        $log['vkGroupService']['exception'] = $e->getMessage();
-        Log::error('TEST-VK: VkGroupMessageService exception', ['message' => $e->getMessage()]);
-    }
-
-    // === 3. Прямой запрос к VK API ===
-    $log['directVkApi'] = ['attempted' => true];
-    try {
-        $token = env('VK_SERVICE_TOKEN');
-        if ($token) {
-            $response = \Illuminate\Support\Facades\Http::asForm()->timeout(30)->post('https://api.vk.com/method/messages.send', [
-                'access_token' => $token,
-                'user_id' => $vkId,
-                'message' => $msg,
-                'random_id' => random_int(1, 2147483647),
-                'v' => '5.131',
-            ]);
-            $log['directVkApi']['http_status'] = $response->status();
-            $log['directVkApi']['body'] = $response->json();
-            Log::info('TEST-VK: direct VK API', [
-                'http_status' => $response->status(),
-                'body' => $response->json(),
-            ]);
-        } else {
-            $log['directVkApi']['error'] = 'VK_SERVICE_TOKEN not set in env';
-            Log::error('TEST-VK: direct VK API - token missing');
-        }
-    } catch (\Throwable $e) {
-        $log['directVkApi']['exception'] = $e->getMessage();
-        Log::error('TEST-VK: direct VK API exception', ['message' => $e->getMessage()]);
-    }
-
-    return response()->json($log);
-});

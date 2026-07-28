@@ -196,72 +196,13 @@ class SendOrderController extends Controller
      */
     public function sendMsgToListeners($msg)
     {
-        $listeners = [];
-        for ($i = 1; $i <= 10; $i++) {
-//            $vkId = env('SENDVK_TO' . $i);
-            $vkId = (int) config('services.vk.send_to_id' . $i,null);
-            if (!empty($vkId)) {
-                $listeners[] = $vkId;
-            }
-        }
-
+        $messageService = app(\App\Services\VkMessageService::class);
+        $listeners = $messageService->getListListeners();
         Log::info('SendOrder: sending to listeners', ['count' => count($listeners)]);
 
-//        $vkService = app(\App\Services\VkGroupMessageService::class);
-        $messageService = app(\App\Services\VkMessageService::class);
-
         $secret = env('PHP_CAT_API_SECRET');
-
-        foreach ($listeners as $vkId) {
-//            $result = $vkService->sendToUserWithResult($vkId, $msg);
-//            if ($result['success']) {
-//                Log::info('SendOrder: message sent to listener', ['vk_id' => $vkId]);
-//            } else {
-//                Log::error('SendOrder: failed to send to listener', [
-//                    'vk_id' => $vkId,
-//                    'error' => $result['error'] ?? 'unknown',
-//                ]);
-//            }
-
-            if (!empty($secret)) {
-
-//                $notificationResult = $messageService->sendNotification($secret, $vkId, $msg);
-//                $notificationResult = $messageService->sendNotification( implode(',',$listeners), $msg);
-                $notificationResult = $messageService->sendNotification( $secret, $vkId, $msg, 'order' );
-
-                if ($notificationResult['success']) {
-                    Log::info('SendOrder: notification sent to PHP-cat API', ['vk_id' => $vkId]);
-                } else {
-                    Log::error('SendOrder: failed to send notification to PHP-cat API', [
-                        'vk_id' => $vkId,
-                        'error' => $notificationResult['error'] ?? 'unknown',
-                    ]);
-                }
-            }
-        }
-
-        $result = $messageService->sendNotification($secret, 5903492, 'копия' . PHP_EOL . $msg, 'order');
-
-        if ($result['success']) {
-            Log::info('SendOrder: copy sent to admin', ['vk_id' => 5903492]);
-//
-//            $secret = env('PHP_CAT_API_SECRET');
-//            if (!empty($secret)) {
-//                $notificationResult = $messageService->sendNotification($secret, 5903492, 'копия' . PHP_EOL . $msg);
-//                if ($notificationResult['success']) {
-//                    Log::info('SendOrder: admin notification sent to PHP-cat API', ['vk_id' => 5903492]);
-//                } else {
-//                    Log::error('SendOrder: failed to send admin notification to PHP-cat API', [
-//                        'vk_id' => 5903492,
-//                        'error' => $notificationResult['error'] ?? 'unknown',
-//                    ]);
-//                }
-//            }
-        } else {
-            Log::error('SendOrder: failed to send copy to admin', [
-                'vk_id' => 5903492,
-                'error' => $result['error'] ?? 'unknown',
-            ]);
+        if (!empty($secret)) {
+            $messageService->sendVk($secret, $listeners, $msg);
         }
     }
 

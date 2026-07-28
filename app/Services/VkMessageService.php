@@ -21,12 +21,15 @@ class VkMessageService
     private VkGroupMessageService $vkGroupMessageService;
     private VkSentMessageRepository $vkSentMessageRepository;
 
+    public $adminId = '';
+
     public function __construct(
         VkGroupMessageService $vkGroupMessageService,
         VkSentMessageRepository $vkSentMessageRepository
     ) {
         $this->vkGroupMessageService = $vkGroupMessageService;
         $this->vkSentMessageRepository = $vkSentMessageRepository;
+        $this->adminId = env('SEND_ADMIN_VK','');
     }
 
     /**
@@ -124,6 +127,69 @@ class VkMessageService
 
             return false;
         }
+    }
+
+    /**
+     * Отправить уведомления через api.php-cat.com всем слушателям
+     *
+     * @param string $secret
+     * @param array $listenerIds
+     * @param string $msg
+     * @param int|null $adminId ID админа для копии (null = не отправлять)
+     * @return array{success: int, failed: int}
+     */
+    public function sendVk(string $secret, array $listenerIds, string $msg ): array
+    {
+        $success = 0;
+        $failed = 0;
+
+        foreach ($listenerIds as $vkId) {
+            $result = $this->sendNotification($secret, $vkId, $msg);
+            if ($result['success']) {
+                $success++;
+                Log::info('SendOrder: notification sent to PHP-cat API', ['vk_id' => $vkId]);
+            } else {
+                $failed++;
+                Log::error('SendOrder: failed to send notification to PHP-cat API', [
+                    'vk_id' => $vkId,
+                    'error' => $result['error'] ?? 'unknown',
+                ]);
+            }
+        }
+
+        if ($this->adminId !== null) {
+            $result = $this->sendNotification($secret, $this->adminId, 'копия' . PHP_EOL . $msg);
+            if ($result['success']) {
+                $success++;
+                Log::info('SendOrder: copy sent to admin', ['vk_id' => $this->adminId]);
+            } else {
+                $failed++;
+                Log::error('SendOrder: failed to send copy to admin', [
+                    'vk_id' => $this->adminId,
+                    'error' => $result['error'] ?? 'unknown',
+                ]);
+            }
+        }
+
+        return ['success' => $success, 'failed' => $failed];
+    }
+
+    /**
+     * получаем список слушаетелей
+     * @return array
+     */
+    public function getListListeners(): array
+    {
+        $listeners = [];
+        for ($i = 1; $i <= 10; $i++) {
+//            $vkId = env('SENDVK_TO' . $i);
+            $vkId = (int) config('services.vk.send_to_id' . $i,null);
+            if (!empty($vkId)) {
+                $listeners[] = $vkId;
+            }
+        }
+        return $listeners;
+
     }
 
     /**
